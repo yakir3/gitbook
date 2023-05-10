@@ -13,6 +13,8 @@
     * [Prometheus](ObservabilityAnalysis/prometheus.md)
     * [Grafana](ObservabilityAnalysis/grafana.md)
 * [Develop](Develop/README.md)
+    * [Python](Python/README.md)
+    * [Go](Go/README.md)
 * [Operations](Operations/README.md)
 * [Others](Others/README.md)
 * [TechnologyStack](TechnologyStack/README.md)
