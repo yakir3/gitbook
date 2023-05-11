@@ -22,5 +22,5 @@
 * [Operations](Operations/README.md)
   * [kernel](Operations/kernel.md)
   * [Network](Operations/network.md)
+  * [TechnologyStack](Operations/TechnologyStack.md)
 * [Others](Others/README.md)
-* [TechnologyStack](TechnologyStack/README.md)
