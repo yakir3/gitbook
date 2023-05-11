@@ -15,7 +15,7 @@
 * [Develop](Develop/README.md)
   * [Python](develop/python.md)
   * [Go](develop/go.md)
-* [Operations](operations/README.md)
+* [Operations](Operations/README.md)
   * [kernel](operations/kernel.md)
   * [Network](operations/network.md)
 * [Others](Others/README.md)
