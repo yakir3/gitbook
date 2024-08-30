@@ -1,6 +1,7 @@
 ## Yakir gitbook
 
-[![GitHub Actions](https://img.shields.io/github/workflow/status/yakir3/gitbook/ci-to-dockerhub.yml?label=actions&logo=github&logoColor=white)](https://github.com/yakir3/gitbook/actions/workflows/ci-to-dockerhub.yml)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/yakir3/gitbook/ci-to-dockerhub.yml?label=actions&logo=github&logoColor=white)](https://github.com/yakir3/gitbook/actions/workflows/ci-to-dockerhub.yml)
+
 
 
 This is gitbook by [Yakir](https://book.yakir.top).
