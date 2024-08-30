@@ -20,5 +20,5 @@
 
 
 >Reference:
->1. [Official Containerd Doc](https://containerd.io/docs/)
->2. [Containerd Github](https://github.com/containerd/containerd)
+>1. [Official Website](https://containerd.io/docs/)
+>2. [Repository](https://github.com/containerd/containerd)

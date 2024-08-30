@@ -34,7 +34,7 @@ helm -n cicd install argocd .
 
 
 #### How To Use
-##### postinstallation
+##### argocd cli
 ```bash
 # install argocd cli latest version
 curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
@@ -58,7 +58,30 @@ ARGOCD_PASSWORD=`kubectl -n argocd get secrets argocd-initial-admin-secret -ojso
 argocd login $ARGOCD_SERVER --username $ARGOCD_USERNAME --password $ARGOCD_PASSWORD
 ```
 
-##### user management
+##### applications in any namespace
+```bash
+# Change workload startup parameters
+kubectl -n argocd patch configmaps argocd-cmd-params-cm --type='json' -p='[{"op": "add", "path": "/data", "value": {}}, {"op": "add", "path": "/data/application.namespaces", "value": "app-team-one, app-team-two"}]' 
+kubectl -n argocd rollout restart deployment argocd-server
+kubectl -n argocd rollout restart statefulset argocd-application-controller
+
+
+# Adapt Kubernetes RBAC
+git clone https://github.com/argoproj/argo-cd.git
+kubectl apply -k examples/k8s-rbac/argocd-server-applications/
+
+
+# Create an application
+argocd app create foo/bar ...
+# Sync the application
+argocd app sync foo/bar
+# Delete the application
+argocd app delete foo/bar
+# Retrieve application's manifest
+argocd app manifests foo/bar
+```
+
+##### account management
 ```bash
 # create user in configmaps
 kubectl -n argocd patch configmaps argocd-cm --type='json' -p='[{"op": "add", "path": "/data", "value": {}},{"op": "add", "path": "/data/accounts.yakir", "value": "apiKey, login"}]'
@@ -67,9 +90,9 @@ argocd account update-password --account yakir
 
 
 # delete user in configmaps
-kubectl patch -n argocd cm argocd-cm --type='json' -p='[{"op": "remove", "path": "/data/accounts.yakir"}]'
+kubectl -n argocd patch configmaps argocd-cm --type='json' -p='[{"op": "remove", "path": "/data/accounts.yakir"}]'
 # delete password in secrets
-kubectl patch -n argocd secrets argocd-secret --type='json' -p='[{"op": "remove", "path": "/data/accounts.yakir.password"}]'
+kubectl -n argocd patch secrets argocd-secret --type='json' -p='[{"op": "remove", "path": "/data/accounts.yakir.password"}]'
 
 
 # get account infomation
@@ -86,16 +109,73 @@ kubectl -n argocd edit configmaps argocd-rbac-cm
 ...
 data:
   policy.csv: |
-    # p, account, applications, list, myproject/myapp, allow
-    # p, proj:myproj, exec, create, */*, allow
-	# p, role:myrole, exec, create, */*, allow
+	# p, somerole, applications, create, <project>/<namespace>/<application>, allow
     p, yakir, *, *, *, allow
-    
 ```
 
-##### application
+##### cluster management
 ```bash
-# create a directory app
+# get info
+argocd cluster list
+argocd cluster get <cluster_name>
+
+# create a cluster
+argocd cluster add 
+```
+
+##### appproj management
+```bash
+# get info
+argocd proj list
+
+
+# create a proj
+argocd proj create my-proj --description 'for my-namespace project' --dest https://kubernetes.default.svc,my-namespace --source-namespaces my-namespace --src '*'
+# or
+cat <<EOF | kubectl apply -f -
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: my-proj
+  namespace: argocd
+spec:
+  description: for my-namespace project
+  destinations:
+  - namespace: my-namespace
+    server: https://kubernetes.default.svc
+  sourceNamespaces:
+  - my-namespace
+  sourceRepos:
+  - '*'
+EOF
+```
+
+##### repository management
+```bash
+# get info
+argocd repo list
+argocd repocreds list
+
+
+# create a repo
+argocd repo add https://git.example.com/repos/repo --username git --password secret
+argocd repo add https://charts.helm.sh/stable --type helm --name stable
+
+
+# create a repocreds template
+argocd repocreds add https://gitlab.com/your_repo/argocd.git --username git --password secret
+```
+
+##### application management
+```bash
+# get infomation
+argocd app list
+argocd appset list
+argocd app get <applications_name>
+
+
+# create applications
+# create a app from manifests
 argocd app create guestbook \
   --auto-prune
   --dest-name in-cluster \
@@ -121,21 +201,21 @@ argocd app create helm-guestbook \
 argocd app create nginx-ingress \
   --repo https://charts.helm.sh/stable \
   --helm-chart nginx-ingress \
+  --helm-set global.key1=val1
   --revision 1.24.3 \
   --release-name nginx-ingress \
   --dest-namespace default \
   --dest-server https://kubernetes.default.svc
+  --values values-production.yaml
 
-
-# query all application
-argocd app list
-#kubectl -n argocd get applications
 
 # sync or deploy application
-argocd app sync guestbook
-argocd app get guestbook
-```
+argocd app sync <applications_name>
 
+
+# set helm value
+argocd app set helm-guestbook -p service.type=LoadBalancer
+```
 
 ### Argo Workflows
 #### Introduction

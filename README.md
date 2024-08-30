@@ -1,17 +1,37 @@
----
-description: About page
----
+## gitbook
 
-# About
+[![gitbook]()]()
 
-### Denpendicies
+This is gitbook by [Yakir](https://book.yakir.top).
+About knowledge record and technology stack.
+
+
+**Table of Contents**
+
+<!-- toc -->
+
+- [About](#about)
+  * [Using the `gitbook`](#using-gitbook)
+- [APP-META](#)
+- [CNCF](#)
+- [Development](#)
+- [Operations](#)
+- [Platform](#)
+- [WorkEnv](#)
+
+<!-- tocstop -->
+
+## About
+### Using `gitbook`
+
+#### Denpendicies
 + GitHub Pages
 + Nodejs
 + Markdown
 + gitbook-cli
 
 
-### Install
+#### Install
 ```bash
 # nodejs
 brew install node
@@ -25,8 +45,3 @@ gitbook -V
 gitbook init
 gitbook build
 ```
-
-
->Reference:
->1. [Official Website](http://docs.gitbook.io)
->2. [Repository](https://github.com/GitbookIO/gitbook)

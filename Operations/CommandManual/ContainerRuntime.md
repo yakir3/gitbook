@@ -216,11 +216,13 @@ kubectl describe service service_name
 kubectl get pod --show-labels
 kubectl logs -f --tail 10 pod_name -l app.kubernetes.io/instance=ingress-nginx --max-log-requests=5
 
-# attach and exec 
+# attach 
 kubectl attach -it pod pod_name [-c container_name]
+
+# exec
 kubectl exec -it pod_name [-c container_name] -- bash/sh
 
-# forward pod/service port
+# port-forward
 kubectl -n argocd port-forward --address=0.0.0.0 pods/argocd-server-cd747d9d7-k7k4z 9999:8080
 kubectl -n argocd port-forward --address=0.0.0.0 services/argocd-server 9999:80
 
@@ -229,6 +231,13 @@ kubectl proxy --address=0.0.0.0
 
 # cp
 kubectl cp pod_name:/path/path /tmp/path
+
+
+# auth
+# kubectl auth can-i get pods --as=system:serviceaccount:<namespace>:<serviceaccount-name> -n <namespace>
+kubectl auth can-i create applications --as=system:serviceaccount:argocd:argocd-server -n argocd
+
+
 
 # debug 
 kubectl debug -it pod/pod_name --image=busybox [--target=container_name] -- /bin/sh
