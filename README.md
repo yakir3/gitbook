@@ -12,14 +12,11 @@ About knowledge record and technology stack.
 
 <!-- toc -->
 
+- [Yakir gitbook](#yakir-gitbook)
 - [About](#about)
-  * [Using the `gitbook`](#using-gitbook)
-- [APP-META](#)
-- [CNCF](#)
-- [Development](#)
-- [Operations](#)
-- [Platform](#)
-- [WorkEnv](#)
+  - [Using `gitbook`](#using-gitbook)
+    - [Denpendicies](#denpendicies)
+    - [Install](#install)
 
 <!-- tocstop -->
 
