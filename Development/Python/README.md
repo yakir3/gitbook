@@ -1,4 +1,9 @@
-### Install
+---
+description: Python record
+icon: square-code
+---
+
+## Install
 ```bash
 # centos
 yum install -y make gcc zlib-devel bzip2-devel openssl-devel ncurses-devel libffi-devel
@@ -24,13 +29,13 @@ apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev l
 make && make install
 ```
 
-### Pycharm
-#### active
+## Pycharm
+### active
 ```bash
 cat ideaActive/ja-netfilter-all/ja-netfilter/readme.txt
 ```
 
-#### config
+### config
 ```bash
 # Editor
 Font
@@ -53,8 +58,8 @@ Python Intergrated Tools -> Docstring format: Google
 
 ```
 
-### ProjectManage
-#### pip
+## ProjectManage
+### pip
 ```bash
 # Install
 ...
@@ -71,8 +76,8 @@ pip install -r requirements.txt
 
 ```
 
-#### poetry
-##### Install
+### poetry
+#### Install
 ```bash
 # Option 1(recommend)
 # Install
@@ -92,7 +97,7 @@ export /root/.local/bin/
 pipx upgrade poetry
 ```
 
-##### How to use
+#### How to use
 ```bash
 # New project
 poetry new poetry-project
@@ -145,7 +150,7 @@ poetry config virtualenvs.create false <--local>
 
 
 
->Reference:
->1. [Writing your pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
->2. [Poetry Official Docs](https://python-poetry.org/docs/)
->3. [toml.io](https://toml.io/cn/)
+> Reference:
+> 1. [Writing your pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
+> 2. [Poetry Official Docs](https://python-poetry.org/docs/)
+> 3. [toml.io](https://toml.io/cn/)

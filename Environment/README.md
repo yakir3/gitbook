@@ -3,26 +3,11 @@ description: Environment init and install develepment tools.
 icon: bullseye-arrow
 ---
 
-[![make-test](https://img.shields.io/github/actions/workflow/status/yakir3/gitbook/make-test.yml?label=env-init&logo=github&logoColor=white)](https://github.com/yakir3/gitbook/actions/workflows/make-test.yml)
-
-**Table of Contents**
-
-<!-- toc -->
-
-- [Overview](#overview)
-  - [Make help](#make-help)
-    - [MacOS](#macos)
-    - [Ubuntu](#ubuntu)
-  - [Others](#others)
-    - [iTerm2](#iterm2)
-    - [k3s](#k3s)
-
-<!-- tocstop -->
-
 # Overview
 
 This is a Makefile for environtment init and install development tools.
 
+[![make-test](https://img.shields.io/github/actions/workflow/status/yakir3/gitbook/make-test.yml?label=env-init&logo=github&logoColor=white)](https://github.com/yakir3/gitbook/actions/workflows/make-test.yml)
 
 ## Make help
 

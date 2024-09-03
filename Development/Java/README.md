@@ -1,4 +1,9 @@
-### Install
+---
+description: Java record
+icon: square-code
+---
+
+## Install
 ```bash
 # centos
 
@@ -10,13 +15,13 @@ apt install default-jdk
 
 ```
 
-### IDEA
-#### active
+## IDEA
+### active
 ```bash
 cat ideaActive/ja-netfilter-all/ja-netfilter/readme.txt
 ```
 
-#### config
+### config
 ```bash
 # Editor
 Font
@@ -29,16 +34,16 @@ gradianto
 rainbow brackets
 ```
 
-### ProjectManage
-#### [[BuildTools#maven|maven]]
+## ProjectManage
+### [[BuildTools#maven|maven]]
 
-#### gradle
+### gradle
 ```bash
 
 ```
 
-### JVM Settings
-#### common
+## JVM Settings
+### common
 ```bash
 JAVA_OPTS="\
 -Dcatalina.base=${PWD} \
@@ -62,7 +67,7 @@ $JAVA_ARGS
 
 ```
 
-#### jvm 容器参数
+### jvm 容器参数
 
 | 参数                                                                  | 说明                                                                                                                                   |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -83,7 +88,7 @@ $JAVA_ARGS
 Dragonwell 11不支持${POD_IP}变量。
 如果您没有将/home/admin/nas容器路径挂载到NAS目录，则必须保证该目录在应用启动前已存在，否则将不会产生日志文件。
 
-#### jvm 堆参数
+### jvm 堆参数
 
 | 参数                                                                  | 说明                                                                           |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -110,6 +115,6 @@ Dragonwell 11不支持${POD_IP}变量。
 
 
 
->Reference:
->1. Java Official Docs
->2. [AliCloud Serverless](https://help.aliyun.com/zh/sae/use-cases/best-practices-for-jvm-heap-size-configuration)
+> Reference:
+> 1. Java Official Docs
+> 2. [AliCloud Serverless](https://help.aliyun.com/zh/sae/use-cases/best-practices-for-jvm-heap-size-configuration)

@@ -1,4 +1,11 @@
-### env
+---
+description: Bash record
+icon: square-code
+---
+
+# Bash
+
+## env
 ```bash
 # add share lib search
 # option1 for tmp 
@@ -29,7 +36,7 @@ source customer.env
 echo $APP_NAME
 ```
 
-### exec
+## exec
 ```bash
 # executed command and exit current shell(process replacement)
 echo $$
@@ -109,7 +116,7 @@ exec -c printenv
 find /tmp/ -name "test.log" -exec chmod +x '{}' \;
 ```
 
-### function 
+## function 
 ```bash
 # script position 
 tee > test.sh << "EOF"
@@ -137,7 +144,7 @@ function test() (
 )
 ```
 
-### set 
+## set 
 ```bash
 # set to environment variable
 set -a testk
@@ -174,7 +181,7 @@ set -x
 set -o xtrace
 ```
 
-### printf
+## printf
 ```bash
 # format 
 df -h |column -t
@@ -182,7 +189,7 @@ df -h |column -t
 df -h | awk '{printf "%-20s %-10s %-10s %-10s %-10s %-10s\n", $1, $2, $3, $4, $5, $6}'
 ```
 
-### truncate string
+## truncate string
 ```bash
 # truncate string
 variable="Hello World"

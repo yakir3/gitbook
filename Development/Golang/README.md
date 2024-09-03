@@ -1,4 +1,9 @@
-### Install
+---
+description: Golang record
+icon: square-code
+---
+
+## Install
 ```bash
 # Download and Install
 # https://go.dev/doc/install
@@ -11,7 +16,7 @@
 ```
 
 
-### Goland
+## Goland
 ```bash
 # active code
 ideaActive
@@ -26,8 +31,8 @@ rainbow brackets
 ```
 
 
-### Learning
-#### Formatting
+## Learning
+### Formatting
 ```go
 fmt.Print()
 fmt.Println()
@@ -35,7 +40,7 @@ fmt.Printf()
 
 ```
 
-#### Commentary
+### Commentary
 ```go
 package main
 import "fmt"
@@ -49,39 +54,39 @@ func main() {
 }
 ```
 
-#### Names
-##### Package names
+### Names
+#### Package names
 ```go
 
 ```
 
-##### Getters
+#### Getters
 ```go
 
 ```
 
-##### Interface names
+#### Interface names
 ```go
 
 ```
 
-##### MixedCaps
+#### MixedCaps
 ```go
 
 ```
 
-#### Control structures
-##### If
+### Control structures
+#### If
 ```go
 
 ```
 
-##### Redeclaration and reassignment
+#### Redeclaration and reassignment
 ```go
 
 ```
 
-##### For
+#### For
 ```go
 var names [3]int = [3]int{1,2,3}
 var names = [...]string{"a","b","c"}
@@ -90,31 +95,31 @@ for k,v := range names {
 }
 ```
 
-##### Switch
+#### Switch
 ```go
 
 ```
 
-##### Type switch
+#### Type switch
 ```go
 
 ```
 
-#### Functions
-##### Multiple return values
-##### Named result parameters
-##### Defer
+### Functions
+#### Multiple return values
+#### Named result parameters
+#### Defer
 
-#### Data
-##### Allocation with new
+### Data
+#### Allocation with new
 ```go
 var p *int = new(int)
 fmt.Println(*p)
 ```
 
-##### Constructors and composite literals
+#### Constructors and composite literals
 
-##### Allocation with make
+#### Allocation with make
 ```go
 var s []int = make([]int, 3, 5)
 //var s []string = make([]string, 3, 5)
@@ -122,7 +127,7 @@ fmt.Println(s)
 ```
 
 
-##### Arrays
+#### Arrays
 ```go
 var arr [3]int8 = [3]int8{1,2,3}
 //var arr [3]int = [3]int{1,2,3}
@@ -132,25 +137,25 @@ fmt.Println(&arr[1])
 fmt.Println(&arr[2])
 ```
 
-##### Slices
-##### Two-dimensional slices
+#### Slices
+#### Two-dimensional slices
 
-##### Maps
+#### Maps
 
-##### Printing
+#### Printing
 
-##### Append
+#### Append
 ```go
 
 ```
 
-#### Initialization
-##### Constants
-##### Variables
-##### The init function
+### Initialization
+#### Constants
+#### Variables
+#### The init function
 
-#### Methods
-##### Pointers vs. Values
+### Methods
+#### Pointers vs. Values
 ```go
 var x int = 10
 fmt.Printf("%p\n", &x)
@@ -160,12 +165,12 @@ fmt.Println(p)
 fmt.Println(*p)
 ```
 
-#### Interfaces and other types
-##### Interfaces
-##### Conversions
-##### Interface conversions and type assertions
-##### Generality
-##### Interfaces and methods
+### Interfaces and other types
+#### Interfaces
+#### Conversions
+#### Interface conversions and type assertions
+#### Generality
+#### Interfaces and methods
 
 
 >Reference:
