@@ -3,6 +3,8 @@ description: Java record
 icon: square-code
 ---
 
+# Java
+
 ## Install
 ```bash
 # centos

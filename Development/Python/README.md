@@ -3,6 +3,8 @@ description: Python record
 icon: square-code
 ---
 
+# Python
+
 ## Install
 ```bash
 # centos

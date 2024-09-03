@@ -1,4 +1,9 @@
-# Linux kernel
+---
+description: Kernel record
+icon: puzzle-piece
+---
+
+# Kernel
 
 ## sysctl
 /etc/sysctl.conf

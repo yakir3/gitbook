@@ -1,0 +1,4 @@
+---
+description: DistributionInstaller
+icon: globe
+---

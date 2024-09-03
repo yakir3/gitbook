@@ -3,6 +3,8 @@ description: Golang record
 icon: square-code
 ---
 
+# Golang
+
 ## Install
 ```bash
 # Download and Install

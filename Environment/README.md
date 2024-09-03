@@ -7,7 +7,7 @@ icon: bullseye-arrow
 
 This is a Makefile for environtment init and install development tools.
 
-[![make-test](https://img.shields.io/github/actions/workflow/status/yakir3/gitbook/make-test.yml?label=env-init&logo=github&logoColor=white)](https://github.com/yakir3/gitbook/actions/workflows/make-test.yml)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/yakir3/gitbook/make-test.yml?label=make-test&logo=github&logoColor=white)](https://github.com/yakir3/gitbook/actions/workflows/make-test.yml)
 
 ## Make help
 
