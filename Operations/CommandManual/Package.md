@@ -20,9 +20,14 @@ apt search dig |grep bin
 # show package detail
 apt show bind9-dnsutils
 
-# install, remove, upgrade package
-apt install xxx
+# install
+apt install zsh git svn telnet wget curl make cmake
+apt install containerd.io
+
+# remove
 apt remove xxx
+
+# upgrade
 apt upgrade xxx
 
 # show all repo and install special version
@@ -56,10 +61,36 @@ dpkg -r mysql-common && dpkg -P mysql-common
 ```
 
 #### RedHat
-##### yum
+##### dnf
 ```bash
-#
-yum update
+# update repo
+dnf update
+
+
+# install package
+dnf install zsh git svn telnet wget curl make cmake
+dnf install containerd
+
+
+# Search 
+dnf search gtk | grep theme
+dnf search shell-theme
+dnf search icon-theme
+dnf search cursor-theme
+
+
+# Fedora
+# install extensions
+dnf install gnome-shell-extension-user-theme
+gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
+# install chrome
+dnf install fedora-workstation-repositories
+dnf config-manager --set-enabled google-chrome
+dnf update
+dnf install google-chrome-stable
+# install theme tools
+dnf install gnome-shell-theme-yaru
+dnf install gnome-tweak-tool
 ```
 
 ##### rpm
