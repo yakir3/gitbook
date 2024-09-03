@@ -6,7 +6,7 @@ DOTFILES = $(CURDIR)/Dotfiles
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
 	INSTALL_CMD := brew install
-	PACKAGE := iterm2
+	PACKAGE := iterm2 sublime-text obsidian visual-studio-code istat-menus keepassxc raycast xmind
 else ifeq ($(UNAME), Linux)
 	INSTALL_CMD := sudo apt install -y
 	PACKAGE := vim git svn telnet wget curl make cmake zsh
