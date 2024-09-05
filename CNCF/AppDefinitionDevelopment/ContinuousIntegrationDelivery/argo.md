@@ -11,20 +11,12 @@ description: argo proj
 #### Run by Resource
 ```bash
 # version
-ARGO_WORKFLOWS_VERSION=v3.4.9
+ARGO_WORKFLOWS_VERSION=v3.5.10
+
+
 # install
 kubectl create namespace argo
 kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/${ARGO_WORKFLOWS_VERSION}/install.yaml
-
-# switch authentication mode to server
-kubectl patch deployment \
-  argo-server \
-  --namespace argo \
-  --type='json' \
-  -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": [
-  "server",
-  "--auth-mode=server"
-]}]'
 ```
 
 
@@ -34,30 +26,43 @@ kubectl patch deployment \
 helm repo add argo https://argoproj.github.io/argo-helm
 helm update
 
+
 # get charts package
 helm fetch argo/argo-workflows --untar
 cd argo-workflows
+
 
 # configure and run
 vim values.yaml
 ...
 helm -n cicd install argo-workflows .
-
 ```
 
 ### How To Use
 #### postinstallation
 ```bash
-# install  cli latest version
-ARGO_WORKFLOWS_VERSION=v3.4.9
+# install cli latest version
+ARGO_WORKFLOWS_VERSION=v3.5.10
 curl -sLO https://github.com/argoproj/argo-workflows/releases/download/${ARGO_WORKFLOWS_VERSION}/argo-linux-amd64.gz
 gunzip argo-linux-amd64.gz 
 install -m 755 argo-linux-amd64 /usr/local/bin/argo && rm -f argo-linux-amd64
 
+
 # access argo-server 
-kubectl -n argo port-forward deployment/argo-server --address=0.0.0.0  2746:2746
+kubectl -n argo port-forward deployment/argo-server --address=0.0.0.0 2746:2746
 # kubectl -n argo apply -f argo-ingress.yaml
 
+
+# switch authentication mode to server
+kubectl patch deployment \
+  argo-server \
+  --namespace argo \
+  --type='json' \
+  -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": ["server","--auth-mode=server"]}]'
+
+
+# Fix argo namespace default serviceaccount permission problem:
+kubectl -n argo create rolebinding argo-cluster-role-default-binding --clusterrole=argo-cluster-role --serviceaccount=argo:default
 ```
 
 #### application
