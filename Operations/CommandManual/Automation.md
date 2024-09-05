@@ -1,5 +1,5 @@
-### ansible
-##### inventory
+## ansible
+### inventory
 ```bash
 # initial: for initalize the system
 inventories/initial.host
@@ -11,7 +11,7 @@ inventories/test.host
 inventories/prod.host
 ```
 
-#### ansible(ad-hoc modules)
+### ansible(ad-hoc modules)
 ```bash
 # command usage
 # optional arguments
@@ -81,9 +81,9 @@ ansible test -B 300 -P 2 -a "sleep 30"
 ansible test -m async_status -a "jid=488359678239.2844"
 ```
 
-#### vars fact template
+### vars fact template
 
-##### vars
+#### vars
 ```bash
 # how to define
 # 1. extra vars
@@ -145,7 +145,7 @@ https://ansible.leops.cn/basic/Variables/#_4
 https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html
 ```
 
-##### fact
+#### fact
 ```bash
 # ansible setup info
 ansible test -m setup
@@ -183,7 +183,7 @@ fact_caching_connection = localhost:11211
 ansible-playbook --flush-cache playbooks/example.yml
 ```
 
-##### template
+#### template
 ```bash
 # jinja2 template
 ansible test -m debug -a "msg={{ now(utc='True',fmt='%H-%m-%d %T') }}"
@@ -201,7 +201,7 @@ tasks:
       myvar: "{{ result.stdout | from_json }}"
 ```
 
-#### ansible-console
+### ansible-console
 ```bash
 ansible-console test
 
@@ -213,7 +213,7 @@ root@all (1)[f:5]$ ping
 }
 ```
 
-#### ansible-doc
+### ansible-doc
 ```bash
 # List available plugins
 ansible-doc --list
@@ -225,7 +225,7 @@ ansible-doc -j ping
 ansible-doc -s ping
 ```
 
-#### ansible-galaxy
+### ansible-galaxy
 ```bash
 # collections
 ansible-galaxy collection
@@ -245,7 +245,7 @@ ansible-galaxy install geerlingguy.redis
 ansible-galaxy remove geerlingguy.redis
 ```
 
-#### ansible-lint
+### ansible-lint
 ```bash
 # install
 pip install ansible-lint
@@ -254,7 +254,7 @@ pip install ansible-lint
 ansible-lint playbooks/example.yml
 ```
 
-#### ansible-playbook
+### ansible-playbook
 ```bash
 # execute example playbook
 ansible-playbook playbooks/example.yml
@@ -338,7 +338,7 @@ ansible-playbook playbooks/example.yml --step
 
 ```
 
-#### ansible-vault
+### ansible-vault
 ```bash
 # playbook operation
 ansible-vault create playbooks/new.yml
@@ -370,8 +370,8 @@ echo "your_vault_pwd" > pwd.vault
 ansible-playbook playbooks/example.yml --vault-id pwd.vault
 ```
 
-### saltstack
-##### minion keys
+## saltstack
+### minion keys
 ```bash
 # select all keys
 salt-key -L
@@ -391,7 +391,7 @@ salt '*' test.ping
 
 ```
 
-##### match minion
+### match minion
 ```bash
 # regular 
 salt '*' test.ping
@@ -426,7 +426,7 @@ salt -I 'myname:yakir' test.ping
 salt -S '192.168.1.0/24' test.ping
 ```
 
-#### module
+### module
 ```bash
 # doc
 salt 'node1' sys.doc
@@ -454,7 +454,7 @@ salt '*' saltutil.sync_modules
 salt 'node1' mydisk.df
 ```
 
-#### state structure
+### state structure
 ```bash
 # state sls files
 tee > /srv/salt/base/package/tree.sls << "EOF"
@@ -520,7 +520,7 @@ salt '*' state.sls tmp[.init] [saltenv=dev] [test=True]
 salt '*' state.sls package.nginx [saltenv=dev] [test=True]
 ```
 
-#### grains
+### grains
 ```bash
 salt '*' saltutil.refresh_grains [saltenv=base|dev|prod]
 salt '*' saltutil.sync_grains
@@ -592,7 +592,7 @@ salt -G 'roles:app1' test.ping
 
 ```
 
-#### pillar
+### pillar
 ```bash
 salt '*' saltutil.refresh_pillar [pillarenv=base|dev|prod]
 salt '*' pillar.ls

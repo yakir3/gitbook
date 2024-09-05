@@ -1,37 +1,34 @@
 ---
-description: Environment init and install develepment tools.
+description: Environment init and install application.
 icon: bullseye-arrow
 ---
 
 # Overview
 
-This is a Makefile for environtment init and install development tools.
-
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/yakir3/gitbook/make-test.yml?label=make-test&logo=github&logoColor=white)](https://github.com/yakir3/gitbook/actions/workflows/make-test.yml)
 
-## Make help
+Use Makefile to environtment init and install application.
+
+Application record.
+
+## How To Use
+
+### Using Makefile
 
 Help info `make help`.
-
-### Init Environment
-```bash
-make initenv
+```console
+$ make help
+all                            Execute test, install, clean
+clean                          Clean tmp files
+install                        Operation system environment init then install application(only for MacOS).
+test                           Run the tests
 ```
 
-### Init Application
-```bash
-# only for MacOS
-make initapp
-```
 
-## Others
+### Others
 
-### iTerm2
-
-```bash
-# Install
-brew install iterm2
-
+#### iTerm2
+```console
 # Import config
 Appfiles/iterm2/iterm2Profile.json
 
@@ -40,8 +37,23 @@ Appfiles/iterm2/Solarized_Darcula.itermcolors
 Appfiles/iterm2/HaX0R_GR33N.itermcolors
 ```
 
-### k3s
+#### SecureCRT
+```console
+Appfiles/SecureCRT.xml
+```
 
+#### sublime-text
+```console
+Appfiles/Preferences.sublime-settings
+```
+
+#### Raycast
+```console
+# Import config
+Appfiles/raycast.rayconfig
+```
+
+#### k3s
 ```bash
 # Kernel module
 lsmod |grep -E "nf_conntrack|br_netfilter"
@@ -81,6 +93,11 @@ mkdir ~/.kube
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 kubectl get pod -A
 helm list
+```
+
+#### Windows
+```console
+Appfiles/windows-config
 ```
 
 

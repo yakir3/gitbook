@@ -25,17 +25,12 @@ endif
 
 
 
-.PHONY: all initenv test clean
-all: test ## test then clean
+.PHONY: all test clean initenv
+all: test install clean ## Execute test, install, clean
 
-
-initenv: install-package install-fonts vimrc zshrc ## Operation system environment init.
-	@echo "##### Init env start #####"
-	@echo "##### Init env end   #####"
-
-initapp: ## Install and init app for MacOS.
-	@echo "##### Init app start #####"
-	@echo "##### Init app end   #####"
+install: install-package install-fonts vimrc zshrc install-app ## Operation system environment init then install application(only for MacOS).
+	@echo "##### Install start #####"
+	@echo "##### Install end   #####"
 
 test: ## Run the tests
 	@echo "##### Test start #####"
@@ -43,7 +38,7 @@ test: ## Run the tests
 	@echo $(DOTFILES)
 	@echo $(OS_NAME)
 	@echo su root -c "$(PACKAGE_CMD) $(PACKAGE_NAME)"
-	@echo $(APP_NAME)
+	@echo $(PACKAGE_CMD) $(APP_NAME)
 	@echo "##### Test end   #####"
 
 clean: ## Clean tmp files
@@ -52,8 +47,8 @@ clean: ## Clean tmp files
 	@echo "##### Clean end   #####"
 
 
-##### tools #####
-.PHONY: install-fonts install-package vimrc zshrc
+##### depend #####
+.PHONY: install-fonts install-package install-app vimrc zshrc
 
 install-fonts:
 	@echo "##### Install fonts start #####"
@@ -69,6 +64,13 @@ install-package:
 	fi;
 	@su root -c "$(PACKAGE_CMD) $(PACKAGE_NAME)"
 	@echo "##### Install package end   #####"
+
+install-app:
+	@echo "##### Install application start #####"
+	@if [ "$(OS_NAME)" = "Darwin" ]; then \
+		$(PACKAGE_CMD) $(APP_NAME); \
+	fi;
+	@echo "##### Install application end   #####"
 
 vimrc:
 	@echo "##### Install vimrc start #####"
