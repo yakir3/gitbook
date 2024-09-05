@@ -1,90 +1,103 @@
 MAINTAINER = yakir
 APPFILES = $(CURDIR)/Appfiles
 DOTFILES = $(CURDIR)/Dotfiles
+OS_NAME := $(shell uname)
 
 
-UNAME := $(shell uname)
-ifeq ($(UNAME), Darwin)
-	INSTALL_CMD := brew install
-	PACKAGE := iterm2 sublime-text obsidian visual-studio-code istat-menus keepassxc raycast xmind
-else ifeq ($(UNAME), Linux)
-	INSTALL_CMD := sudo apt install -y
-	PACKAGE := vim git svn telnet wget curl make cmake zsh
+# check os
+ifeq ($(OS_NAME), Linux)
+    ifeq ($(shell cat /etc/*release | grep -i 'debian' | wc -l), 1)
+        PACKAGE_CMD := apt install -y
+        PACKAGE_NAME := git subversion curl telnet wget cmake make vim zsh
+    else ifeq ($(shell cat /etc/*release | grep -i 'fedora' | wc -l), 1)
+        PACKAGE_CMD := dnf install -y
+        PACKAGE_NAME := git subversion curl telnet wget cmake make vim zsh
+    else
+        $(error Unsupported operating system: $(OS_NAME))
+    endif
+else ifeq ($(OS_NAME), Darwin)
+    PACKAGE_CMD := brew install
+    PACKAGE_NAME := git subversion telnet wget
+    APP_NAME := iterm2 sublime-text obsidian visual-studio-code istat-menus keepassxc raycast xmind
 else
-	$(error Unsupported operating system: $(UNAME))
+    $(error Unsupported operating system: $(OS_NAME))
 endif
 
-.PHONY: all macos ubuntu test clean
-all: test clean ## test then clean
 
-macos: homebrew install-package install-fonts vimrc zshrc ## MacOS init
-	@echo "##### MacOS init start #####"
-	@echo "##### MacOS init end #####"
 
-ubuntu: install-package install-fonts vimrc zshrc ## Ubuntu init
-	@echo "##### Ubuntu init start #####"
-	@echo "##### Ubuntu init end #####"
+.PHONY: all initenv test clean
+all: test ## test then clean
 
+
+initenv: install-package install-fonts vimrc zshrc ## Operation system environment init.
+	@echo "##### Init env start #####"
+	@echo "##### Init env end   #####"
+
+initapp: ## Install and init app for MacOS.
+	@echo "##### Init app start #####"
+	@echo "##### Init app end   #####"
 
 test: ## Run the tests
-	@echo "##### test step start #####"
+	@echo "##### Test start #####"
 	@echo $(APPFILES)
 	@echo $(DOTFILES)
-	@echo $(UNAME)
-	@echo $(INSTALL_CMD) $(PACKAGE)
-	@echo "##### test step end #####"
+	@echo $(OS_NAME)
+	@echo su root -c "$(PACKAGE_CMD) $(PACKAGE_NAME)"
+	@echo $(APP_NAME)
+	@echo "##### Test end   #####"
 
 clean: ## Clean tmp files
-	@echo "##### clean step start #####"
+	@echo "##### Clean start #####"
 	rm -rf /tmp/fonts/
-	@echo "##### clean step end #####"
+	@echo "##### Clean end   #####"
 
 
 ##### tools #####
-.PHONY: vimrc zshrc install-fonts install-package homebrew
-
-vimrc:
-	@echo "##### vimrc step start #####"
-	# Install Vundle.vim
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-	# Copy .vimrc to HOME
-	cp -a $(DOTFILES)/.vimrc $(HOME)/.vimrc
-	# Install all vim plugins
-	vim +PluginInstall +qall 
-	# Install colorshceme and set to molokai
-	mkdir ~/.vim/colors && cp ~/.vim/bundle/ex-colorschemes/colors/molokai.vim ~/.vim/colors/
-	@echo "##### vimrc step end #####"
-
-BREW_BIN_PATH = $(shell dirname `which brew`)
-# zshrc: install-fonts
-zshrc:
-	@echo "##### zshrc step start #####"
-	# Change shell to zsh
-	chsh -s $(shell which zsh)
-	# Install oh-my-zsh and plugin
-	git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-	# Copy .zshrc to HOME
-	sed -i "" "s#BREW_BIN_PATH#$(BREW_BIN_PATH)#" $(DOTFILES)/.zshrc
-	cp -a $(DOTFILES)/.zshrc $(HOME)/.zshrc
-	@echo "##### zshrc step end #####"
+.PHONY: install-fonts install-package vimrc zshrc
 
 install-fonts:
-	@echo "##### install-fonts step start #####"
-	git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts
+	@echo "##### Install fonts start #####"
+	@git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts; \
 	/tmp/fonts/install.sh
-	@echo "##### install-fonts step start #####"
+	@echo "##### Install fonts end   #####"
 
 install-package:
-	@echo "##### install-package step start #####"
-	# Allow Mac to install software from any source	
-	sudo spctl --master-disable
-	$(INSTALL_CMD) $(PACKAGE)
-	@echo "##### install-package step start #####"
+	@echo "##### Install package start #####"
+	@if [ "$(OS_NAME)" = "Darwin" ]; then \
+		sudo spctl --master-disable; \
+		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
+	fi;
+	@su root -c "$(PACKAGE_CMD) $(PACKAGE_NAME)"
+	@echo "##### Install package end   #####"
 
-homebrew:
-	bash -c "$(shell curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+vimrc:
+	@echo "##### Install vimrc start #####"
+	@git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim; \
+	cp -a $(DOTFILES)/.vimrc $(HOME)/.vimrc; \
+	vim +PluginInstall +qall; \
+	mkdir -p ~/.vim/colors && cp ~/.vim/bundle/ex-colorschemes/colors/molokai.vim ~/.vim/colors/
+	@echo "##### Install vimrc end   #####"
+
+BREW_BIN_PATH = $(shell dirname `which brew`)
+zshrc: oh-my-zsh
+	@echo "##### Install zshrc start #####"
+	@git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions; \
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting; \
+	cp -a $(DOTFILES)/.zshrc $(HOME)/.zshrc; \
+	sed -i "" "s#BREW_BIN_PATH#$(BREW_BIN_PATH)#" $(HOME)/.zshrc || sed -i "s#BREW_BIN_PATH#$(BREW_BIN_PATH)#" $(HOME)/.zshrc; \
+	source $(HOME)/.zshrc
+	@echo "##### Install zshrc end   #####"
+
+oh-my-bash:
+	@echo "##### Install oh-my-bash start #####"
+	@test -d $(HOME)/.oh-my-bash && echo "oh-my-bash is exists" || bash -c "$$(curl -fsSL https://raw.githubusercontent.com/oh-my-bash/oh-my-bash/master/tools/install.sh)"
+	@echo "##### Install oh-my-bash end   #####"
+
+oh-my-zsh:
+	@echo "##### Install oh-my-zsh start #####"
+	@test -d $(HOME)/.oh-my-zsh && echo "oh-my-zsh is exists" || sh -c "$$(curl -fsSL https://install.ohmyz.sh/)"
+	@echo "##### Install oh-my-zsh end   #####"
+
 
 .PHONY: help
 help:

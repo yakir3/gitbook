@@ -13,14 +13,15 @@ This is a Makefile for environtment init and install development tools.
 
 Help info `make help`.
 
-### MacOS
+### Init Environment
 ```bash
-make macos
+make initenv
 ```
 
-### Ubuntu
+### Init Application
 ```bash
-make ubuntu
+# only for MacOS
+make initapp
 ```
 
 ## Others
@@ -84,9 +85,10 @@ helm list
 
 
 
->Reference:
-> 1. [HomeBrew Official](https://brew.sh)
+> Reference:
+> 1. [HomeBrew Official Website](https://brew.sh)
 > 2. [中科大镜像](https://mirrors.ustc.edu.cn/help/brew.git.html)
 > 3. [iterm2colors](https://iterm2colorschemes.com/)
 > 4. [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-> 5. [Vim Awesome](https://vimawesome.com/)
+> 5. [oh-my-bash](https://github.com/ohmybash/oh-my-bash)
+> 6. [Vim Awesome](https://vimawesome.com/)

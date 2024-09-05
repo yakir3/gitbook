@@ -10,7 +10,7 @@ brew install zsh
 chsh -s $(which zsh)
 
 # 3. Install oh-my-zsh and plugin
-git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
@@ -33,7 +33,7 @@ annotation
 ZSH_THEME="agnoster"
 
 export PATH=$PATH:BREW_BIN_PATH
-export ZSH="~/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
