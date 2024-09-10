@@ -1,11 +1,11 @@
-#### Arch
-##### pacman
+## Arch
+### pacman
 ```bash
 #
 ```
 
-#### Debian
-##### apt
+## Debian
+### apt
 ```bash
 # update repo
 apt update
@@ -43,7 +43,7 @@ apt-file update
 apt-file search dig |grep bin
 ```
 
-##### dpkg
+### dpkg
 ```bash
 # list packages concisely
 dpkg -l
@@ -60,8 +60,8 @@ dpkg -i elasticsearch-8.8.2-amd64.deb
 dpkg -r mysql-common && dpkg -P mysql-common
 ```
 
-#### RedHat
-##### dnf
+## RedHat
+### dnf
 ```bash
 # update repo
 dnf update
@@ -93,7 +93,7 @@ dnf install gnome-shell-theme-yaru
 dnf install gnome-tweak-tool
 ```
 
-##### rpm
+### rpm
 ```bash
 #
 ```

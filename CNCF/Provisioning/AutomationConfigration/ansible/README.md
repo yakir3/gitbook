@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: Ansible
+---
+
+## Introduction
 ...
 
 
-#### Install 
-##### Before install
+## Install 
+### Before install
 ```bash
 # denpend
 ssh protocal
@@ -15,7 +19,7 @@ firewalld
 
 ```
 
-##### Install on linux
+### Install on linux
 ```bash
 # root dir
 ANSIBLE_ROOT=/opt/ansible
@@ -41,7 +45,7 @@ ansible --version
 export ANSIBLE_CONFIG=/opt/ansible
 ```
 
-##### Credentials
+### Credentials
 ```bash
 # Generate private and public key
 ssh-keygen -t rsa -b 1024 -C 'for ansible key' -f /opt/ansible/keys/ansible -q -N ""
@@ -59,8 +63,8 @@ ssh-copy-id ...
 ```
 
 
-#### [[Automation#ansible|How To Use]]
-##### inventory
+## [[Automation#ansible|How To Use]]
+### inventory
 ```bash
 # initial: for initalize the system
 inventories/initial.host
@@ -72,32 +76,32 @@ inventories/test.host
 inventories/prod.host
 ```
 
-##### ad-hoc(modules)
+### ad-hoc(modules)
 
-##### vars fact template
+### vars fact template
 
-##### ansible-console
+### ansible-console
 
-##### ansible-doc
+### ansible-doc
 
-##### ansible-galaxy
+### ansible-galaxy
 
-##### ansible-lint
+### ansible-lint
 
-##### ansible-playbook
+### ansible-playbook
 
-##### ansible-vault
+### ansible-vault
 
-##### plugins && api
+### plugins && api
 ```bash
 ```
 
 
 
->Reference:
->1. [Official Ansible Doc](https://docs.ansible.com/ansible)
->2. [Ansible 中文文档](https://ansible-tran.readthedocs.io/en/latest/docs/intro.html)
->3. [Ansible Github](https://github.com/ansible/ansible)
->4. [Ansible Galaxy](https://galaxy.ansible.com/)
->5. [Ansible CN Wiki](https://ansible.leops.cn/basic/Introduction/)
->6. [Ansible Conditional Judgment Grammar](https://www.ityoudao.cn/posts/ansible-conditionals/)
+> Reference:
+> 1. [Official Website](https://docs.ansible.com/ansible)
+> 2. [Repository](https://github.com/ansible/ansible)
+> 3. [Ansible 中文文档](https://ansible-tran.readthedocs.io/en/latest/docs/intro.html)
+> 4. [Ansible Galaxy](https://galaxy.ansible.com/)
+> 5. [Ansible CN Wiki](https://ansible.leops.cn/basic/Introduction/)
+> 6. [Ansible Conditional Judgment Grammar](https://www.ityoudao.cn/posts/ansible-conditionals/)

@@ -1,12 +1,19 @@
-#### Introduction
+---
+description: GitLab
+---
+
+## Introduction
 ...
 
 
-#### Deployment
-[Run On SourceCode](https://docs.gitlab.com/ee/install/installation.html#overview)
-
-##### Run On Ubuntu
+## Deploy By Binaries
+### Quick Start
 ```bash
+# Run On SourceCode
+https://docs.gitlab.com/ee/install/installation.html#overview
+
+
+### Run On Ubuntu
 # Install and configure the necessary dependencies
 apt update
 apt install -y curl openssh-server ca-certificates tzdata perl
@@ -19,8 +26,8 @@ GITLAB_ROOT_PASSWORD="passwOrd123" EXTERNAL_URL="http://gitlab.yakir.com" apt in
 cat /etc/gitlab/initial_root_password
 ```
 
-##### Run in Docker
-[[cc-docker|Docker常用命令]]
+## Deploy By Container
+### Run in Docker
 ```bash
 # run container
 GITLAB_HOME=/opt/gitlab
@@ -44,10 +51,9 @@ gitlab/gitlab-ee
 
 # docker-compose 
 [install by docker-compose](https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose)
-
 ```
 
-##### Run On Kubernetes
+### Run in Kubernetes
 [[cc-k8s|deploy by kubernetes manifest]]
 ```bash
 # manifest resource yaml
@@ -98,8 +104,6 @@ kubectl -n cicd get secrets gitlab-gitlab-initial-root-password -ogo-template='{
 https://harbor-core.yakir.com
 admin
 Harbor12345
-
-
 ```
 
 

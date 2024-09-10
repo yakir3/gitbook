@@ -1,12 +1,18 @@
-一、gitflow：版本分支管理策略（相当于对git的包装）
-1. GitFlow描述
+---
+description: gitflow
+---
+
+## Introduction
+
+### 1. GitFlow描述
+gitflow：版本分支管理策略（相当于对git的包装）
 ● 常用分支包括master、develop、feature、release、hotfix（support分支不常用）
 ● 其中master、develop是远程分支，feature、release、hotfix是本地分支。
   ○ 远程分支是指需要push到gitlab、github远程仓库中
   ○ 本地分支指开发人员的本地开发时使用的git版本控制环境
 
 
-2. GitFlow流程图及描述理解
+### 2. GitFlow流程图及描述理解
 ![image](https://github.com/yakir3/knowledge/assets/30774576/f4811bbc-3c1f-476d-9257-c8e0404aec17)
 ![image](https://github.com/yakir3/knowledge/assets/30774576/70fd63ab-8ad5-4234-8131-8b26b4067129)
 
@@ -42,7 +48,7 @@
   ○ 修复bug后合并到develop/master分支并推送（所有hotfix分支的修改会进入到下一个release），推送master分支时打tag；
   ○ 临时分支，修复bug后可选删除
 
-3. 开发准则与约定
+### 3. 开发准则与约定
 ● 准则
   ○ 除了源码相关的东西之外，其他build产生的东西（如：maven的target文件夹，.idea文件夹等），均不能提交进入源码仓库，添加到.gitignore文件中忽略掉
   ○ 开发人员要严格按照我们约定的gitflow版本分支管理流程切换到指定分支，开发相应的功能
@@ -54,7 +60,7 @@
   ○ 发布分支名称：release-*，其中“*” 为版本号，“release”小写，如：release-1.0.0，release分支上修复bug的分支名称为bugfix-*
   ○ master的bug修复分支名称：hotfix-*，其中“*” 为对应jira（Aone）上的任务编号
 
-二、测试部分
+## 测试部分
 
 ● 本地git flow init 初始化仓库，提交develop分支
 ![image](https://github.com/yakir3/knowledge/assets/30774576/6de0f321-ff9f-4d54-b71d-88b01839794e)

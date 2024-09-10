@@ -1,4 +1,4 @@
-##### openssl
+## openssl
 ```bash
 # install 
 apt install openssl
@@ -16,7 +16,7 @@ openssl req -x509 -newkey rsa:2048 -keyout server.key -out server.crt -days 3650
 
 ```
 
-##### sar
+## sar
 ```bash
 # install 
 apt install sysstat
@@ -51,7 +51,7 @@ sar -r 1 10
 
 ```
 
-##### strace
+## strace
 ```bash
 # install 
 apt install sysstat
@@ -61,7 +61,7 @@ strace -c ls
 
 ```
 
-##### systemtap
+## systemtap
 ```bash
 # install
 apt install systemtap
@@ -109,7 +109,7 @@ stap -v sg.stp
 
 ```
 
-##### trap
+## trap
 ```bash
 # 捕获 ctrl+c 信号，执行对应命令，只生效于当前环境
 trap "exit" SIGINT
@@ -124,7 +124,7 @@ trap - SIGINT
 
 ```
 
-##### vmstat
+## vmstat
 ```bash
 # install
 apt install procps
@@ -149,7 +149,7 @@ vmstat -d -t
 vmstat -ant 1
 ```
 
-##### watch
+## watch
 ```bash
 # 查看系统软中断速率
 watch -d cat /proc/softirqs

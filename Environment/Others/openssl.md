@@ -1,8 +1,12 @@
-### Introduction
+---
+description: Openssl
+---
+
+## Introduction
 ...
 
-### [[SystemTools#openssl|常用命令]]
-#### 1、第三方签发 SSL 证书
+## [[SystemTools#openssl|常用命令]]
+### 1、第三方签发 SSL 证书
 ```bash
 # 生成私钥，加密参数 -des3
 openssl genrsa -out a.com.key 2048
@@ -18,7 +22,7 @@ openssl req -noout -text -in a.com.csr
 # 部署 crt 与 key 文件至 web 服务器
 ```
 
-#### 2、自签名/自有 CA 签发证书
+### 2、自签名/自有 CA 签发证书
 
 - 使用自签名方式
 ```bash
@@ -54,7 +58,7 @@ cat ca.crt >> a.com.crt
 openssl x509 -noout -issuer -issuer_hash -in a.com.crt
 ```
 
-#### 3、使用 openssl 加密解密文件
+### 3、使用 openssl 加密解密文件
 ```bash
 # 生成并验证私钥
 openssl genrsa -out yakir.key 2048
@@ -78,7 +82,7 @@ openssl smime -encrypt -aes256 -in Large.zip -binary -outform DEM -out Encrypted
 openssl smime -decrypt -in Encrypted.zip -binary -inform DEM -inkey yakir.key -out Large.zip
 ```
 
-#### 4、证书格式转化
+### 4、证书格式转化
 > 一般有以下几种标准格式
 > - .DER .CER ： 二进制格式，只保存证书，不保存私钥。
 > - .PEM ：文本格式，可保存证书，可保存私钥，通常网上的.key 后缀的私钥，其实就是 PEM 格式。
@@ -104,7 +108,7 @@ keytool -importkeystore -srckeystore cert.jks -destkeystore cert.pkcs -srcstoret
 openssl pkcs12 -in cert.pkcs -out cert.pem
 ```
 
-#### 5、其它技巧
+### 5、其它技巧
 ```bash
 # 移除证书中的密码
 openssl rsa -in cert.key -out nopass.key
@@ -135,6 +139,6 @@ openssl s_client -connect www.baidu.com:443 -tls1_2 -cipher 'ECDHE-RSA-AES128-GC
 
 
 
->Reference:
->1. [Official Website](https://cilium.io/)
->2. [Repository](https://github.com/cilium/cilium)
+> Reference:
+> 1. [Official Website](https://cilium.io/)
+> 2. [Repository](https://github.com/cilium/cilium)

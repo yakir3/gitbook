@@ -1,4 +1,4 @@
-##### Kafka
+## Kafka
 ```bash
 # config
 # 动态查看&更新节点配置（官方配置支持 cluster-wide 类型配置才可以更新）
@@ -42,7 +42,7 @@ second event
 ./kafka-metadata-quorum.sh --bootstrap-server localhost:9092 describe --status
 ```
 
-##### RocketMQ
+## RocketMQ
 ```bash
 # common
 # ./mqadmin {command} {args}

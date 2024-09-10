@@ -1,4 +1,8 @@
-### GCE
+---
+description: gcloud cli
+---
+
+## GCE
 ```bash
 # get info
 gcloud compute instances list --format="value(name,zone)"
@@ -9,6 +13,5 @@ gcloud compute instances update $name --zone $zone --deletion-protection
 
 
 
-
->Reference:
+> Reference:
 > 1. [Official Website](https://cloud.google.com/sdk/gcloud/reference/)

@@ -1,16 +1,16 @@
-##### bootctl
+## bootctl
 ```bash
 bootctl status
 bootctl status --esp-path /mnt/lfs/boot/
 ```
 
-##### hostnamectl
+## hostnamectl
 ```bash
 hostnamectl status
 hostnamectl set-hostname east-web-x
 ```
 
-##### journalctl
+## journalctl
 ```bash
 # specified date log
 -S --since
@@ -55,14 +55,14 @@ journalctl _PID=123
 journalctl -xe -u nginx.service -u httpd.service -n 10 -f
 ```
 
-##### localectl
+## localectl
 ```bash
 localectl status
 localectl list-locales
 localectl set-locale LANG=en_US.UTF-8
 ```
 
-##### loginctl
+## loginctl
 ```bash
 loginctl list-sessions
 session-status
@@ -72,13 +72,13 @@ loginctl user-status
 loginctl show-user root
 ```
 
-##### networkctl
+## networkctl
 ```bash
 networkctl list
 networkctl status
 ```
 
-##### timedatectl
+## timedatectl
 ```bash
 timedatectl status
 timedatectl list-timezones
@@ -88,14 +88,14 @@ timedatectl set-time HH:MM:SS
 timedatectl set-timezone Asia/Hong_Kong
 ```
 
-##### systemd-analyze
+## systemd-analyze
 ```bash
 systemd-analyze
 systemd-analyze blame
 systemd-analyze critical-chain
 ```
 
-##### systemctl
+## systemctl
 ```bash
 # Unit Commands
 systemctl list-units

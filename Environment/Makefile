@@ -75,9 +75,9 @@ install-app:
 vimrc:
 	@echo "##### Install vimrc start #####"
 	@git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim; \
+	mkdir -p ~/.vim/colors && cp ~/.vim/bundle/ex-colorschemes/colors/molokai.vim ~/.vim/colors/; \
 	cp -a $(DOTFILES)/.vimrc $(HOME)/.vimrc; \
-	vim +PluginInstall +qall; \
-	mkdir -p ~/.vim/colors && cp ~/.vim/bundle/ex-colorschemes/colors/molokai.vim ~/.vim/colors/
+	vim +PluginInstall +qall;
 	@echo "##### Install vimrc end   #####"
 
 zshrc: oh-my-zsh
@@ -90,7 +90,7 @@ zshrc: oh-my-zsh
 		sed -i "" "s#BREW_BIN_PATH#$$BREW_BIN_PATH#" $(HOME)/.zshrc || sed -i "s#BREW_BIN_PATH#$$BREW_BIN_PATH#" $(HOME)/.zshrc; \
 	else \
 		sed -i "" "s#:BREW_BIN_PATH##" $(HOME)/.zshrc || sed -i "s#:BREW_BIN_PATH##" $(HOME)/.zshrc; \
-	fi; \
+	fi;
 	source $(HOME)/.zshrc
 	@echo "##### Install zshrc end   #####"
 

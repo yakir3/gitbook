@@ -1,14 +1,22 @@
-#### Introduction
+---
+description: Zookeeper
+---
+
+## Introduction
 ...
 
 
-#### Deploy By Binaries
+## Deploy By Binaries
+### Quick Start
 ```bash
 # download source
 wget https://dlcdn.apache.org/zookeeper/zookeeper-3.7.1/apache-zookeeper-3.7.1-bin.tar.gz
 mv apache-zookeeper-3.7.1-bin zookeeper-3.7.1 && cd zookeeper-3.7.1
+```
 
-
+### Config and Boot
+#### Config
+```bash
 # create data and logs dir
 mkdir -p /opt/zookeeper-3.7.1/data
 mkdir -p /opt/zookeeper-3.7.1/logs
@@ -31,9 +39,10 @@ EOF
 # echo 0 > /opt/zookeeper-3.7.1/data/myid
 # echo 1 > /opt/zookeeper-3.7.1/data/myid
 # echo 2 > /opt/zookeeper-3.7.1/data/myid
+```
 
-# run
-# systemd
+#### Boot(systemd)
+```bash
 cat > /etc/systemd/system/zookeeper.service << "EOF"
 [Unit]
 Description=Zookeeper Server
@@ -60,16 +69,16 @@ systemctl start zookeeper.service
 systemctl enable zookeeper.service
 ```
 
-#### Deploy By Container
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 [[cc-docker|Docker Command]]
 ```bash
 # run by docker or docker-compose
 # https://hub.docker.com/_/zookeeper
 ```
 
-##### Run in Kubernetes
-###### Helm Charts
+### Run in Kubernetes
+#### Helm Charts
 ```bash
 # Add and update repo
 helm repo add bitnami https://charts.bitnami.com/bitnami

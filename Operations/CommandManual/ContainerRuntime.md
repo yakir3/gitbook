@@ -1,5 +1,5 @@
-#### docker & podman
-##### busybox chroot
+## docker & podman
+### busybox chroot
 ```bash
 mkdir rootfs
 docker export $(docker create busybox) | tar -C rootfs -xvf -
@@ -21,7 +21,7 @@ chroot jail /bin/bash
 bin  lib  lib64
 ```
 
-##### common command
+### common command
 ```bash
 # common parameters
 --env-file strings      Read in a file of environment variables
@@ -47,7 +47,7 @@ docker commmit -m 'commit message' container_id repository/xxx/xxx:tag
 docker build -t yakir/test:latest -f APP-META/Dockerfile .
 ```
 
-##### Quick test container
+### Quick test container
 ```bash
 # busybox
 docker run --rm -it busybox sh
@@ -79,7 +79,7 @@ docker run --name mrdoc \
 ```
 
 
-#### containerd
+## containerd
 ```bash
 # default run by systemd
 systemctl start containerd.service
@@ -103,8 +103,8 @@ crictl ps
 crictl images
 ```
 
-#### kubectl
-##### Basic
+## kubectl
+### Basic
 ```bash
 # create
 # create a tls secret
@@ -176,7 +176,7 @@ kubectl delete pod pod_name --force=true --grace-period=0
 ```
 
 
-##### Deploy
+### Deploy
 ```bash
 # rollout 
 kubectl rollout (history|pause|restart|resume|status|undo) (resource_type) (resource_name)
@@ -189,7 +189,7 @@ kubectl autoscale (-f x.yaml | deployment/mysql) [--min=MINPODS] --max=MAXPODS [
 ```
 
 
-##### Cluster Management
+### Cluster Management
 ```bash
 # top
 kubectl -n namespace_name top pod
@@ -206,7 +206,7 @@ kubectl taint NODE NAME KEY_1=VAL_1:TAINT_EFFECT_1 ... KEY_N=VAL_N:TAINT_EFFECT_
 ```
 
 
-##### Troubleshooting and Debugging
+### Troubleshooting and Debugging
 ```bash
 # describe
 kubectl describe -k ./
@@ -250,7 +250,7 @@ kubectl events -n namespace_name
 ```
 
 
-##### Advanced
+### Advanced
 ```bash
 # diff
 kubectl diff -f FILENAME [options]
@@ -283,7 +283,7 @@ kubectl kustomize ./ |kubectl apply -f -
 ```
 
 
-##### Settings
+### Settings
 ```bash
 # label
 kubectl label nodes Node1 node-role.kubernetes.io/control-plane=true
@@ -296,7 +296,7 @@ source <(kubectl completion bash)
 ```
 
 
-##### Other
+### Other
 ```bash
 # api resources and versions infomation
 kubectl api-resources
@@ -324,7 +324,7 @@ kubectl config set-context NAME [--cluster=cluster_nickname] [--user=user_nickna
 kubectl version
 ```
 
-##### Quick test container
+### Quick test container
 ```bash
 # kafka-client
 kubectl -n middleware run kafka-client --image docker.io/bitnami/kafka:3.4.0-debian-11-r22 --command -- sleep infinity
@@ -336,7 +336,7 @@ kubectl -n middleware exec -it redis-client -- bash
 
 ```
 
-#### helm
+## helm
 ```bash
 # parameter
 -n namespace 
@@ -413,9 +413,8 @@ helm version
 
 
 
->Reference:
+> Reference:
 > 1. [阿里云 ACR 仓库加速地址](taa4w07u.mirror.aliyuncs.com)
-> 2. [Docker Official Documentation](https://docs.docker.com/engine/install/)
-> 3. [Podman Official Documentation](https://podman.io/docs)
-> 4. [Kubectl Official Documentation](https://kubernetes.io/docs/reference/kubectl/)
-> 5. [Helm Official Documentation](https://helm.sh/docs/)
+> 2. [Podman Official Website](https://podman.io/docs)
+> 3. [Kubectl Official Website](https://kubernetes.io/docs/reference/kubectl/)
+> 4. [Helm Official Website](https://helm.sh/docs/)

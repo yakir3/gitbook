@@ -1,7 +1,7 @@
-### Install
-#### Nix package manager
-##### Linux
+## Install
 
+### Nix package manager
+#### Linux
 ```bash
 # Install Nix via the recommended multi-user installation:
 sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -10,7 +10,7 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 ```
 
-##### Docker
+#### Docker
 ```bash
 # Start a Docker shell with Nix
 docker run -it nixos/nix
@@ -30,11 +30,11 @@ docker exec -it nix-flakes bash
 bash-5.2# nix run github:helix-editor/helix/master
 ```
 
-#### NixOS
-##### [1. Obtaining NixOS](https://nixos.org/download/#nixos-iso)
+### NixOS
+#### [1. Obtaining NixOS](https://nixos.org/download/#nixos-iso)
 
-##### 2. Manual Installation
-###### Partitioning
+#### 2. Manual Installation
+##### Partitioning
 ```bash
 # UEFI(GPT)
 # Create a GPT partition table
@@ -57,14 +57,14 @@ parted /dev/sda -- mkpart primary linux-swap -2GB 100%
 
 ![[Pasted image 20240321172907.png]]
 
-###### Formatting
+##### Formatting
 ```bash
 # Format
 mkfs.fat -F 32 -n boot /dev/sda1
 mkfs.ext4 -L nixos /dev/sda2
 
 
-##### Examples
+## Examples
 # For initialising Ext4 partitions: mkfs.ext4. It is recommended that you assign a unique symbolic label to the file system using the option -L label, since this makes the file system configuration independent from device changes. For example:
 mkfs.ext4 -L nixos /dev/sda1
 
@@ -80,7 +80,7 @@ mkfs.fat -F 32 -n boot /dev/sda3
 # For creating software RAID devices, use mdadm.
 ```
 
-###### Installing
+##### Installing
 ```bash
 # Mount the target file system on which NixOS should be installed on /mnt, e.g.
 mount /dev/sda2/ /mnt
@@ -160,7 +160,7 @@ nixos-install
 # set root password and reboot
 ```
 
-##### 3. Upgrading
+#### 3. Upgrading
 ```bash
 # switch channel
 nix-channel --list
@@ -173,8 +173,8 @@ nix-channel --add https://channels.nixos.org/nixos-23.11-small nixos
 nixos-rebuild switch --upgrade
 ```
 
-### NixCommand
-##### nixos-rebuild 
+## NixCommand
+### nixos-rebuild 
 ```bash
 # build new configuration and try to realise the configuration in the running system
 nixos-rebuild switch
@@ -198,7 +198,7 @@ nixos-rebuild switch --rollback
 --show-trace --print-build-logs --verbose
 ```
 
-##### nix-channel
+### nix-channel
 ```bash
 # list
 nix-channel list
@@ -207,7 +207,7 @@ nix-channel list
 nix-channel --add https://channels.nixos.org/channel-name nixos
 ```
 
-##### nix-shell
+### nix-shell
 ```bash
 # nodejs env
 bash-5.2# nix-shell -p nodejs
@@ -231,7 +231,7 @@ bash-5.2# nix-shell
 [nix-shell:/]# node -e "console.log(1+1)"
 ```
 
-##### nix-build
+### nix-build
 ```bash
 # create normal redis nix file
 cat > ./docker-redis.nix << "EOF"
@@ -283,9 +283,9 @@ docker load -i ./result
 docker images
 ```
 
-### Flakes
-#### nix flake
-##### enable experimental features
+## Flakes
+### nix flake
+#### enable experimental features
 ```bash
 cat /etc/nixos/configuration.nix
 { config, pkgs, inputs, ... }:
@@ -302,7 +302,7 @@ cat /etc/nixos/configuration.nix
 }
 ```
 
-##### init flake.nix
+#### init flake.nix
 ```bash
 # show flakes templates
 nix flake show templates
@@ -370,7 +370,7 @@ nix flake lock --update-input home-manager
 sudo nixos-rebuild switch --flake .
 ```
 
-#### nix-command
+### nix-command
 ```bash
 # nix-channel
 # no need
@@ -395,7 +395,7 @@ nix storage gc --debug
 nix repl
 ```
 
-#### home-manager
+### home-manager
 ```bash
 # init home.nix
 cat > /etc/nixos/home.nix << "EOF"
@@ -595,7 +595,7 @@ nixos-rebuild switch
 /etc/nixos/hardware-configuration.nix  
 ```
 
-#### module imports
+### module imports
 ```bash
 # example
 tree /etc/nixos
@@ -655,7 +655,7 @@ tree /etc/nixos
 # repl lib
 nix repl -f '<nixpkgs>'
 nix-repl> :e lib.mkDefault
-###
+##
 lib.mkDefault
 lib.mkForce
 lib.mkOrder
@@ -665,10 +665,10 @@ lib.mkAfter
 
 
 
->Reference:
->1. [NixOS Official Manual](https://nixos.org/manual/nix/stable/language/)
->2. [NixOS 与 Flakes](https://nixos-and-flakes.thiscute.world/)
->3. [NixOS 中文文档](https://nixos-cn.org/tutorials/lang/)
->4. [NixOS Packages Search](https://search.nixos.org/packages)
->5. [NixOS Options Search](https://search.nixos.org/options)
->6. [Nix Home Manager Manual](https://nix-community.github.io/home-manager/index.xhtml)
+> Reference:
+> 1. [NixOS Official Manual](https://nixos.org/manual/nix/stable/language/)
+> 2. [NixOS 与 Flakes](https://nixos-and-flakes.thiscute.world/)
+> 3. [NixOS 中文文档](https://nixos-cn.org/tutorials/lang/)
+> 4. [NixOS Packages Search](https://search.nixos.org/packages)
+> 5. [NixOS Options Search](https://search.nixos.org/options)
+> 6. [Nix Home Manager Manual](https://nix-community.github.io/home-manager/index.xhtml)

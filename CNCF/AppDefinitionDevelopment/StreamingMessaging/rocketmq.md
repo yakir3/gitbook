@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: RocketMQ
+---
+
+## Introduction
 ...
 
 
-#### Deploy By Binaries
-##### Quick Start
+## Deploy By Binaries
+### Quick Start
 ```bash
 # option1: compile source install
 cd /usr/local/src/
@@ -60,8 +64,8 @@ export PATH=$PATH:/opt/rocketmq/bin
 ./bin/mqshutdown namesrv
 ```
 
-##### Config and Boot
-###### Config
+### Config and Boot
+#### Config
 **Local Mode**
 ```bash
 # namesrv config
@@ -194,7 +198,7 @@ listenPort = 30901
 EOF
 ```
 
-###### Boot(systemd)
+#### Boot(systemd)
 **Local Mode**
 ```bash
 # namesrv
@@ -366,7 +370,7 @@ systemctl enable rocketmq-master.service
 systemctl enable rocketmq-broker.service
 ```
 
-##### Verify
+### Verify
 ```bash
 # set nameserver address
 export NAMESRV_ADDR=localhost:9876
@@ -377,15 +381,15 @@ export NAMESRV_ADDR=localhost:9876
 ./tools.sh org.apache.rocketmq.example.quickstart.Consumer
 ```
 
-##### Troubleshooting
+### Troubleshooting
 ```bash
 # problem 1
 # 
 ```
 
 
-#### Deploy By Container
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 ```bash
 # pull image
 docker pull apache/rocketmq:5.3.0
@@ -397,7 +401,7 @@ docker run -it --net=host apache/rocketmq ./mqnamesrv
 docker run -it --net=host --mount source=/tmp/store,target=/home/rocketmq/store apache/rocketmq ./mqbroker -n localhost:9876
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # rocketmq operator
 # https://artifacthub.io/packages/olm/community-operators/rocketmq-operator
@@ -405,6 +409,6 @@ docker run -it --net=host --mount source=/tmp/store,target=/home/rocketmq/store 
 
 
 
->Reference:
-> 1. [Repository](https://rocketmq.apache.org/)
-> 2. [RocketMQ Github](https://github.com/apache/rocketmq)
+> Reference:
+> 1. [Official Website](https://rocketmq.apache.org/)
+> 2. [Repository](https://github.com/apache/rocketmq)

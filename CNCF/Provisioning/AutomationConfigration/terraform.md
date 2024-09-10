@@ -1,9 +1,12 @@
-#### Introduction
+---
+description: Terraform
+---
+
+## Introduction
 ...
 
-#### Deploy By Binaries
-##### Install
-
+## Deploy By Binaries
+### Install
 ```bash
 # package
 apt install terraform
@@ -14,7 +17,7 @@ unzip terraform_1.9.4_linux_amd64.zip && rm -f terraform_1.9.4_linux_amd64.zip
 install -m 0755 terraform /usr/bin/terraform
 ```
 
-##### How To Use
+### How To Use
 ```bash
 ~/terraform $ tree                    
 .
@@ -101,8 +104,8 @@ terraform state list
 terraform output
 ```
 
-#### Deploy By Container
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 ```bash
 # docker container
 docker run --rm -it hashicorp/terraform:latest plan
@@ -113,7 +116,7 @@ docker run --rm -it -v ~/terraform:/terraform --entrypoint sh hashicorp/terrafor
 
 
 
->Reference:
->1. [Official Website](https://www.terraform.io/)
->2. [Repository](https://github.com/hashicorp/terraform)
->3. [Registry](https://registry.terraform.io/)
+> Reference:
+> 1. [Official Website](https://www.terraform.io/)
+> 2. [Repository](https://github.com/hashicorp/terraform)
+> 3. [Registry](https://registry.terraform.io/)

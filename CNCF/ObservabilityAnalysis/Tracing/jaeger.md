@@ -1,11 +1,15 @@
-#### Introduction
-##### 架构图
+---
+description: Jaeger
+---
+
+## Introduction
+### 架构图
 ![[Pasted image 20230526143340.png]]
 
 https://www.jaegertracing.io/docs/1.45/#about
 
-#### Deployment
-##### Run in Docker
+## Deploy On Container
+### Run in Docker
 all-in-one 部署，用于测试环境
 ```bash
 docker run -d --name jaeger \
@@ -25,7 +29,7 @@ docker run -d --name jaeger \
 ```
 
 
-##### Deploy On Kubernetes
+### Deploy On Kubernetes
 >Must be installed: ingress & cert-manager
 
 **deploy by kubenertes manifest**
@@ -72,7 +76,7 @@ kubectl -n observability get jaegers
 
 
 
->Reference:
->1. [Official Website](https://www.jaegertracing.io/)
->2. [Repository](https://github.com/jaegertracing/jaeger)
->3. [jaeger-operator](https://github.com/jaegertracing/jaeger-operator)
+> Reference:
+> 1. [Official Website](https://www.jaegertracing.io/)
+> 2. [Repository](https://github.com/jaegertracing/jaeger)
+> 3. [jaeger-operator](https://github.com/jaegertracing/jaeger-operator)

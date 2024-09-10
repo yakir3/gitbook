@@ -1,10 +1,13 @@
-#### Introduction
+---
+description: Vault
+---
+
+## Introduction
 ...
 
 
-#### Deploy By Container
-##### Run by Binary
-install and verify
+## Deploy By Binaries
+### Quick Start
 ```bash
 # download and decompress
 mkdir -p /opt/vault/bin /opt/vault/data /opt/vault/tls
@@ -15,7 +18,11 @@ unzip vault_1.14.1_linux_amd64.zip && rm -f vault_1.14.1_linux_amd64.zip
 # install cli
 export PATH=$PATH:/opt/vault/bin
 #echo "export PATH=$PATH:/opt/vault/bin" >> ~/.bashrc
+```
 
+### Config and Boot
+#### Config
+```bash
 # start server
 # option1: start dev
 vault server -dev
@@ -53,10 +60,9 @@ export VAULT_TOKEN="xxx.xxx"
 
 # verify 
 vault status
-
 ```
 
-How To Use
+### How To Use
 ```bash
 # kv secret
 vault kv put -mount=secret kvpath foo=bar
@@ -112,7 +118,8 @@ vault kv put -mount=secret creds password="my-long-password"
 
 ```
 
-##### Run in Kubernetes
+## Deploy By Container
+### Run in Kubernetes
 ```bash
 # add and update repo
 helm repo add hashicorp https://helm.releases.hashicorp.com
@@ -126,7 +133,6 @@ cd vault
 vim values.yaml
 ...
 helm -n provisioning install vault .
-
 ```
 
 

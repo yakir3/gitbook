@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: PostgreSQL
+---
+
+## Introduction
 ...
 
 
-#### Deploy By Binaries
-##### Quick Start
+## Deploy By Binaries
+### Quick Start
 ```bash
 # download source
 wget https://ftp.postgresql.org/pub/source/v15.1/postgresql-15.1.tar.gz
@@ -28,7 +32,7 @@ chown postgres:postgres /opt/pgsql -R
 
 ```
 
-##### Config and Boot
+### Config and Boot
 [[sc-mysqld|Postgresql Config]]
 
 ```bash
@@ -56,14 +60,14 @@ systemctl start postgresql.service
 systemctl enable postgresql.service
 ```
 
-##### Verify
+### Verify
 ```bash
 # syntax check
 /opt/pgsql/bin/postgres --version
 postgres (PostgreSQL) 15.1
 ```
 
-##### Troubleshooting
+### Troubleshooting
 ```bash
 # problem 1
 # configure: error: readline library not found
@@ -77,13 +81,13 @@ apt install libsystemd-dev
 ```
 
 
-#### Deploy By Container
-##### Run by Resource
+## Deploy By Container
+### Run by Resource
 ```bash
 #
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # add and update repo
 helm repo add bitnami https://charts.bitnami.com/bitnami

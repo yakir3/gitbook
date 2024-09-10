@@ -1,11 +1,13 @@
 ---
-description: Cloud Native Computing Foundation
+description: >-
+  Cloud Native Computing Foundation
+  Cloud Native Interactive Landscape
 icon: bullseye-arrow
 ---
 
 # CNCF
 
-Cloud Native Interactive Landscape
+## Table of contents
 
 <!-- toc -->
 

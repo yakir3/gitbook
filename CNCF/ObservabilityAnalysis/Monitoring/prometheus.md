@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: Prometheus
+---
+
+## Introduction
 ...
 
 
-#### Deploy On Binaries
-##### Quick Start
+## Deploy On Binaries
+### Quick Start
 ```bash
 # download source and decompress
 wget https://github.com/prometheus/prometheus/releases/download/v2.45.0/prometheus-2.45.0.linux-amd64.tar.gz
@@ -25,9 +29,10 @@ curl 127.0.0.1:9090/-/reload -X POST
 
 ```
 
-##### Config and Boot
-[[sc-monitoring|Prometheus Config]]
+### Config and Boot
+#### [[sc-monitoring|Prometheus Config]]
 
+#### Boot(systemd)
 ```bash
 # boot
 cat > /etc/systemd/system/prometheus.service << "EOF"
@@ -70,8 +75,8 @@ job_service:rpc_durations_seconds_count:avg_rate5m
 ```
 
 
-#### Deploy On Container
-##### Run in Docker
+## Deploy On Container
+### Run in Docker
 ```bash
 mkdir /opt/prometheus
 cat > /opt/prometheus/prometheus.yml << "EOF"
@@ -85,7 +90,7 @@ docker run --name prometheus --rm -p 9090:9090 -v /opt/prometheus/prometheus.yml
 
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # add and update repo
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -127,14 +132,14 @@ helm -n monitoring install prometheus .
 ```
 
 
-#### Visualization
-##### [[grafana|Grafana]]
+## Visualization
+### [[grafana|Grafana]]
 
-##### [console template](https://prometheus.io/docs/visualization/consoles/)
+### [console template](https://prometheus.io/docs/visualization/consoles/)
 
 
-#### AlertManager
-##### Quick Start
+## AlertManager
+### Quick Start
 ```bash
 # baniry
 cd /opt/prometheus
@@ -146,7 +151,7 @@ mv alertmanager-0.25.0.linux-amd64 alertmanager
 # include prometheus chart package
 ```
 
-##### [[sc-monitoring#Alertmanager|Alert Config]]
+### [[sc-monitoring#Alertmanager|Alert Config]]
 ```bash
 cat > /opt/prometheus/alertmanager/alertmanager.yml << "EOF"
 ...
@@ -157,8 +162,8 @@ cd /opt/prometheus/alertmanager/
 ```
 
 
-#### Metrics exporter
-##### node_exporter
+## Metrics exporter
+### node_exporter
 Download and Install
 ```bash
 # baniry
@@ -177,7 +182,7 @@ helm fetch --untar prometheus-community/prometheus-blackbox-exporter
 ```
 
 
-##### middleware exporter
+### middleware exporter
 ```bash
 ### template
 # 1.install exporter
@@ -295,16 +300,15 @@ metadata:
    - job_name: 'rocketmq-exporter'
      static_configs:
      - targets: ['rocketmq-exporter:5557']
-
 ```
 
 
->Reference:
->1. [Repository](https://prometheus.io/docs/introduction/overview/)
->2. [Github](https://github.com/prometheus/prometheus)
->3. [Download](https://prometheus.io/download/)
->4. [中文社区文档](https://icloudnative.io/prometheus/)
->5. [InfluxDB Doc](https://docs.influxdata.com/influxdb/v1.8/introduction/get-started/)
->6. [redis-exporter](https://github.com/oliver006/redis_exporter)
->7. [kafka-exporter](https://github.com/danielqsj/kafka_exporter)
->8. [rocketmq-exporter](https://github.com/apache/rocketmq-exporter)
+> Reference:
+> 1. [Official Website](https://prometheus.io/docs/introduction/overview/)
+> 2. [Repository](https://github.com/prometheus/prometheus)
+> 3. [Download](https://prometheus.io/download/)
+> 4. [中文社区文档](https://icloudnative.io/prometheus/)
+> 5. [InfluxDB Doc](https://docs.influxdata.com/influxdb/v1.8/introduction/get-started/)
+> 6. [redis-exporter](https://github.com/oliver006/redis_exporter)
+> 7. [kafka-exporter](https://github.com/danielqsj/kafka_exporter)
+> 8. [rocketmq-exporter](https://github.com/apache/rocketmq-exporter)

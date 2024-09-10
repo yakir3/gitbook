@@ -1,5 +1,5 @@
-#### Git
-##### branch
+## Git
+### branch
 ```bash
 # 创建分支
 git branch dev
@@ -14,7 +14,7 @@ git push origin --delete dev
 git branch --set-upstream-to=origin/dev dev 
 ```
 
-##### config
+### config
 ```bash
 # 设置别名
 git config --global alias.test "command"
@@ -27,7 +27,7 @@ git config user.name yakir
 git config user.email yakir@gmail.com
 ```
 
-##### common
+### common
 ```bash
 # mv and rm
 git mv x.json
@@ -51,7 +51,7 @@ git log --graph --pretty=oneline --abbrev-commit
 git rebase
 ```
 
-##### checkout
+### checkout
 ```bash
 # 创建并合并分支
 git checkout -b dev 
@@ -60,7 +60,7 @@ git checkout -b dev
 git checkout -b dev origin/dev 
 ```
 
-##### remote repo
+### remote repo
 ```bash
 # relationship remote repo
 git remote add origin https://github.com/username/reponame.git 
@@ -74,7 +74,7 @@ git push origin main
 git branch --all |grep remotes
 ```
 
-##### stash
+### stash
 ```bash
 # 暂存工作到堆栈去
 git stash save "stash message for log"
@@ -86,7 +86,7 @@ git stash pop
 git cherry-pick 4c805e2
 ```
 
-##### version control
+### version control
 ```bash
 # 查看当前版本
 git rev-parse HEAD
@@ -110,7 +110,7 @@ git checkout -- file
 git reset HEAD file 
 ```
 
-#### Subversion
+## Subversion
 ```bash
 svn list svn://1.1.1.1:3690/my-repo/
 svn checkout svn://1.1.1.1:3690/my-repo/

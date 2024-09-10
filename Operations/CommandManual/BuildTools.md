@@ -1,4 +1,4 @@
-#### maven
+## maven
 ```bash
 # determine file location
 mvn -X clean | grep "settings"

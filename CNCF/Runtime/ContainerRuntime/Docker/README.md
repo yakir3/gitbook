@@ -1,6 +1,10 @@
-### Introduction
-#### Linux Namespace
-##### 简介
+---
+description: Docker
+---
+
+## Introduction
+### Linux Namespace
+#### 简介
 Linux Namespace 是 Linux 提供的一种内核级别环境隔离的方法。Unix 中有一个叫chroot 的系统调用（通过修改根目录把用户 jai l到一个特定目录下），chroot 提供了一种简单的隔离模式：chroot 内部的文件系统无法访问外部的内容。Linux Namespace 在此基础上，提供了对 UTS、IPC、mount、PID、network、User 等的隔离机制。
 
 Linux 下的超级父亲进程的 PID 是1，所以，同 chroot 一样，如果我们可以把用户的进程空间 jail 到某个进程分支下，并像 chroot 那样让其下面的进程 看到的那个超级父进程的 PID为1，于是就可以达到资源隔离的效果了（不同的 PID namespace 中的进程无法看到彼此）
@@ -21,7 +25,7 @@ Linux 下的超级父亲进程的 PID 是1，所以，同 chroot 一样，如果
 |**Network namespaces**|CLONE_NEWNET|[始于Linux 2.6.24 完成于 Linux 2.6.29](http://lwn.net/Articles/219794/)|
 |**User namespaces**|CLONE_NEWUSER|[始于 Linux 2.6.23 完成于 Linux 3.8)](http://lwn.net/Articles/528078/)|
 
-##### clone() 系统调用
+#### clone() 系统调用
 ```c
 #define _GNU_SOURCE
 #include <sys/types.h>
@@ -70,7 +74,7 @@ Container - inside the container!
 $ ls /tmp
 ```
 
-##### UTS Namespace
+#### UTS Namespace
 ```bash
 int container_main(void* arg)
 {
@@ -102,7 +106,7 @@ root@container:~# uname -n
 container
 ```
 
-##### IPC Namespace
+#### IPC Namespace
 IPC全称 Inter-Process Communication，是 Unix/Linux 下进程间通信的一种方式，IPC 有共享内存、信号量、消息队列等方法。所以为了隔离，需要把 IPC 给隔离开来，这样只有在同一个 Namespace 下的进程才能相互通信。IPC 需要有一个全局的 ID，Namespace 需要对这个 ID 隔离，不能让别的 Namespace 的进程看到。
 
 启动 IPC 隔离,需要在调用 clone 时加上 CLONE_NEWIPC 参数
@@ -143,7 +147,7 @@ root@container:~/linux_namespace# ipcs -q
 key        msqid      owner      perms      used-bytes   messages
 ```
 
-##### PID Namespace
+#### PID Namespace
 ```c
 int container_main(void* arg)
 {
@@ -178,7 +182,7 @@ PID 为1的作用: PID 为1的进程是 init，地位非常特殊。作为所有
 
 但是在子进程的 shell 里输入 ps,top 等命令，上述程序还是可以看得到所有进程。说明并没有完全隔离。这是因为，像 ps, top 这些命令会去读 /proc 文件系统，因为 /proc 文件系统在父进程和子进程都是一样的，所以这些命令显示的东西都是一样的。**因此,还需要对文件系统进行隔离.**
 
-##### Mount Namespace
+#### Mount Namespace
 启用 mount namespace 并在子进程中重新 mount /proc 文件系统
 ```c
 int container_main(void* arg)
@@ -223,7 +227,7 @@ root@container:~# top
 ...
 ```
 
-##### User Namespace
+#### User Namespace
 User Namespace 主要是用了 CLONE_NEWUSER 的参数。使用了这个参数后，内部看到的  UID 和 GID 已经与外部不同了，默认显示为65534。那是因为容器找不到其真正的 UID,所以设置上了最大的 UID（其设置定义在 /proc/sys/kernel/overflowuid）。
 
 要把容器中的 uid 和真实系统的 uid 给映射在一起，需要修改 /proc/pid/uid_map 和 /proc/pid/gid_map 这两个文件。这两个文件的格式为：
@@ -379,7 +383,7 @@ uid=0(root) gid=0(root) groups=0(root),65534(nogroup)
 虽然容器内是 root 用户,但其实容器的 /bin/bash 进程是以一个普通用户 ubuntu 运行的,容器的安全性得到提高.
 User Namespace 是以普通用户运行，但是别的 Namespace 需要 root 权限，那么，如果我要同时使用多个 Namespace 时，先用一般用户创建 User Namespace，然后把这个一般用户映射成 root，在容器内用 root 来创建其它的 Naemespace。
 
-##### Network Namespace
+#### Network Namespace
 一般用 ip 命令创建 Network Namespace.
 注意: 宿主机可能是 VM 主机,物理网卡可能是一个可以路由 IP 的虚拟网卡.
 ![[Pasted image 20240213223106.png]]
@@ -454,7 +458,7 @@ ip netns exec ${container-pid} ip addr add ${ROUTEABLE_IP} dev eth1 ;
 ```
 需要把外部的“物理网卡”配置成混杂模式，这样这个 eth1 网卡就会向外通过 ARP 协议发送自己的 Mac 地址，然后外部的交换机就会把到这个 IP 地址的包转到“物理网卡”上，因为是混杂模式，所以 eth1就能收到相关的数据，一看包是发给自己的那么就收到。这样，Docker容器的网络就和外部通了。
 
-#### Linux Cgroup
+### Linux Cgroup
 Linux CGroup 全称 Linux Control Group， 是 Linux 内核的一个功能，用来限制、 控制与分离一个进程组群的资源（如 CPU、内存、磁盘输入输出等）。
 
 Linux CGroupCgroup 可​​​让​​​您​​​为​​​系​​​统​​​中​​​所​​​运​​​行​​​任​​​务​​​（进​​​程​​​）的​​​用​​​户​​​定​​​义​​​组​​​群​​​分​​​配​​​资​​​源​​​ — 比​​​如​​​ CPU 时​​​间​​​、​​​系​​​统​​​内​​​存​​​、​​​网​​​络​​​带​​​宽​​​或​​​者​​​这​​​些​​​资​​​源​​​的​​​组​​​合​​​。​​​您​​​可​​​以​​​监​​​控​​​您​​​配​​​置​​​的​​​ cgroup，拒​​​绝​​​ cgroup 访​​​问​​​某​​​些​​​资​​​源​​​，甚​​​至​​​在​​​运​​​行​​​的​​​系​​​统​​​中​​​动​​​态​​​配​​​置​​​您​​​的​​​ cgroup。
@@ -537,7 +541,7 @@ cgroup.clone_children  cgroup.procs       cpu.cfs_quota_us  cpu.stat           t
 cgroup.event_control   cpu.cfs_period_us  cpu.shares        notify_on_release
 ```
 
-##### CPU Limit
+#### CPU Limit
 模拟非常吃 CPU 的程序
 ```bash
 tee > deadloop.c << "EOF"
@@ -634,7 +638,7 @@ int main (int argc, char *argv[])
 }
 ```
 
-##### Memory Limit
+#### Memory Limit
 模拟耗内存程序(不断的分配内存，每次512个字节，每次休息一秒)
 ```c
 #include <stdio.h>
@@ -674,7 +678,7 @@ $ echo 64k > /sys/fs/cgroup/memory/yakir/memory.limit_in_bytes
 $ echo [pid] > /sys/fs/cgroup/memory/haoel/tasks
 ```
 
-##### IO Limit
+#### IO Limit
 测试模拟 IO 速度
 ```bash
 # dd 命令读写 IO
@@ -703,7 +707,7 @@ iotop
  8128 be/4 root      973.20 K/s    0.00 B/s  0.00 % 94.41 % dd if=/de~=/dev/null...
 ```
 
-##### Cgroup Subsystem
+#### Cgroup Subsystem
 - blkio — 这​​​个​​​子​​​系​​​统​​​为​​​块​​​设​​​备​​​设​​​定​​​输​​​入​​​/输​​​出​​​限​​​制​​​，比​​​如​​​物​​​理​​​设​​​备​​​（磁​​​盘​​​，固​​​态​​​硬​​​盘​​​，USB 等​​​等​​​）。
 - cpu — 这​​​个​​​子​​​系​​​统​​​使​​​用​​​调​​​度​​​程​​​序​​​提​​​供​​​对​​​ CPU 的​​​ cgroup 任​​​务​​​访​​​问​​​。​​​
 - cpuacct — 这​​​个​​​子​​​系​​​统​​​自​​​动​​​生​​​成​​​ cgroup 中​​​任​​​务​​​所​​​使​​​用​​​的​​​ CPU 报​​​告​​​。​​​
@@ -715,22 +719,22 @@ iotop
 - net_prio — 这个子系统用来设计网络流量的优先级
 - hugetlb — 这个子系统主要针对于HugeTLB系统进行限制，这是一个大页文件系统。
 
-##### Cgroup 相关术语
+#### Cgroup 相关术语
 - **任务（Tasks）**：就是系统的一个进程。
 - **控制组（Control Group）**：一组按照某种标准划分的进程，比如官方文档中的Professor和Student，或是WWW和System之类的，其表示了某进程组。Cgroups中的资源控制都是以控制组为单位实现。一个进程可以加入到某个控制组。而资源的限制是定义在这个组上，就像上面示例中我用的haoel一样。简单点说，cgroup的呈现就是一个目录带一系列的可配置文件。
 - **层级（Hierarchy）**：控制组可以组织成hierarchical的形式，既一颗控制组的树（目录结构）。控制组树上的子节点继承父结点的属性。简单点说，hierarchy就是在一个或多个子系统上的cgroups目录树。
 - **子系统（Subsystem）**：一个子系统就是一个资源控制器，比如CPU子系统就是控制CPU时间分配的一个控制器。子系统必须附加到一个层级上才能起作用，一个子系统附加到某个层级以后，这个层级上的所有控制族群都受到这个子系统的控制。Cgroup的子系统可以有很多，也在不断增加中。
 
-### Docker Engine
-#### Install
+## Docker Engine
+### Install
 ```bash
 # install docker engine
 https://docs.docker.com/engine/install/debian/
 
 ```
 
-#### Storage
-##### Overview
+### Storage
+#### Overview
 ```bash
 # show docker volume info
 docker volume ls
@@ -753,7 +757,7 @@ local     yakir-test
 
 ```
 
-##### Volumes
+#### Volumes
 ```bash
 # create volume
 docker volume create yakir-test
@@ -794,7 +798,7 @@ docker volume rm yakir-test
 
 ```
 
-##### Bind mounts
+#### Bind mounts
 ```bash
 # start container with bind mounts
 docker run -d --name test \
@@ -829,7 +833,7 @@ docker rm test
 
 ```
 
-##### tmpfs mounts
+#### tmpfs mounts
 ```bash
 # start container with tmpfs
 docker run -it --name tmptest \
@@ -851,8 +855,8 @@ docker rm tmptest
 
 ```
 
-##### Storage drivers
-###### Btrfs
+#### Storage drivers
+##### Btrfs
 ```bash
 # stop docker
 systemctl stop docker.service
@@ -880,7 +884,7 @@ docker info --format '{{ json .Driver }}'
 "btrfs"
 ```
 
-###### OverlayFS
+##### OverlayFS
 ```bash
 # stop docker
 systemctl stop docker.service
@@ -904,7 +908,7 @@ docker info --format '{{ json .Driver }}'
 mount |grep overlay |grep docker
 ```
 
-###### ZFS
+##### ZFS
 ```bash
 # stop docker
 systemctl stop docker.service
@@ -934,7 +938,7 @@ docker info --format '{{ json .Driver }}'
 "zfs"
 ```
 
-###### containerd snapshotters
+##### containerd snapshotters
 ```bash
 # configure Docker to use the btrfs storage driver
 vim /etc/docker/daemon.json
@@ -951,8 +955,8 @@ docker info -f '{{ .DriverStatus }}'
 
 ```
 
-#### Networking
-##### Overview
+### Networking
+#### Overview
 
 ```bash
 # show docker network info
@@ -974,8 +978,8 @@ f1b2d749ed2c   none      null      local
 
 ```
 
-##### Networking drivers
-###### Bridge
+#### Networking drivers
+##### Bridge
 ```bash
 # bridge
 每个容器拥有独立网络协议栈，为每一个容器分配、设置 IP 等。将容器连接到虚拟网桥（默认为 docker0 网桥）。
@@ -1000,12 +1004,12 @@ docker inspect test |grep Gateway
 
 ```
 
-###### Overlay
+##### Overlay
 ```bash
 # 多 docker 主机组建网络，配合 docker swarm 使用
 ```
 
-###### Host
+##### Host
 ```bash
 # host
 使用宿主机的 IP 和端口，共享宿主机网络协议栈。
@@ -1014,7 +1018,7 @@ docker inspect test |grep Gateway
 docker run --rm -dit --net host busybox ip addr
 ```
 
-###### IPvlan
+##### IPvlan
 ```bash
 # ipvlan
 ipvlan_mode: l2, l3(default), l3s
@@ -1046,7 +1050,7 @@ docker run --net=test_l3_net --ip=10.10.1.9 -it --rm busybox ping -c 2 192.168.1
 
 ```
 
-###### Macvlan
+##### Macvlan
 ```bash
 # macvlan
 
@@ -1071,7 +1075,7 @@ docker network create -d macvlan \
 # https://zhuanlan.zhihu.com/p/616504632
 ```
 
-###### None
+##### None
 ```bash
 # none
 每个容器拥有独立网络协议栈，但没有网络设置，如分配 veth pair 和网桥连接等。
@@ -1080,7 +1084,7 @@ docker network create -d macvlan \
 docker run --rm -dit --net none busybox ip addr
 ```
 
-###### Container
+##### Container
 ```bash
 # container
 和一个指定已有的容器共享网络协议栈，使用共有的 IP、端口等。
@@ -1091,7 +1095,7 @@ docker run -it --name c1 --net container:test --rm busybox ip addr
 docker run -it --name c2 --net container:test --rm busybox ip addr
 ```
 
-###### 自定义网络模式
+##### 自定义网络模式
 ```bash
 # user-defined 
 默认 docker0 网桥无法通过 container name host 通信，自定义网络默认使用 daemon 进程内嵌的 DNS server，可以直接通过 --name 指定的 container name 进行通信
@@ -1122,7 +1126,7 @@ docker exec -it test3 ip addr
 
 ```
 
-##### Daemon
+#### Daemon
 ```bash
 # configuration file
 /etc/docker/daemon.json
@@ -1141,12 +1145,12 @@ dockerd --debug \
 
 # systemd
 cat /lib/systemd/system/docker.service
-
-
 ```
 
 ### Docker Build
-### Build images
+
+#### Build images
+
 #### Multi-stage builds
 Use multi-stage builds
 ```dockerfile
@@ -1199,7 +1203,7 @@ docker build --target build -t hello .
 ```
 
 
-#### Dockerfile
+### Dockerfile
 #### Example
 ```dockerfile
 # Dockerfile syntax
@@ -1247,16 +1251,12 @@ spec.contianers[n].args = CMD
 ```
 
 ### Docker Compose
-
 [[docker-compose.yml|Archery Docker Compose]]
 
-### Common Command
-[[ContainerRuntime#docker & podman|Docker Command]]
 
 
-
->Reference:
->1. [Docker Official Documentation](https://docs.docker.com/)
->2. [Docker network-drivers](https://docs.docker.com/network/drivers/)
->3. [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
->4. [COOLSHELL-DOCKER基础技术:Linux NAMESPACE](https://coolshell.cn/articles/17010.html)
+> Reference:
+> 1. [Official Website](https://docs.docker.com/)
+> 2. [Docker network-drivers](https://docs.docker.com/network/drivers/)
+> 3. [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+> 4. [COOLSHELL-DOCKER基础技术:Linux NAMESPACE](https://coolshell.cn/articles/17010.html)

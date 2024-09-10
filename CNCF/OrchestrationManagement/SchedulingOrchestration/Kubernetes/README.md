@@ -1,34 +1,38 @@
-### Introduction
+---
+description: Kubernetes
+---
+
+## Introduction
 
 ![[podcreate-dafvcg.jpg]]
 
 ![[Pasted image 20231117144608.png]]
 
-##### Components
-##### Control plane
+## Components
+### Control plane
 + etcd(cluster parallel)
 + kube-apiserver(parallel loadbalance)
 + kube-controller-manager(single instance)
 + kube-scheduler(single instance)
 
 
-##### Data plane
+### Data plane
 + kubelet
 + kube-proxy
 + container-runtime(docker, containerd, rkt, ...)
 + kube-dns
 
 
-##### Options components
+### Options components
 + kube-dashboard
 + ingress-nginx
 + metrics-server
 + cni
 
 
-#### Resources
+## Resources
 
-##### Pods
+### Pods
 ```yaml
 # Pod template
 apiVersion: V1
@@ -89,14 +93,14 @@ spec:
 ```
 
 
-##### Apps
+### Apps
 Deployments -> ReplicaSets
 StatefulSets
 DaemonSets
 Jobs
 CronJobs
 
-##### Service Discovery
+### Service Discovery
 Ingress: 
 Service
 Endpoints
@@ -118,14 +122,14 @@ PersistentVolume
 StorageClass
 
 
-### Deploy
-##### kubeadm
+## Deploy
+### kubeadm
 
-##### kubespray
+### kubespray
 
 
 
->Reference:
+> Reference:
 > 1. [Official Website](https://kubernetes.io/)
 > 2. [Repository](https://github.com/kubernetes/kubernetes)
 > 3. [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)

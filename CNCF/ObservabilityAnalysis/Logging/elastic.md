@@ -1,5 +1,12 @@
-#### Deploy By Binaries
-##### Quick Start
+---
+description: argo proj
+---
+
+## Introduction
+...
+
+## Deploy By Binaries
+### Quick Start
 ```bash
 # download and decompression
 cd /opt && wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.7.1-linux-x86_64.tar.gz
@@ -25,8 +32,8 @@ curl 127.0.0.1:9200 -u 'elastic:elastic_password'
 ./bin/elasticsearch -d # daemon
 ```
 
-##### [[sc-elasticsearch|Config]] and Boot
-###### Config
+### [[sc-elasticsearch|Config]] and Boot
+#### Config
 ```bash
 echo > config/elasticsearch.yml << "EOF"
 path.data: /opt/elasticsearch/data/
@@ -40,7 +47,7 @@ xpack.security.transport.ssl.enabled: false
 EOF
 ```
 
-###### Boot(systemd)
+#### Boot(systemd)
 ```bash
 cat > /etc/systemd/system/elasticsearch.service << "EOF"
 [Unit]
@@ -98,8 +105,8 @@ systemctl start elasticsearch.service
 systemctl enable elasticsearch.service
 ```
 
-#### Deploy By Container
-##### Run on Helm
+## Deploy By Container
+### Run on Helm
 ```bash
 # add and update repo
 helm repo add elastic https://helm.elastic.co
@@ -124,13 +131,14 @@ helm -n logging install elasticsearch .
 
 ```
 
-##### Run on ECK Operator
+### Run on ECK Operator
+```bash
+```
 
 
 
-
->Reference:
-> 1. [Repository](https://www.elastic.co/docs)
-> 2. [Elasticsearch Github](https://github.com/elastic/elasticsearch)
+> Reference:
+> 1. [Official Website](https://www.elastic.co/docs)
+> 2. [Repository](https://github.com/elastic/elasticsearch)
 > 3. [Official elastic-cloud-kubernetes](https://www.elastic.co/downloads/elastic-cloud-kubernetes)
 > 4. Elasticsearch UI: [cerebro](https://github.com/lmenezes/cerebro)

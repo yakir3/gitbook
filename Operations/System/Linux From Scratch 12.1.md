@@ -1,9 +1,9 @@
-### Introduction
+## Introduction
 ...
 
-### Preparing for the Build
-#### Preparing the Host System
-##### Creating a New Partition
+## Preparing for the Build
+### Preparing the Host System
+#### Creating a New Partition
 ```bash
 su - root
 
@@ -34,7 +34,7 @@ mkfs.fat -F 32 -n boot /dev/sdb2
 mkfs.ext4 -v /dev/sdb3
 ```
 
-##### Setting The $LFS Variable
+#### Setting The $LFS Variable
 ```bash
 cat >> /root/.bashrc << EOF
 export LFS=/mnt/lfs
@@ -42,7 +42,7 @@ EOF
 source /root/.bashrc
 ```
 
-##### Mounting the New Partition
+#### Mounting the New Partition
 ```bash
 # legacy
 mkdir -pv $LFS
@@ -67,7 +67,7 @@ UUID="638d219e-f1a0-401c-b4cf-de79860a0445" /mnt/lfs ext4 defaults 0 1
 PARTUUID="d47b7e0a-61fe-4c96-a387-13c07b53ddb7" /mnt/lfs/boot/efi vfat codepage=437,iocharset=iso8859-1 0 1
 ```
 
-#### Packages and Patches
+### Packages and Patches
 ```bash
 mkdir -v $LFS/sources
 chmod -v a+wt $LFS/sources
@@ -86,8 +86,8 @@ popd
 chown root:root $LFS/sources/*
 ```
 
-#### Final Preparations
-##### Creating a Limited Directory Layout in the LFS Filesystem
+### Final Preparations
+#### Creating a Limited Directory Layout in the LFS Filesystem
 ```bash
 # Create the required directory layout by issuing the following commands as root
 mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
@@ -104,7 +104,7 @@ esac
 mkdir -pv $LFS/tools
 ```
 
-##### Adding the LFS User
+#### Adding the LFS User
 ```bash
 groupadd lfs
 useradd -s /bin/bash -g lfs -m -k /dev/null lfs
@@ -119,7 +119,7 @@ esac
 su - lfs
 ```
 
-##### Setting Up the Environment
+#### Setting Up the Environment
 ```bash
 # setup bash_profile
 cat > ~/.bash_profile << "EOF"
@@ -148,9 +148,9 @@ EOF
 source ~/.bash_profile
 ```
 
-### Building the LFS Cross Toolchain and Temporary Tools
-#### Compiling a Cross-Toolchain
-##### Binutils-2.42 - Pass 1
+## Building the LFS Cross Toolchain and Temporary Tools
+### Compiling a Cross-Toolchain
+#### Binutils-2.42 - Pass 1
 ```bash
 cd $LFS/sources
 tar xf binutils-2.42.tar.xz && cd binutils-2.42
@@ -169,7 +169,7 @@ make && make install
 cd $LFS/sources && rm -rf binutils-2.42
 ```
 
-##### GCC-13.2.0 - Pass 1
+#### GCC-13.2.0 - Pass 1
 ```bash
 tar xf gcc-13.2.0.tar.xz && cd gcc-13.2.0
 
@@ -219,7 +219,7 @@ cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
 cd $LFS/sources && rm -rf gcc-13.2.0
 ```
 
-##### Linux-6.7.4 API Headers
+#### Linux-6.7.4 API Headers
 ```bash
 tar xf linux-6.7.4.tar.xz && cd linux-6.7.4
 
@@ -232,7 +232,7 @@ cp -rv usr/include $LFS/usr
 cd $LFS/sources && rm -rf linux-6.7.4
 ```
 
-##### Glibc-2.39
+#### Glibc-2.39
 ```bash
 tar xf glibc-2.39.tar.xz && cd glibc-2.39
 
@@ -272,7 +272,7 @@ rm -v a.out
 cd $LFS/sources && rm -rf glibc-2.39
 ```
 
-##### Libstdc++ from GCC-13.2.0
+#### Libstdc++ from GCC-13.2.0
 ```bash
 tar xf gcc-13.2.0.tar.xz && cd gcc-13.2.0
 
@@ -294,8 +294,8 @@ rm -v $LFS/usr/lib/lib{stdc++{,exp,fs},supc++}.la
 cd $LFS/sources && rm -rf gcc-13.2.0
 ```
 
-#### Cross Compiling Temporary Tools
-##### M4-1.4.19
+### Cross Compiling Temporary Tools
+#### M4-1.4.19
 ```bash
 tar xf m4-1.4.19.tar.xz && cd m4-1.4.19
 
@@ -308,7 +308,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf m4-1.4.19
 ```
 
-##### Ncurses-6.4-20230520
+#### Ncurses-6.4-20230520
 ```bash
 tar xf ncurses-6.4-20230520.tar.xz && cd ncurses-6.4-20230520
 
@@ -342,7 +342,7 @@ sed -e 's/^#if.*XOPEN.*$/#if 1/' \
 cd $LFS/sources && rm -rf ncurses-6.4-20230520
 ```
 
-##### Bash-5.2.21
+#### Bash-5.2.21
 ```bash
 tar xf bash-5.2.21.tar.gz && cd bash-5.2.21
 
@@ -358,7 +358,7 @@ ln -sv bash $LFS/bin/sh
 cd $LFS/sources && rm -rf bash-5.2.21
 ```
 
-##### Coreutils-9.4
+#### Coreutils-9.4
 ```bash
 tar xf coreutils-9.4.tar.xz && cd coreutils-9.4
 
@@ -378,7 +378,7 @@ sed -i 's/"1"/"8"/' $LFS/usr/share/man/man8/chroot.8
 cd $LFS/sources && rm -rf coreutils-9.4
 ```
 
-##### Diffutils-3.10
+#### Diffutils-3.10
 ```bash
 tar xf diffutils-3.10.tar.xz && cd diffutils-3.10
 
@@ -391,7 +391,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf diffutils-3.10
 ```
 
-##### File-5.45
+#### File-5.45
 ```bash
 tar xf file-5.45.tar.gz && cd file-5.45
 
@@ -414,7 +414,7 @@ rm -v $LFS/usr/lib/libmagic.la
 cd $LFS/sources && rm -rf file-5.45
 ```
 
-##### Findutils-4.9.0
+#### Findutils-4.9.0
 ```bash
 tar xf findutils-4.9.0.tar.xz && cd findutils-4.9.0
 
@@ -428,7 +428,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf findutils-4.9.0
 ```
 
-##### Gawk-5.3.0
+#### Gawk-5.3.0
 ```bash
 tar xf gawk-5.3.0.tar.xz && cd gawk-5.3.0
 
@@ -443,7 +443,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf gawk-5.3.0
 ```
 
-##### Grep-3.11
+#### Grep-3.11
 ```bash
 tar xf grep-3.11.tar.xz && cd grep-3.11
 
@@ -456,7 +456,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf grep-3.11
 ```
 
-##### Gzip-1.13
+#### Gzip-1.13
 ```bash
 tar xf gzip-1.13.tar.xz && cd gzip-1.13
 
@@ -467,7 +467,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf gzip-1.13
 ```
 
-##### Make-4.4.1
+#### Make-4.4.1
 ```bash
 tar xf make-4.4.1.tar.gz && cd make-4.4.1
 
@@ -481,7 +481,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf make-4.4.1
 ```
 
-##### Patch-2.7.6
+#### Patch-2.7.6
 ```bash
 tar xf patch-2.7.6.tar.xz && cd patch-2.7.6
 
@@ -494,7 +494,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf patch-2.7.6
 ```
 
-##### Sed-4.9
+#### Sed-4.9
 ```bash
 tar xf sed-4.9.tar.xz && cd sed-4.9
 
@@ -507,7 +507,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf sed-4.9
 ```
 
-##### Tar-1.35
+#### Tar-1.35
 ```bash
 tar xf tar-1.35.tar.xz && cd tar-1.35
 
@@ -520,7 +520,7 @@ make && make DESTDIR=$LFS install
 cd $LFS/sources && rm -rf tar-1.35
 ```
 
-##### Xz-5.4.6
+#### Xz-5.4.6
 ```bash
 tar xf xz-5.4.6.tar.xz && cd xz-5.4.6
 
@@ -537,7 +537,7 @@ rm -v $LFS/usr/lib/liblzma.la
 cd $LFS/sources && rm -rf xz-5.4.6
 ```
 
-##### Binutils-2.42 - Pass 2
+#### Binutils-2.42 - Pass 2
 ```bash
 cd $LFS/sources
 tar xf binutils-2.42.tar.xz && cd binutils-2.42
@@ -564,7 +564,7 @@ rm -v $LFS/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes,sframe}.{a,la}
 cd $LFS/sources && rm -rf binutils-2.42
 ```
 
-##### GCC-13.2.0 - Pass 2
+#### GCC-13.2.0 - Pass 2
 ```bash
 tar xf gcc-13.2.0.tar.xz && cd gcc-13.2.0
 
@@ -613,8 +613,8 @@ ln -sv gcc $LFS/usr/bin/cc
 cd $LFS/sources && rm -rf gcc-13.2.0
 ```
 
-#### Entering Chroot and Building Additional Temporary Tools
-##### Prerequisite
+### Entering Chroot and Building Additional Temporary Tools
+#### Prerequisite
 ```bash
 # Introduction
 su - root
@@ -731,7 +731,7 @@ chmod -v 664  /var/log/lastlog
 chmod -v 600  /var/log/btmp
 ```
 
-##### Gettext-0.22.4
+#### Gettext-0.22.4
 ```bash
 cd /sources/
 tar xf gettext-0.22.4.tar.xz && cd gettext-0.22.4
@@ -743,7 +743,7 @@ make && cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
 cd /sources/ && rm -rf gettext-0.22.4
 ```
 
-##### Bison-3.8.2
+#### Bison-3.8.2
 ```bash
 tar xf bison-3.8.2.tar.xz && cd bison-3.8.2
 
@@ -755,7 +755,7 @@ make && make install
 cd /sources/ && rm -rf bison-3.8.2
 ```
 
-##### Perl-5.38.2
+#### Perl-5.38.2
 ```bash
 tar xf perl-5.38.2.tar.xz && cd perl-5.38.2
 
@@ -775,7 +775,7 @@ make && make install
 cd /sources/ && rm -rf perl-5.38.2
 ```
 
-##### Python-3.12.2
+#### Python-3.12.2
 ```bash
 tar xf Python-3.12.2.tar.xz && cd Python-3.12.2
 
@@ -788,7 +788,7 @@ make && make install
 cd /sources/ && rm -rf Python-3.12.2
 ```
 
-##### Texinfo-7.1
+#### Texinfo-7.1
 ```bash
 tar xf texinfo-7.1.tar.xz && cd texinfo-7.1
 
@@ -799,7 +799,7 @@ make && make install
 cd /sources/ && rm -rf texinfo-7.1
 ```
 
-##### Util-linux-2.39.3
+#### Util-linux-2.39.3
 ```bash
 tar xf util-linux-2.39.3.tar.xz && cd util-linux-2.39.3
 
@@ -824,7 +824,7 @@ make && make install
 cd /sources/ && rm -rf util-linux-2.39.3
 ```
 
-##### Cleaning up and Saving the Temporary System
+#### Cleaning up and Saving the Temporary System
 ```bash
 # cleaning
 rm -rf /usr/share/{info,man,doc}/*
@@ -851,14 +851,14 @@ rm -rf ./*
 tar -xpf $HOME/lfs-temp-tools-12.1.tar.xz
 ```
 
-### Building the LFS System
-#### Installing Basic System Software
-##### [[Linux From Scratch 12.1#Prerequisite|Prerequisite]]
+## Building the LFS System
+### Installing Basic System Software
+#### [[Linux From Scratch 12.1#Prerequisite|Prerequisite]]
 1. `findmnt | grep $LFS`
 2. Preparing Virtual Kernel File Systems
 3. Entering the Chroot Environment
 
-##### Man-pages-6.06
+#### Man-pages-6.06
 ```bash
 cd /sources/
 tar xf man-pages-6.06.tar.xz && cd man-pages-6.06
@@ -870,7 +870,7 @@ make prefix=/usr install
 cd /sources/ && rm -rf man-pages-6.06
 ```
 
-##### Iana-Etc-20240125
+#### Iana-Etc-20240125
 ```bash
 tar xf iana-etc-20240125.tar.gz && cd iana-etc-20240125
 
@@ -879,7 +879,7 @@ cp services protocols /etc
 cd /sources/ && rm -rf iana-etc-20240125
 ```
 
-##### Glibc-2.39
+#### Glibc-2.39
 ```bash
 # install
 tar xf glibc-2.39.tar.xz && cd glibc-2.39
@@ -998,7 +998,7 @@ mkdir -pv /etc/ld.so.conf.d
 cd /sources/ && rm -rf glibc-2.39
 ```
 
-##### Zlib-1.3.1
+#### Zlib-1.3.1
 ```bash
 tar xf zlib-1.3.1.tar.gz && cd zlib-1.3.1
 
@@ -1013,7 +1013,7 @@ rm -fv /usr/lib/libz.a
 cd /sources/ && rm -rf zlib-1.3.1
 ```
 
-##### Bzip2-1.0.8
+#### Bzip2-1.0.8
 ```bash
 tar xf bzip2-1.0.8.tar.gz && cd bzip2-1.0.8
 
@@ -1041,7 +1041,7 @@ rm -fv /usr/lib/libbz2.a
 cd /sources/ && rm -rf bzip2-1.0.8
 ```
 
-##### Xz-5.4.6
+#### Xz-5.4.6
 ```bash
 tar xf xz-5.4.6.tar.xz && cd xz-5.4.6
 
@@ -1056,7 +1056,7 @@ make install
 cd /sources/ && rm -rf xz-5.4.6
 ```
 
-##### Zstd-1.5.5
+#### Zstd-1.5.5
 ```bash
 tar xf zstd-1.5.5.tar.gz && cd zstd-1.5.5
 
@@ -1069,7 +1069,7 @@ rm -v /usr/lib/libzstd.a
 cd /sources/ && rm -rf zstd-1.5.5
 ```
 
-##### File-5.45
+#### File-5.45
 ```bash
 tar xf file-5.45.tar.gz && cd file-5.45
 
@@ -1082,7 +1082,7 @@ make install
 cd /sources/ && rm -rf file-5.45
 ```
 
-##### Readline-8.2
+#### Readline-8.2
 ```bash
 tar xf readline-8.2.tar.gz && cd readline-8.2
 
@@ -1103,7 +1103,7 @@ install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-8.2
 cd /sources/ && rm -rf readline-8.2
 ```
 
-##### M4-1.4.19
+#### M4-1.4.19
 ```bash
 tar xf m4-1.4.19.tar.xz && cd m4-1.4.19
 
@@ -1116,7 +1116,7 @@ make install
 cd /sources/ && rm -rf m4-1.4.19
 ```
 
-##### Bc-6.7.5
+#### Bc-6.7.5
 ```bash
 tar xf bc-6.7.5.tar.xz && cd bc-6.7.5
 
@@ -1129,7 +1129,7 @@ make install
 cd /sources/ && rm -rf bc-6.7.5
 ```
 
-##### Flex-2.6.4
+#### Flex-2.6.4
 ```bash
 tar xf flex-2.6.4.tar.gz && cd flex-2.6.4
 
@@ -1147,7 +1147,7 @@ ln -sv flex.1 /usr/share/man/man1/lex.1
 cd /sources/ && rm -rf flex-2.6.4
 ```
 
-##### Tcl-8.6.13
+#### Tcl-8.6.13
 ```bash
 tar xf tcl8.6.13-src.tar.gz && cd tcl8.6.13
 
@@ -1191,7 +1191,7 @@ cp -v -r  ./html/* /usr/share/doc/tcl-8.6.13
 cd /sources/ && rm -rf tcl8.6.13
 ```
 
-##### Expect-5.45.4
+#### Expect-5.45.4
 ```bash
 tar xf expect5.45.4.tar.gz && cd expect5.45.4
 
@@ -1211,7 +1211,7 @@ ln -svf expect5.45.4/libexpect5.45.4.so /usr/lib
 cd /sources/ && rm -rf expect5.45.4
 ```
 
-##### DejaGNU-1.6.3
+#### DejaGNU-1.6.3
 ```bash
 tar xf dejagnu-1.6.3.tar.gz && cd dejagnu-1.6.3
 
@@ -1229,7 +1229,7 @@ install -v -m644   doc/dejagnu.{html,txt} /usr/share/doc/dejagnu-1.6.3
 cd /sources/ && rm -rf dejagnu-1.6.3
 ```
 
-##### Pkgconf-2.1.1
+#### Pkgconf-2.1.1
 ```bash
 tar xf pkgconf-2.1.1.tar.xz && cd pkgconf-2.1.1
 
@@ -1245,7 +1245,7 @@ ln -sv pkgconf.1 /usr/share/man/man1/pkg-config.1
 cd /sources/ && rm -rf pkgconf-2.1.1
 ```
 
-##### Binutils-2.42
+#### Binutils-2.42
 ```bash
 tar xf binutils-2.42.tar.xz && cd binutils-2.42
 
@@ -1270,7 +1270,7 @@ rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,gprofng,opcodes,sframe}.a
 cd /sources/ && rm -rf binutils-2.42
 ```
 
-##### GMP-6.3.0
+#### GMP-6.3.0
 ```bash
 tar xf gmp-6.3.0.tar.xz && cd gmp-6.3.0
 
@@ -1289,7 +1289,7 @@ make install-html
 cd /sources/ && rm -rf gmp-6.3.0
 ```
 
-##### MPFR-4.2.1
+#### MPFR-4.2.1
 ```bash
 tar xf mpfr-4.2.1.tar.xz && cd mpfr-4.2.1
 
@@ -1307,7 +1307,7 @@ make install-html
 cd /sources/ && rm -rf mpfr-4.2.1
 ```
 
-##### MPC-1.3.1
+#### MPC-1.3.1
 ```bash
 tar xf mpc-1.3.1.tar.gz && cd mpc-1.3.1
 
@@ -1324,7 +1324,7 @@ make install-html
 cd /sources/ && rm -rf mpc-1.3.1
 ```
 
-##### Attr-2.5.2
+#### Attr-2.5.2
 ```bash
 tar xf attr-2.5.2.tar.gz && cd attr-2.5.2
 
@@ -1340,7 +1340,7 @@ make install
 cd /sources/ && rm -rf attr-2.5.2
 ```
 
-##### Acl-2.3.2
+#### Acl-2.3.2
 ```bash
 tar xf acl-2.3.2.tar.xz && cd acl-2.3.2
 
@@ -1354,7 +1354,7 @@ make install
 cd /sources/ && rm -rf acl-2.3.2
 ```
 
-##### Libcap-2.69
+#### Libcap-2.69
 ```bash
 tar xf libcap-2.69.tar.xz && cd libcap-2.69
 
@@ -1367,7 +1367,7 @@ make prefix=/usr lib=lib install
 cd /sources/ && rm -rf libcap-2.69
 ```
 
-##### Libxcrypt-4.4.36
+#### Libxcrypt-4.4.36
 ```bash
 tar xf libxcrypt-4.4.36.tar.xz && cd libxcrypt-4.4.36
 
@@ -1395,7 +1395,7 @@ cp -av --remove-destination .libs/libcrypt.so.1* /usr/lib
 cd /sources/ && rm -rf libxcrypt-4.4.36
 ```
 
-##### Shadow-4.14.5
+#### Shadow-4.14.5
 ```bash
 tar xf shadow-4.14.5.tar.xz && cd shadow-4.14.5
 
@@ -1429,7 +1429,7 @@ passwd root
 cd /sources/ && rm -rf shadow-4.14.5
 ```
 
-##### GCC-13.2.0
+#### GCC-13.2.0
 ```bash
 tar xf gcc-13.2.0.tar.xz && cd gcc-13.2.0
 
@@ -1506,7 +1506,7 @@ rm -v dummy.c a.out dummy.log
 cd /sources/ && rm -rf gcc-13.2.0
 ```
 
-##### Ncurses-6.4-20230520
+#### Ncurses-6.4-20230520
 ```bash
 tar xf ncurses-6.4-20230520.tar.xz && cd ncurses-6.4-20230520
 
@@ -1539,7 +1539,7 @@ cp -v -R doc -T /usr/share/doc/ncurses-6.4-20230520
 cd /sources/ && rm -rf ncurses-6.4-20230520
 ```
 
-##### Sed-4.9
+#### Sed-4.9
 ```bash
 tar xf sed-4.9.tar.xz && cd sed-4.9
 
@@ -1558,7 +1558,7 @@ install -m644 doc/sed.html /usr/share/doc/sed-4.9
 cd /sources/ && rm -rf sed-4.9
 ```
 
-##### Psmisc-23.6
+#### Psmisc-23.6
 ```bash
 tar xf psmisc-23.6.tar.xz && cd psmisc-23.6
 
@@ -1571,7 +1571,7 @@ make install
 cd /sources/ && rm -rf psmisc-23.6
 ```
 
-##### Gettext-0.22.4
+#### Gettext-0.22.4
 ```bash
 tar xf gettext-0.22.4.tar.xz && cd gettext-0.22.4
 
@@ -1587,7 +1587,7 @@ chmod -v 0755 /usr/lib/preloadable_libintl.so
 cd /sources/ && rm -rf gettext-0.22.4
 ```
 
-##### Bison-3.8.2
+#### Bison-3.8.2
 ```bash
 tar xf bison-3.8.2.tar.xz && cd bison-3.8.2
 
@@ -1600,7 +1600,7 @@ make install
 cd /sources/ && rm -rf bison-3.8.2
 ```
 
-##### Grep-3.11
+#### Grep-3.11
 ```bash
 tar xf grep-3.11.tar.xz && cd grep-3.11
 
@@ -1615,7 +1615,7 @@ make install
 cd /sources/ && rm -rf grep-3.11
 ```
 
-##### Bash-5.2.21
+#### Bash-5.2.21
 ```bash
 tar xf bash-5.2.21.tar.gz && cd bash-5.2.21
 
@@ -1642,7 +1642,7 @@ exec /usr/bin/bash --login
 cd /sources/ && rm -rf bash-5.2.21
 ```
 
-##### Libtool-2.4.7
+#### Libtool-2.4.7
 ```bash
 tar xf libtool-2.4.7.tar.xz && cd libtool-2.4.7
 
@@ -1656,7 +1656,7 @@ rm -fv /usr/lib/libltdl.a
 cd /sources/ && rm -rf libtool-2.4.7
 ```
 
-##### GDBM-1.23
+#### GDBM-1.23
 ```bash
 tar xf gdbm-1.23.tar.gz && cd gdbm-1.23
 
@@ -1671,7 +1671,7 @@ make install
 cd /sources/ && rm -rf gdbm-1.23
 ```
 
-##### Gperf-3.1
+#### Gperf-3.1
 ```bash
 tar xf gperf-3.1.tar.gz && cd gperf-3.1
 
@@ -1684,7 +1684,7 @@ make install
 cd /sources/ && rm -rf gperf-3.1
 ```
 
-##### Expat-2.6.0
+#### Expat-2.6.0
 ```bash
 tar xf expat-2.6.0.tar.xz && cd expat-2.6.0
 
@@ -1700,7 +1700,7 @@ install -v -m644 doc/*.{html,css} /usr/share/doc/expat-2.6.0
 cd /sources/ && rm -rf expat-2.6.0
 ```
 
-##### Inetutils-2.5
+#### Inetutils-2.5
 ```bash
 tar xf inetutils-2.5.tar.xz && cd inetutils-2.5
 
@@ -1723,7 +1723,7 @@ mv -v /usr/{,s}bin/ifconfig
 cd /sources/ && rm -rf inetutils-2.5
 ```
 
-##### Less-643
+#### Less-643
 ```bash
 tar xf less-643.tar.gz && cd less-643
 
@@ -1736,7 +1736,7 @@ make install
 cd /sources/ && rm -rf less-643
 ```
 
-##### Perl-5.38.2
+#### Perl-5.38.2
 ```bash
 tar xf perl-5.38.2.tar.xz && cd perl-5.38.2
 
@@ -1766,7 +1766,7 @@ unset BUILD_ZLIB BUILD_BZIP2
 cd /sources/ && rm -rf perl-5.38.2
 ```
 
-##### XML::Parser-2.47
+#### XML::Parser-2.47
 ```bash
 tar xf XML-Parser-2.47.tar.gz && cd XML-Parser-2.47
 
@@ -1779,7 +1779,7 @@ make install
 cd /sources/ && rm -rf XML-Parser-2.47
 ```
 
-##### Intltool-0.51.0
+#### Intltool-0.51.0
 ```bash
 tar xf intltool-0.51.0.tar.gz && cd intltool-0.51.0
 
@@ -1795,7 +1795,7 @@ install -v -Dm644 doc/I18N-HOWTO /usr/share/doc/intltool-0.51.0/I18N-HOWTO
 cd /sources/ && rm -rf intltool-0.51.0
 ```
 
-##### Autoconf-2.72
+#### Autoconf-2.72
 ```bash
 tar xf autoconf-2.72.tar.xz && cd autoconf-2.72
 
@@ -1808,7 +1808,7 @@ make install
 cd /sources/ && rm -rf autoconf-2.72
 ```
 
-##### Automake-1.16.5
+#### Automake-1.16.5
 ```bash
 tar xf automake-1.16.5.tar.xz && cd automake-1.16.5
 
@@ -1821,7 +1821,7 @@ make install
 cd /sources/ && rm -rf automake-1.16.5
 ```
 
-##### OpenSSL-3.2.1
+#### OpenSSL-3.2.1
 ```bash
 tar xf openssl-3.2.1.tar.gz && cd openssl-3.2.1
 
@@ -1842,7 +1842,7 @@ cp -vfr doc/* /usr/share/doc/openssl-3.2.1
 cd /sources/ && rm -rf openssl-3.2.1
 ```
 
-##### Kmod-31
+#### Kmod-31
 ```bash
 tar xf kmod-31.tar.xz && cd kmod-31
 
@@ -1864,7 +1864,7 @@ ln -sfv kmod /usr/bin/lsmod
 cd /sources/ && rm -rf kmod-31
 ```
 
-##### Libelf from Elfutils-0.190
+#### Libelf from Elfutils-0.190
 ```bash
 tar xf elfutils-0.190.tar.bz2 && cd elfutils-0.190
 
@@ -1881,7 +1881,7 @@ rm /usr/lib/libelf.a
 cd /sources/ && rm -rf elfutils-0.190
 ```
 
-##### Libffi-3.4.4
+#### Libffi-3.4.4
 ```bash
 tar xf libffi-3.4.4.tar.gz && cd libffi-3.4.4
 
@@ -1896,7 +1896,7 @@ make install
 cd /sources/ && rm -rf libffi-3.4.4
 ```
 
-##### Python-3.12.2
+#### Python-3.12.2
 ```bash
 tar xf Python-3.12.2.tar.xz && cd Python-3.12.2
 
@@ -1922,7 +1922,7 @@ cp -R --no-preserve=mode python-3.12.2-docs-html/* \
 cd /sources/ && rm -rf Python-3.12.2
 ```
 
-##### Flit-Core-3.9.0
+#### Flit-Core-3.9.0
 ```bash
 tar xf flit_core-3.9.0.tar.gz && cd flit_core-3.9.0
 
@@ -1932,7 +1932,7 @@ pip3 install --no-index --no-user --find-links dist flit_core
 cd /sources/ && rm -rf flit_core-3.9.0
 ```
 
-##### Wheel-0.42.0
+#### Wheel-0.42.0
 ```bash
 tar xf wheel-0.42.0.tar.gz && cd wheel-0.42.0
 
@@ -1942,7 +1942,7 @@ pip3 install --no-index --find-links=dist wheel
 cd /sources/ && rm -rf wheel-0.42.0
 ```
 
-##### Setuptools-69.1.0
+#### Setuptools-69.1.0
 ```bash
 tar xf setuptools-69.1.0.tar.gz && cd setuptools-69.1.0
 
@@ -1952,7 +1952,7 @@ pip3 install --no-index --find-links dist setuptools
 cd /sources/ && rm -rf setuptools-69.1.0
 ```
 
-##### Ninja-1.11.1
+#### Ninja-1.11.1
 ```bash
 tar xf ninja-1.11.1.tar.gz && cd ninja-1.11.1
 
@@ -1975,7 +1975,7 @@ install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja
 cd /sources/ && rm -rf ninja-1.11.1
 ```
 
-##### Meson-1.3.2
+#### Meson-1.3.2
 ```bash
 tar xf meson-1.3.2.tar.gz && cd meson-1.3.2
 
@@ -1988,7 +1988,7 @@ install -vDm644 data/shell-completions/zsh/_meson /usr/share/zsh/site-functions/
 cd /sources/ && rm -rf meson-1.3.2
 ```
 
-##### Coreutils-9.4
+#### Coreutils-9.4
 ```bash
 tar xf coreutils-9.4.tar.xz && cd coreutils-9.4
 
@@ -2016,7 +2016,7 @@ sed -i 's/"1"/"8"/' /usr/share/man/man8/chroot.8
 cd /sources/ && rm -rf coreutils-9.4
 ```
 
-##### Check-0.15.2
+#### Check-0.15.2
 ```bash
 tar xf check-0.15.2.tar.gz && cd check-0.15.2
 
@@ -2029,7 +2029,7 @@ make docdir=/usr/share/doc/check-0.15.2 install
 cd /sources/ && rm -rf check-0.15.2
 ```
 
-##### Diffutils-3.10
+#### Diffutils-3.10
 ```bash
 tar xf diffutils-3.10.tar.xz && cd diffutils-3.10
 
@@ -2042,7 +2042,7 @@ make install
 cd /sources/ && rm -rf diffutils-3.10
 ```
 
-##### Gawk-5.3.0
+#### Gawk-5.3.0
 ```bash
 tar xf gawk-5.3.0.tar.xz && cd gawk-5.3.0
 
@@ -2063,7 +2063,7 @@ cp -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-5.3.0
 cd /sources/ && rm -rf gawk-5.3.0
 ```
 
-##### Findutils-4.9.0
+#### Findutils-4.9.0
 ```bash
 tar xf findutils-4.9.0.tar.xz && cd findutils-4.9.0
 
@@ -2077,7 +2077,7 @@ make install
 cd /sources/ && rm -rf findutils-4.9.0
 ```
 
-##### Groff-1.23.0
+#### Groff-1.23.0
 ```bash
 tar xf groff-1.23.0.tar.gz && cd groff-1.23.0
 
@@ -2090,7 +2090,7 @@ make install
 cd /sources/ && rm -rf groff-1.23.0
 ```
 
-##### GRUB-2.12
+#### GRUB-2.12
 ```bash
 # no need if use UEFI
 tar xf grub-2.12.tar.xz && cd grub-2.12
@@ -2111,7 +2111,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
 cd /sources/ && rm -rf grub-2.12
 ```
 
-##### GRUB-2.12 for UEFI
+#### GRUB-2.12 for UEFI
 ```bash
 # Dependencies
 wget https://github.com/rhboot/efivar/archive/39/efivar-39.tar.gz
@@ -2173,7 +2173,7 @@ make install && mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/com
 cd /sources/ && rm -rf grub-2.12 
 ```
 
-##### Gzip-1.13
+#### Gzip-1.13
 ```bash
 tar xf gzip-1.13.tar.xz && cd gzip-1.13
 
@@ -2186,7 +2186,7 @@ make install
 cd /sources/ && rm -rf gzip-1.13
 ```
 
-##### IPRoute2-6.7.0
+#### IPRoute2-6.7.0
 ```bash
 tar xf iproute2-6.7.0.tar.xz && cd iproute2-6.7.0
 
@@ -2202,7 +2202,7 @@ cp -v COPYING README* /usr/share/doc/iproute2-6.7.0
 cd /sources/ && rm -rf iproute2-6.7.0
 ```
 
-##### Kbd-2.6.4
+#### Kbd-2.6.4
 ```bash
 tar xf kbd-2.6.4.tar.xz && cd kbd-2.6.4
 
@@ -2221,7 +2221,7 @@ cp -R -v docs/doc -T /usr/share/doc/kbd-2.6.4
 cd /sources/ && rm -rf kbd-2.6.4
 ```
 
-##### Libpipeline-1.5.7
+#### Libpipeline-1.5.7
 ```bash
 tar xf libpipeline-1.5.7.tar.gz && cd libpipeline-1.5.7
 
@@ -2234,7 +2234,7 @@ make install
 cd /sources/ && rm -rf libpipeline-1.5.7
 ```
 
-##### Make-4.4.1
+#### Make-4.4.1
 ```bash
 tar xf make-4.4.1.tar.gz && cd make-4.4.1
 
@@ -2248,7 +2248,7 @@ make install
 cd /sources/ && rm -rf make-4.4.1
 ```
 
-##### Patch-2.7.6
+#### Patch-2.7.6
 ```bash
 tar xf patch-2.7.6.tar.xz && cd patch-2.7.6
 
@@ -2261,7 +2261,7 @@ make install
 cd /sources/ && rm -rf patch-2.7.6
 ```
 
-##### Tar-1.35
+#### Tar-1.35
 ```bash
 tar xf tar-1.35.tar.xz && cd tar-1.35
 
@@ -2276,7 +2276,7 @@ make -C doc install-html docdir=/usr/share/doc/tar-1.35
 cd /sources/ && rm -rf tar-1.35
 ```
 
-##### Texinfo-7.1
+#### Texinfo-7.1
 ```bash
 tar xf texinfo-7.1.tar.xz && cd texinfo-7.1
 
@@ -2297,7 +2297,7 @@ popd
 cd /sources/ && rm -rf texinfo-7.1
 ```
 
-##### Vim-9.1.0041
+#### Vim-9.1.0041
 ```bash
 tar xf vim-9.1.0041.tar.gz && cd vim-9.1.0041
 
@@ -2336,7 +2336,7 @@ vim -c ':options'
 cd /sources/ && rm -rf vim-9.1.0041
 ```
 
-##### MarkupSafe-2.1.5
+#### MarkupSafe-2.1.5
 ```bash
 tar xf MarkupSafe-2.1.5.tar.gz && cd MarkupSafe-2.1.5
 
@@ -2346,7 +2346,7 @@ pip3 install --no-index --no-user --find-links dist Markupsafe
 cd /sources/ && rm -rf MarkupSafe-2.1.5
 ```
 
-##### Jinja2-3.1.3
+#### Jinja2-3.1.3
 ```bash
 tar xf Jinja2-3.1.3.tar.gz && cd Jinja2-3.1.3
 
@@ -2356,7 +2356,7 @@ pip3 install --no-index --no-user --find-links dist Jinja2
 cd /sources/ && rm -rf Jinja2-3.1.3
 ```
 
-##### Systemd-255
+#### Systemd-255
 ```bash
 tar xf systemd-255.tar.gz && cd systemd-255
 
@@ -2400,7 +2400,7 @@ systemd-machine-id-setup
 cd /sources/ && rm -rf systemd-255
 ```
 
-##### D-Bus-1.14.10
+#### D-Bus-1.14.10
 ```bash
 tar xf dbus-1.14.10.tar.xz && cd dbus-1.14.10
 
@@ -2423,7 +2423,7 @@ ln -sfv /etc/machine-id /var/lib/dbus
 cd /sources/ && rm -rf dbus-1.14.10
 ```
 
-##### Man-DB-2.12.0
+#### Man-DB-2.12.0
 ```bash
 tar xf man-db-2.12.0.tar.xz && cd man-db-2.12.0
 
@@ -2445,7 +2445,7 @@ make install
 cd /sources/ && rm -rf man-db-2.12.0
 ```
 
-##### Procps-ng-4.0.4
+#### Procps-ng-4.0.4
 ```bash
 tar xf procps-ng-4.0.4.tar.xz && cd procps-ng-4.0.4
 
@@ -2461,7 +2461,7 @@ make install
 cd /sources/ && rm -rf procps-ng-4.0.4
 ```
 
-##### Util-linux-2.39.3
+#### Util-linux-2.39.3
 ```bash
 tar xf util-linux-2.39.3.tar.xz && cd util-linux-2.39.3
 
@@ -2492,7 +2492,7 @@ make install
 cd /sources/ && rm -rf util-linux-2.39.3
 ```
 
-##### E2fsprogs-1.47.0
+#### E2fsprogs-1.47.0
 ```bash
 tar xf e2fsprogs-1.47.0.tar.gz && cd e2fsprogs-1.47.0
 
@@ -2523,7 +2523,7 @@ sed 's/metadata_csum_seed,//' -i /etc/mke2fs.conf
 cd /sources/ && rm -rf e2fsprogs-1.47.0
 ```
 
-##### Stripping
+#### Stripping
 ```bash
 save_usrlib="$(cd /usr/lib; ls ld-linux*[^g])
              libc.so.6
@@ -2583,7 +2583,7 @@ done
 unset BIN LIB save_usrlib online_usrbin online_usrlib
 ```
 
-##### Cleaning Up
+#### Cleaning Up
 ```bash
 rm -rf /tmp/*
 find /usr/lib /usr/libexec -name \*.la -delete
@@ -2591,8 +2591,8 @@ find /usr -depth -name $(uname -m)-lfs-linux-gnu\* | xargs rm -rf
 userdel -r tester
 ```
 
-#### System Configuration
-##### General Network Configuration
+### System Configuration
+#### General Network Configuration
 ```bash
 # Network Device Naming 
 # by udev
@@ -2659,7 +2659,7 @@ ff02::2   ip6-allrouters
 EOF
 ```
 
-##### Managing Devices
+#### Managing Devices
 ```bash
 # option
 udevadm info -a -p /sys/class/block/sda
@@ -2668,7 +2668,7 @@ cat > /etc/udev/rules.d/83-duplicate_devs.rules << "EOF"
 EOF
 ```
 
-##### Configuring the system clock
+#### Configuring the system clock
 ```bash
 cat > /etc/adjtime << "EOF"
 0.0 0 0.0
@@ -2683,7 +2683,7 @@ timedatectl set-time YYYY-MM-DD HH:MM:SS
 systemctl disable systemd-timesyncd
 ```
 
-##### Configuring the Linux Locale
+#### Configuring the Linux Locale
 ```bash
 # option
 cat > /etc/vconsole.conf << "EOF"
@@ -2695,7 +2695,7 @@ EOF
 localectl set-keymap MAP
 ```
 
-##### Configuring the System Locale
+#### Configuring the System Locale
 ```bash
 # check
 LC_ALL=en_US.utf8 locale language
@@ -2724,7 +2724,7 @@ EOF
 localectl set-locale LANG="en_US.UTF-8" LC_CTYPE="en_US"
 ```
 
-##### Creating the /etc/inputrc and /etc/shells File
+#### Creating the /etc/inputrc and /etc/shells File
 ```bash
 cat > /etc/inputrc << "EOF"
 # Modified by Chris Lynn <roryo@roryo.dynup.net>
@@ -2774,7 +2774,7 @@ cat > /etc/shells << "EOF"
 EOF
 ```
 
-##### Systemd Usage and Configuration
+#### Systemd Usage and Configuration
 ```bash
 # Disabling Screen Clearing at Boot Time
 mkdir -pv /etc/systemd/system/getty@tty1.service.d
@@ -2803,8 +2803,8 @@ cat /etc/systemd/logind.conf
 KillUserProcesses=No
 ```
 
-#### Making the LFS System Bootable
-##### Creating the /etc/fstab File
+### Making the LFS System Bootable
+#### Creating the /etc/fstab File
 ```bash
 cat > /etc/fstab << "EOF"
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
@@ -2822,7 +2822,7 @@ EOF
 mount -a
 ```
 
-##### Linux-6.7.4
+#### Linux-6.7.4
 ```bash
 # install
 cd /sources && tar xf linux-6.7.4.tar.xz && cd linux-6.7.4
@@ -2855,8 +2855,8 @@ install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true
 EOF
 ```
 
-##### Using GRUB to Set Up the Boot Process
-###### Rescue(option)
+#### Using GRUB to Set Up the Boot Process
+#### Rescue(option)
 ```bash
 # install depends
 cd /sources/
@@ -2888,7 +2888,7 @@ cd /tmp
 grub-mkrescue --output=grub-img.iso
 xorriso -as cdrecord -v dev=/dev/cdrw blank=as_needed grub-img.iso
 ```
-###### Config
+#### Config
 **legacy boot**
 ```bash
 grub-install /dev/sdb
@@ -2958,7 +2958,7 @@ EOF
 
 ```
 
-#### The End
+### The End
 ```bash
 # the end
 echo 12.1-systemd > /etc/lfs-release
@@ -3001,6 +3001,6 @@ reboot
 
 
 
->Reference:
->1. [LFS Official Manual](https://linuxfromscratch.org/)
->2. [LFS 12.1 中文文档](https://lfs.xry111.site/zh_CN/12.1/index.html)
+> Reference:
+> 1. [LFS Official Manual](https://linuxfromscratch.org/)
+> 2. [LFS 12.1 中文文档](https://lfs.xry111.site/zh_CN/12.1/index.html)

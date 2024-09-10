@@ -1,14 +1,18 @@
-#### Introduction
+---
+description: EMQ Technologies
+---
+
+## Introduction
 ...
 
-#### Deploy By Container
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 ```bash
 docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 emqx/emqx:latest
 
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # add and update repo
 # get charts package
@@ -26,7 +30,7 @@ helm -n middleware install my-emqx .
 # https://github.com/emqx/emqx-operator/blob/main/docs/en_US/getting-started/getting-started.md
 ```
 
-#### How To Use
+## How To Use
 emqx
 ```bash
 # manual cluster
@@ -49,7 +53,7 @@ cluster {
 
 ```
 
-##### mqttx
+### mqttx
 ```bash
 # connect 
 mqttx conn -h 'broker.emqx.io' -p 1883 -u 'admin' -P 'public'
@@ -75,7 +79,7 @@ mqttx pub -t 'hello' -h 'broker.emqx.io' -p 1883 -m 'Hello from MQTTX CLI' -u 'a
 
 
 >Reference:
->1. [Repository](https://www.emqx.io/docs/)
+>1. [Official Website](https://www.emqx.io/docs/)
 >2. [Repository](https://github.com/emqx/emqx)
 >3. [Kubernetes Operator](https://docs.emqx.com/zh/emqx-operator/latest/getting-started/getting-started.html)
 >4. [MQTTX Client Tools](https://mqttx.app/)

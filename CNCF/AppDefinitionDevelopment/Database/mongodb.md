@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: MongoDB
+---
+
+## Introduction
 ...
 
 
-#### Deploy By Binaries
-##### Quick Start
+## Deploy By Binaries
+### Quick Start
 ```bash
 # dependencies
 apt install python3-pip
@@ -29,7 +33,7 @@ mkdir /opt/mongodb/data /opt/mongodb/logs
 
 ```
 
-##### Config and Boot
+### Config and Boot
 [[sc-mongodb|MongoDB Config]]
 
 ```bash
@@ -73,13 +77,13 @@ systemctl start mongod.service
 systemctl enable mongod.service
 ```
 
-##### Verify
+### Verify
 ```bash
 # syntax check
 
 ```
 
-##### Troubleshooting
+### Troubleshooting
 ```bash
 # problem 1
 # Cannot find system library 'lzma' required for use with libunwind
@@ -93,8 +97,8 @@ apt install libcurl4-openssl-dev
 ```
 
 
-#### Deploy By Container
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 ```bash
 # WARNING: MongoDB 5.0+ requires a CPU with AVX support, and your current system does not appear to have that!
 cat /proc/cpuinfo |grep flags |grep avx
@@ -110,7 +114,7 @@ docker run --name mongo -d mongodb/mongodb-community-server:latest
 docker exec -it mongo mongosh
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # add and update repo
 helm repo add bitnami https://charts.bitnami.com/bitnami

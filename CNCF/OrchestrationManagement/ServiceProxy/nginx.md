@@ -1,5 +1,12 @@
-#### Deploy By Binaries
-##### Quick Start
+---
+description: Nginx
+---
+
+## Introduction
+...
+
+## Deploy By Binaries
+### Quick Start
 ```bash
 # Ubuntu Package install
 https://nginx.org/en/linux_packages.html#Ubuntu
@@ -54,10 +61,10 @@ mkdir -p /opt/nginx/conf/vhosts/
 cd /opt/nginx
 ```
 
-##### Config and Boot
-###### [[sc-nginx|Config]]
+### Config and Boot
+#### [[sc-nginx|Config]]
 
-###### Boot(systemd)
+#### Boot(systemd)
 ```bash
 cat > /etc/systemd/system/nginx.service << EOF
 [Unit]
@@ -99,7 +106,7 @@ systemctl start nginx.service
 systemctl enable nginx.service
 ```
 
-##### Verify
+### Verify
 ```bash
 # syntax check
 /opt/nginx/sbin/nginx -t                 
@@ -108,7 +115,7 @@ nginx: configuration file /opt/nginx/conf/nginx.conf test is successful
 ```
 
 
-##### Troubleshooting
+### Troubleshooting
 ```bash
 # pcre zlib openssl ...
 apt install libpcre3-dev zlib1g zlib1g-dev openssl
@@ -166,12 +173,14 @@ cp -ar lua-resty-core/lib/resty/* /usr/local/luajit2/share/luajit-2.1.0-beta3/re
 cp -ar lua-resty-lrucache/lib/resty/* /usr/local/luajit2/share/luajit-2.1.0-beta3/resty/
 ```
 
-#### Deploy On Container
-##### Run in Docker
+## Deploy On Container
+### Run in Docker
+```bash
+docker run xxx
+```
 
-
-##### Run in Kubernetes
->k8s 集群建议使用 ingress-nginx-controller
+### Run in Kubernetes
+> k8s 集群建议使用 ingress-nginx-controller
 ```bash
 ### for Nginx
 # add and update repo
@@ -202,13 +211,12 @@ vim values.yaml
 ...
 
 helm -n ingress-nginx install ingress-nginx .
-### 
 ```
 
 
 > Reference:
 > 1. [Official Website](https://nginx.org/en/docs/)
-> 2. [Openrestry Github](https://github.com/openresty)
+> 2. [Openrestry Repository](https://github.com/openresty)
 > 3. [Luajit Download](https://luajit.org/download.html)
 > 4. [ingress-nginx controller](https://kubernetes.github.io/ingress-nginx/deploy/)
 > 5. [nginx-ingress controller](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)

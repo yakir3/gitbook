@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: Grafana
+---
+
+## Introduction
 grafana 是一个可视化面板，有着非常漂亮的图表和布局展示，功能齐全的度量仪表盘和图形编辑器，支持 Graphite、zabbix、InfluxDB、Prometheus、OpenTSDB、Elasticsearch 等作为数据源，比 Prometheus 自带的图表展示功能强大太多，更加灵活，有丰富的插件，功能更加强大。
 
 
-#### Deploy On Binaries
-##### Quick Start
+## Deploy On Binaries
+### Quick Start
 ```bash
 # option.1: Debian / Ubuntu repo
 apt install -y apt-transport-https software-properties-common wget
@@ -20,9 +24,10 @@ cd grafana-10.0.3
 
 ```
 
-##### Config and Boot
-##### [[sc-monitoring#Grafana|Grafana Config]]
+### Config and Boot
+#### [[sc-monitoring#Grafana|Grafana Config]]
 
+#### Boot(systemd)
 ```bash
 # boot
 systemctl daemon-reload
@@ -30,8 +35,8 @@ systemctl start grafana-server.service
 systemctl enable grafana-server.service 
 ```
 
-#### Deploy On Container
-##### Run in Docker
+## Deploy On Container
+### Run in Docker
 pull images
 ```bash
 # default based images: Alpine
@@ -74,7 +79,7 @@ docker run -d -p 3000:3000 --name=grafana grafana-custom
 
 > docker-compose = https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/#docker-compose-example
 
-##### Run On Kubernetes
+### Run in Kubernetes
 **deploy on resource manifest**
 ```bash
 cat > grafana.yaml << "EOF"
@@ -117,15 +122,15 @@ helm -n monitorning install grafana .
 ```
 
 
-#### Grafana Labs
-##### Node 
+## Grafana Labs
+### Node 
 ```bash
 # Node Exporter Full
 1860
 
 ```
 
-##### Kubernetes
+### Kubernetes
 ```bash
 # K8s Cluster Summary
 8685
@@ -139,7 +144,7 @@ helm -n monitorning install grafana .
 # 
 ```
 
-##### Middleware
+### Middleware
 ```bash
 # kafka
 7589
@@ -156,8 +161,8 @@ helm -n monitorning install grafana .
 ```
 
 
-#### Alert
-##### telegram_bot
+## Alert
+### telegram_bot
 ```bash
 # 1.get bot and token
 https://core.telegram.org/bots#how-do-i-create-a-bot
@@ -176,7 +181,7 @@ curl "https://api.telegram.org/bot<token>/sendMessage?chat_id=<chat_id>&text=<ms
 
 ```
 
-##### alerting config
+### alerting config
 1. Dashboard --> edit panel --> create alert rule from this panel
 ![[Pasted image 20230821114504.png]]
 
@@ -241,9 +246,9 @@ curl "https://api.telegram.org/bot<token>/sendMessage?chat_id=<chat_id>&text=<ms
 
 
 
->Reference:
->1. [Repository](https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/)
->2. [Github](https://github.com/grafana/grafana)
->3. [Grafana CN Doc](https://www.qikqiak.com/k8s-book/docs/56.Grafana%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8.html)
->4. [Grafana Alert](https://grafana.com/docs/grafana/latest/alerting/fundamentals/)
->5. [Telegram Api SDK](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API)
+> Reference:
+> 1. [Official Website](https://grafana.com/docs/)
+> 2. [Repository](https://github.com/grafana/grafana)
+> 3. [Grafana CN Doc](https://www.qikqiak.com/k8s-book/docs/56.Grafana%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8.html)
+> 4. [Grafana Alert](https://grafana.com/docs/grafana/latest/alerting/fundamentals/)
+> 5. [Telegram Api SDK](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API)

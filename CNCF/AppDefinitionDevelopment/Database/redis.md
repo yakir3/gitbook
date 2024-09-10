@@ -1,8 +1,13 @@
-#### Introduction
+---
+description: Redis
+---
+
+## Introduction
 ...
 
-#### Deploy By Binaries
-##### Quick Start
+
+## Deploy By Binaries
+### Quick Start
 ```bash
 # dependencies
 apt install pkgconf libsystemd-dev
@@ -36,8 +41,8 @@ cp /usr/local/src/redis-7.0.11/redis.conf /opt/redis/7001/redis.conf && cp /usr/
 ./bin/redis-cli --cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 --cluster-replicas 0 --cluster-yes
 ```
 
-##### [[sc-redis|Config]] and Boot
-###### Config
+### Config and Boot
+#### Config
 ```bash
 # single mode && cluster mode
 cat > /opt/redis/redis.conf << "EOF"
@@ -69,7 +74,7 @@ dir /opt/redis/7003
 EOF
 ```
 
-###### Boot(systemd)
+#### Boot(systemd)
 ```bash
 cat > /etc/systemd/system/redis.service << "EOF"
 [Unit]
@@ -108,10 +113,10 @@ systemctl start redis.service
 systemctl enable redis.service
 ```
 
-##### Verify
+### Verify
 [[Database#redis|Redis Command]]
 
-##### Troubleshooting
+### Troubleshooting
 ```bash
 # ../deps/jemalloc/lib/libjemalloc.a: No such file or directory
 apt install libjemalloc-dev
@@ -120,8 +125,8 @@ apt install libjemalloc-dev
 apt install libsystemd-dev
 ```
 
-#### Deploy By Container
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 ```bash
 # Standlone
 docker run --rm --name redis \
@@ -136,7 +141,7 @@ docker run --rm --name redis-cluster \
   -d bitnami/redis-cluster
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # add and update repo
 helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -188,8 +193,8 @@ kubectl -n middleware get service |grep redis
 
 
 
->Reference:
->1. [Repository](https://redis.io/docs/getting-started/)
->2. [Redis Github](https://github.com/redis/redis)
->3. [Redis Download Releases](https://download.redis.io/releases/)
->4. [Redis 集群方案](https://segmentfault.com/a/1190000022028642)
+> Reference:
+> 1. [Official Website](https://redis.io/docs/getting-started/)
+> 2. [Repository](https://github.com/redis/redis)
+> 3. [Redis Download Releases](https://download.redis.io/releases/)
+> 4. [Redis 集群方案](https://segmentfault.com/a/1190000022028642)

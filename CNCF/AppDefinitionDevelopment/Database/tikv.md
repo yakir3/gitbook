@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: TiKV
+---
+
+## Introduction
 ...
 
 
-#### Deploy By Binaries
-##### Quick Start
+## Deploy By Binaries
+### Quick Start
 ```bash
 # create dir
 mkdir -p /opt/tidb/tikv1 /opt/tidb/tikv2 /opt/tidb/tikv3 /opt/tidb/pd1
@@ -40,7 +44,7 @@ mv tidb-v5.0.1-linux-amd64/bin /opt/tidb && cd /opt/tidb
 ./bin/tikv-server --pd-endpoints="192.168.1.10:2379" --addr="192.168.1.13:20160" --data-dir=/opt/tidb/tikv3/data --log-file=/opt/tidb/tikv3/log/tikv.log
 ```
 
-##### Config and Boot
+### Config and Boot
 ```bash
 # config
 # https://tikv.org/docs/6.5/deploy/configure/introduction/
@@ -55,7 +59,7 @@ systemctl start tikv.service
 systemctl enable tikv.service
 ```
 
-##### Verify
+### Verify
 ```bash
 # verify by pd-ctl
 ./bin/pd-ctl store -u http://127.0.0.1:2379
@@ -72,20 +76,20 @@ client.put(b'foo', b'baz')
 print(client.get(b'foo')) # b'baz'
 ```
 
-##### Troubleshooting
+### Troubleshooting
 ```bash
 # problem 1
 
 ```
 
 
-#### Deploy By Container
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 ```bash
 # not yet
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # not yet
 ```

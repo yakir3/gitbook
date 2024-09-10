@@ -1,15 +1,18 @@
-#### Introduction
+---
+description: Rancher
+---
+
+## Introduction
 ...
 
 
-#### Deployment
-##### Run On Binaries
+## Deploy By Binaries
+### Quick Start
 ```bash
-
 ```
 
-##### Run in Docker
-[[cc-docker|Docker常用命令]]
+## Deploy By Container
+### Run in Docker
 ```bash
 # run by docker or docker-compose
 docker run -d --name rancher --rm \
@@ -22,7 +25,7 @@ docker run -d --name rancher --rm \
 docker logs rancher |grep Password
 ```
 
-##### Run On Kubernetes
+### Run in Kubernetes
 [[cc-k8s|deploy by kubernetes manifest]]
 ```bash
 # 

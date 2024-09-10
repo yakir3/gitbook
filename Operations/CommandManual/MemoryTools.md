@@ -1,4 +1,4 @@
-##### free vm memory
+## free vm memory
 ```bash
 # 0：do not release (default)
 # 1：release page cache

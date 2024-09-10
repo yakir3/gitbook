@@ -1,5 +1,6 @@
-#### Introduction
-##### Description
+## Introduction
+
+### Description
 ```textile
 # install
 apt install iptables
@@ -13,7 +14,8 @@ kernel space 下的 webhook 点
 ```
 
 ![[Pasted image 20240101221159.png]]
-##### iptables tables
+
+### iptables tables
 + tables property
 ```textile
 # raw
@@ -54,7 +56,7 @@ filter: INPUT, FORWARD, OUTPUT
 raw -> mangle -> nat -> filter(default)
 ```
 
-##### iptables chains
+### iptables chains
 + chains property
 ```textile
 PREROUTING
@@ -82,7 +84,7 @@ PREROUTING 链处理，路由选择 routing decision 是其它外部地址，则
 本机向外部地址发送的数据包，首先被 OUTPUT 链处理，路由选择 routing decision 后传递给 POSTROUTING 链（是否修改数据包的地址等）进行处理。
 ```
 
-##### iptables rules
+### iptables rules
 + rules property
 ```textile
 # Parameter
@@ -139,8 +141,8 @@ MIRROR：镜像数据包，调换源 IP 与目的 IP
 
 ```
 
-#### Command
-##### Common
+## Command
+### Common
 ```bash
 # config file
 /etc/sysconfig/iptables
@@ -177,7 +179,7 @@ iptables -A FORWARD -i docker0 ! -o docker0 -j ACCEPT
 
 ```
 
-##### Example
+### Example
 ```bash
 # init
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -196,10 +198,9 @@ iptables -t nat -A PREROUTING -p tcp --dport 22 -j MARK --set-mark 2
 iptables -t nat -A PREROUTING -p tcp -d 8.8.8.8 --dport 80 -j DNAT --to-destination 192.168.1.1-192.168.1.10:80-100
 iptables -t nat -A POSTROUTING -s 10.10.1.0/24 -j SNAT --to-source 8.8.8.8
 iptables -t nat -A POSTROUTING -s 10.10.2.0/24 -o eth0 -j MASQUERADE
-
 ```
 
 
 
->Reference:
->1. [iptables wiki](https://en.wikipedia.org/wiki/Iptables)
+> Reference:
+> 1. [iptables wiki](https://en.wikipedia.org/wiki/Iptables)

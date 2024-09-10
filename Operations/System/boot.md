@@ -1,5 +1,5 @@
-### BIOS vs UEFI
-#### BIOS
+## BIOS vs UEFI
+### BIOS
 **Legacy 启动模式**: 检查所有连接设备的 MBR,如果找不到引导加载程序,Legacy 会切换列表中下一个设备并重复此过程,直到找到加载程序,否则返回错误
 
 基本输入输出系统: Basic Input/Output System
@@ -9,7 +9,7 @@
 + [[boot#MBR|MBR]]
 + [[boot#GPT|GPT]]
 
-#### UEFI
+### UEFI
 **UEFI 启动模式**: 引导数据存储在 .efi 文件中. UEFI 启动模式包含一个特殊 EFI 分区,用于存储 .efi 文件并用于引导过程和引导加载程序.
 
 统一可扩展固件接口: Unified Extensible Firmware Interface
@@ -17,12 +17,12 @@
 2. 从该设备第一个扇区读取 GPT 方式引导操作系统.
 + [[boot#GPT|GPT]]
 
-### MBR vs GPT
+## MBR vs GPT
 
 >  1. LBA(Logical Block Address 逻辑块地址): 默认已 512B 进行规划, LBA 从0开始.
 >  2. Sector(硬盘扇区): 目前为单个 512B (部分新磁盘为4096B).
 
-#### MBR
+### MBR
 主引导记录: Master Boot Record
 + LBA0: 保存 MBR 信息.
 
@@ -34,7 +34,7 @@
 + 分区表: 最多4个主分区. 或3个主分区+1个扩展分区+多个逻辑分区.扩展分区可以分成两个逻辑分区,第二个逻辑分区可以继续分逻辑分区,直到找到分区表本身(只有一个分区项)
 + Boot loader: Linux 中为 grub 或 grub2
 
-#### GPT
+### GPT
 GUID 分区表: GUID Partition Table
 + LBA0: 第一部分前446B 保留 MBR Boot loader,第二部分保存 GPT 磁盘分区格式标识.
 + LBA1: GPT HDR 分区表头记录.记录分区表本身位置与大小,同时记录备份用 GPT 分区位置(磁盘最后的34个 LBA), 通过放置的分区表校验码(CRC32)错误时从备份 GPT 中恢复运行.
@@ -67,7 +67,7 @@ GUID 分区表: GUID Partition Table
 
 ![[Pasted image 20240320154944.png]]
 
-### Kernel
+## Kernel
 1. 内核初始化硬件
 2. 加载驱动
 3. 初始化内存管理,进程管理
@@ -76,14 +76,14 @@ GUID 分区表: GUID Partition Table
 6. 运行 init 程序(systemd)
 7. systemd: 系统初始化与服务启动
 
-### Systemd
+## Systemd
 /etc/rcX.d/
 /etc/init.d/
 
 
 
->Reference:
->1. [BIOS vs UEFI](https://zhuanlan.zhihu.com/p/26098509)
->2. [MBR vs GPT](https://www.easeus.com/partition-master/mbr-vs-gpt.html)
->3. [计算机是如何启动的?](https://www.ruanyifeng.com/blog/2013/02/booting.html)
->4. [GPT WIKI](https://zh.wikipedia.org/zh-hans/GUID%E7%A3%81%E7%A2%9F%E5%88%86%E5%89%B2%E8%A1%A8)
+> Reference:
+> 1. [BIOS vs UEFI](https://zhuanlan.zhihu.com/p/26098509)
+> 2. [MBR vs GPT](https://www.easeus.com/partition-master/mbr-vs-gpt.html)
+> 3. [计算机是如何启动的?](https://www.ruanyifeng.com/blog/2013/02/booting.html)
+> 4. [GPT WIKI](https://zh.wikipedia.org/zh-hans/GUID%E7%A3%81%E7%A2%9F%E5%88%86%E5%89%B2%E8%A1%A8)

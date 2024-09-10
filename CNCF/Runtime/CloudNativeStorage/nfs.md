@@ -1,12 +1,16 @@
-#### 一、 NFS Server 端部署配置
-##### 原理简介
+---
+description: NFS
+---
+
+## 一、 NFS Server 端部署配置
+### 原理简介
 首先服务器端启动RPC服务，并开启111端口
 服务器端启动NFS服务，并向RPC注册端口信息
 客户端启动RPC（portmap服务），向服务端的RPC(portmap)服务请求服务端的NFS端口
 服务端的RPC(portmap)服务反馈NFS端口信息给客户端。
 客户端通过获取的NFS端口来建立和服务端的NFS连接并进行数据的传输。
 
-##### Server 部署配置
+### Server 部署配置
 ```bash
 # ubuntu 安装
 apt install nfs-kernel-server
@@ -41,7 +45,7 @@ systemctl enable nfs-kernel-server
 ```
 
 
-##### Client 端挂载
+### Client 端挂载
 ```bash
 # nfs 客户端挂载
 apt install nfs-common
@@ -55,8 +59,8 @@ mount -t nfs 1.1.1.1:/a18_data /tmp/nfs_test
 ```
 
 
-#### 二、K8S NFS 供应插件
-##### NFS CSI Driver
+## 二、K8S NFS 供应插件
+### NFS CSI Driver
 ```bash
 # create csi driver 
 curl -skSL https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/deploy/install-driver.sh | bash -s master --
@@ -93,7 +97,7 @@ kubectl apply -f csi-nfs-client.yaml
 ```
 
 
-##### nfs-subdir-external-provisioner
+### nfs-subdir-external-provisioner
 ```bash
 # add helm repo
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
@@ -121,7 +125,7 @@ helm install nfs-subdir-external-provisioner . --namespace kube-system
 ```
 
 
-##### nfs-ganesha-server-and-external-provisioner
+### nfs-ganesha-server-and-external-provisioner
 ```bash
 # https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner
 ```
@@ -153,13 +157,11 @@ kubectl get pv,pvc
 
 # rancher 重启 pod ，进入新的 pod 查看 nfs 挂载是否正常生效
 mount |grep nfs
-
 ```
 
 
 
-
->Reference:
->1. [NFS 服务端部署](https://cshihong.github.io/2018/10/16/NFS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/)
->2. [NFS CSI Driver 官方地址](https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/docs/install-csi-driver-master.md)
->3. [NFS 使用介绍](http://www.lishuai.fun/2021/08/12/k8s-nfs-pv/#/%E5%AD%98%E5%82%A8%E7%B1%BB%E4%BD%BF%E7%94%A8%EF%BC%88%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE)
+> Reference:
+> 1. [NFS 服务端部署](https://cshihong.github.io/2018/10/16/NFS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/)
+> 2. [NFS CSI Driver 官方地址](https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/docs/install-csi-driver-master.md)
+> 3. [NFS 使用介绍](http://www.lishuai.fun/2021/08/12/k8s-nfs-pv/#/%E5%AD%98%E5%82%A8%E7%B1%BB%E4%BD%BF%E7%94%A8%EF%BC%88%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE)

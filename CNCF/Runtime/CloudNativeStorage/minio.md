@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: Minio
+---
+
+## Introduction
 ...
 
 
-#### Deploy By Binaries
-##### Quick Start
+## Deploy By Binaries
+### Quick Start
 ```bash
 # download source
 wget https://dl.min.io/server/minio/release/linux-amd64/minio
@@ -25,7 +29,7 @@ minio server /opt/minio/data
 minio server --console-address :9001 http://1.1.1.1/opt/minio/data http://2.2.2.2/opt/minio/data http://3.3.3.3/opt/minio/data
 ```
 
-##### Storage Requirements
+### Storage Requirements
 ```bash
 # Use local Storage
 mkdir /opt/minio/data
@@ -36,9 +40,9 @@ mount /dev/vg_name/lv_name /opt/minio/data
 cat /etc/fstab
 ```
 
-##### Config and Boot
+### Config and Boot
+#### Config
 ```bash
-# config 
 cat > /etc/default/minio << "EOF"
 # set this for MinIO to reload entries with 'mc admin service restart'
 MINIO_CONFIG_ENV_FILE=/etc/default/minio
@@ -68,8 +72,10 @@ MINIO_OPTS="-console-address :9001"
 #MINIO_OPTS="--console-address :9001"
 #MINIO_SERVER_URL="https://minio.example.net:9000"
 EOF
+```
 
-# boot
+#### Boot(systemd)
+```bash
 cat > /etc/systemd/system/minio.service << "EOF"
 [Unit]
 Description=MinIO
@@ -101,7 +107,7 @@ systemctl start minio.service
 systemctl enable minio.service
 ```
 
-##### Verify
+### Verify
 ```bash
 # download and install minio client
 curl https://dl.min.io/client/mc/release/linux-amd64/mc -o mc
@@ -118,22 +124,22 @@ mc cp /tmp/1.txt myminio/mybucket/
 mc cat myminio/mybucket/1.txt
 ```
 
-##### Troubleshooting
+### Troubleshooting
 ```bash
 # problem 1
 # 
 ```
 
 
-#### Deploy By Container
-##### Run in Docker
+### Deploy By Container
+### Run in Docker
 ```bash
 # single node test
 docker run -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
 
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # add and update repo
 helm repo add minio https://helm.min.io/
@@ -160,5 +166,5 @@ mc ls myminio/mybucket
 
 
 > Reference:
-> 1. [Repository](https://min.io/docs/minio/kubernetes/upstream/)
+> 1. [Official Website](https://min.io/docs/minio/kubernetes/upstream/)
 > 2. [Repository](https://github.com/minio/minio)

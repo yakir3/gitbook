@@ -1,5 +1,5 @@
-#### awk
-##### 基本语法
+## awk
+### 基本语法
 ```bash
 awk [POSIX or GNU style options] -f progfile [--] file 
 POSIX options:          GNU long options: (standard)
@@ -31,7 +31,7 @@ awk -f demo.awk top.txt
 chmod +x demo.awk && ./demo.awk
 ```
 
-##### 变量
+### 变量
 | 变量          | 说明                    |     |
 | ----------- | --------------------- | --- |
 | ARGC        | 命令行参数数量               |     |
@@ -57,7 +57,7 @@ chmod +x demo.awk && ./demo.awk
 | SUBSEP      | 当前输入文件的名              |     |
 | FILENAME    | 数组下标分隔符（默认值是34）       |     |
 
-##### 函数 && 条件
+### 函数 && 条件
 ```bash
 # 常用函数
 # tolower()：字符转为小写。
@@ -77,7 +77,7 @@ awk -F ':' '{if ($1 > "m") print $1; else print "---"}' /etc/passwd
 
 ```
 
-##### 常用用法
+### 常用用法
 ```bash
 awk 'BEGIN{ commands } pattern{ commands } END{ commands }'
 首先执行 BEGIN 语句块，只会执行一次。通常用于变量初始化，头行打印一些表头信息，在通过stdin读入数据前就被执行。
@@ -149,20 +149,20 @@ awk 'BEGIN{ORS=""};{print $0}' x.txt
 ```
 
 
-#### grep
-##### 基本语法
+## grep
+### 基本语法
 ```bash
 
 ```
 
-##### 常用用法
+### 常用用法
 ```bash
 
 ```
 
 
-#### sed
-##### 基本语法
+## sed
+### 基本语法
 ```bash
 sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 
@@ -218,7 +218,7 @@ sed -r 's/xxx[[::space::]]/root/' top.txt
 sed -i_bk_xx 's/tomcat/fff/p' top.txt
 ```
 
-##### 常用用法
+### 常用用法
 ```bash
 # file 
 tee top.txt << "EOF"

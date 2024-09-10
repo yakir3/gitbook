@@ -1,16 +1,19 @@
-#### Introduction
+---
+description: Rook
+---
+
+## Introduction
 ...
 
 
-#### Deploy By Container
-##### Run in Docker
-[[cc-docker|Docker常用命令]]
+## Deploy By Container
+### Run in Docker
 ```bash
 # run by docker or docker-compose
 # https://hub.docker.com/r/rook/ceph/tags
 ```
 
-##### Run On Kubernetes
+### Run in Kubernetes
 [[cc-k8s|deploy by kubernetes manifest]]
 ```bash
 # https://rook.io/docs/rook/v1.11/Getting-Started/quickstart/#tldr
@@ -79,11 +82,10 @@ spec:
 EOF
 
 kubectl -n rook-ceph apply -f pvc-test.yaml
-
 ```
 
 
 
->Reference:
->1. [Repository](https://rook.io/)
->2. [Repository](https://github.com/rook/rook)
+> Reference:
+> 1. [Official Website](https://rook.io/)
+> 2. [Repository](https://github.com/rook/rook)

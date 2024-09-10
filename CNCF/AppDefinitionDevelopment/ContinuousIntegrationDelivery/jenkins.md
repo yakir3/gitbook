@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: Jenkins
+---
+
+## Introduction
 ...
 
 
-#### Deployment
-#### Run On WARFile
+## Deploy By Binaries
+### Quick Start
 ```bash
 # download and decompression
 # https://www.jenkins.io/download/
@@ -13,14 +17,14 @@ wget https://get.jenkins.io/war-stable/2.401.1/jenkins.war
 mkdir /opt/jenkins-config
 JENKINS_HOME=/opt/jenkins-config java -jar jenkins.war
 cat /opt/jenkins-config/secrets/initialAdminPassword
-```
 
-##### Run On Ubuntu
-```bash
+
+# Run On Ubuntu
 # https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 ```
 
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 [[cc-docker|Docker常用命令]]
 ```bash
 # create bridge network
@@ -32,11 +36,9 @@ docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 --re
 docker inspect jenkins_home
 ...
 cat /var/lib/docker/volumes/jenkins_home/_data/secrets/initialAdminPassword 
-
 ```
 
-
-##### Run On Kubernetes
+### Run in Kubernetes
 [[cc-k8s|deploy by kubernetes manifest]]
 ```bash
 # manifest resource yaml

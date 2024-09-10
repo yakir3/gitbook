@@ -1,4 +1,4 @@
-#### dd
+## dd
 ```bash
 # out of CPU
 dd if=/dev/zero of=/dev/null
@@ -8,7 +8,7 @@ time dd if=/dev/zero of=test.file bs=1G count=2 oflag=direct
 
 ```
 
-#### fio
+## fio
 ```bash
 # sequence read
 fio -filename=/tmp/test.file -direct=1 -iodepth 1 -thread -rw=read -ioengine=psync -bs=16k -size=2G -numjobs=10 -runtime=60 -group_reporting -name=test_r
@@ -25,7 +25,7 @@ fio -filename=/var/test.file -direct=1 -iodepth 1 -thread -rw=randrw -rwmixread=
 
 ```
 
-#### iostat
+## iostat
 ```bash
 # install
 apt install sysstat
@@ -50,23 +50,23 @@ iostat 1 10
 iostat -dhx sda sdb 1 10
 ```
 
-#### iotop
+## iotop
 ```bash
 iotop -p xxx
 ```
 
-#### pidstat
+## pidstat
 ```bash
 pidstat -d 1
 ```
 
-#### sar
+## sar
 ```bash
 sar -b -p 1
 ```
 
-#### Formatting and Partitioning
-##### blkid && lsblk
+## Formatting and Partitioning
+### blkid && lsblk
 ```bash
 # show all block device infomation
 blkid
@@ -74,14 +74,14 @@ lsblk -f /dev/sda
 lsblk -o UUID,PARTUUID,PATH,MOUNTPOINT /dev/sdb
 ```
 
-##### fdisk && gdisk
+### fdisk && gdisk
 ```bash
 # show info
 fdisk -l /dev/sda
 gdisk -l /dev/sda
 ```
 
-##### parted && partprobe
+### parted && partprobe
 ```bash
 # show disk partition info
 parted -l
@@ -99,7 +99,7 @@ parted /dev/sdb -- set 2 esp on
 partprobe
 ```
 
-##### others
+### others
 ```bash
 # 无需重启服务器,通过刷新磁盘数据总线方式获取新加磁盘
 for host in $(ls /sys/class/scsi_host); 

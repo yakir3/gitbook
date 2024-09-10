@@ -1,8 +1,12 @@
-#### Introduction
+---
+description: Logstash
+---
+
+## Introduction
 ...
 
-#### Deploy By Binaries
-##### Quick Start
+## Deploy By Binaries
+### Quick Start
 ```bash
 # 1.download and decompression
 https://www.elastic.co/downloads/logstash
@@ -16,7 +20,7 @@ bin/logstash -f logstash.conf
 ```
 
 
-##### Config and Boot
+### Config and Boot
 [[sc-logstash|Logstash config]]
 
 ```bash
@@ -53,13 +57,13 @@ systemctl enable .service
 ```
 
 
-#### Deploy By Container
-##### Run by Resource
+## Deploy By Container
+### Run by Resource
 ```bash
 # https://docs.fluentd.org/container-deployment/kubernetes
 ```
 
-##### Run in Kubernetes
+### Run in Kubernetes
 ```bash
 # add and update repo
 helm repo add elastic https://helm.elastic.co
@@ -83,10 +87,9 @@ logstashPipeline:
 ...
 
 helm -n logging install logstash .
-
 ```
 
->Reference:
->1. [Repository](https://www.elastic.co/guide/en/logstash/current/introduction.html)
->2. [helm chart](https://github.com/elastic/helm-charts/blob/main/logstash/README.md)
->3. [apt installing](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html)
+> Reference:
+> 1. [Official Website](https://www.elastic.co/guide/en/logstash/current/introduction.html)
+> 2. [Repository](https://github.com/elastic/logstash)
+> 3. [apt installing](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html)

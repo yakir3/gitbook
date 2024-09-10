@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: Apache Kafka
+---
+
+## Introduction
 ...
 
-#### Deploy By Binaries
-##### Quick Start
-###### ZooKeeper Mode
+## Deploy By Binaries
+### Quick Start
+#### ZooKeeper Mode
 [[zookeeper|zookeeper-deploy]]
 
 ```bash
@@ -26,7 +30,7 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 ./bin/kafka-server-start.sh config/server.properties
 ```
 
-###### KRaft Mode
+#### KRaft Mode
 ```bash
 # source download
 cd /opt/ && wget https://archive.apache.org/dist/kafka/3.3.1/kafka_2.13-3.3.1.tgz
@@ -48,8 +52,8 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 ./bin/kafka-server-start.sh config/kraft/server.properties
 ```
 
-##### [[sc-kafka|Config]] and Boot
-###### Config
+### [[sc-kafka|Config]] and Boot
+#### Config
 **ZooKeeper Mode**
 ```bash
 cat > config/zookeeper.properties << "EOF"
@@ -184,7 +188,7 @@ log.retention.check.interval.ms=300000
 EOF
 ```
 
-###### Boot(systemd)
+#### Boot(systemd)
 **ZooKeeper Mode**
 ```bash
 # 1. generate zookeeper id
@@ -276,11 +280,11 @@ systemctl start kafka.service
 systemctl enable kafka.service
 ```
 
-##### Verify
+### Verify
 [[StreamingMessaging#Kafka|Kafka Command]]
 
-#### Deploy By Container
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 ```bash
 docker pull apache/kafka:3.7.1
 docker run -p 9092:9092 apache/kafka:3.7.1
@@ -289,8 +293,8 @@ docker run -p 9092:9092 apache/kafka:3.7.1
 # https://hub.docker.com/r/bitnami/kafka
 ```
 
-##### Run in Kubernetes
-###### Helm Charts
+### Run in Kubernetes
+#### Helm Charts
 ```bash
 # add and update repo
 helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -316,7 +320,7 @@ extraConfigYaml:
 helm -n middleware install kafka .
 ```
 
-##### Persistent storage
+#### Persistent storage
 kafka 需要使用持久化存储配置，k8s 本身不支持 nfs 做 storageclass ，需要安装第三方 nfs 驱动实现
 
 [[nfs-server|1.nfs-server部署]]
@@ -327,7 +331,7 @@ kafka 需要使用持久化存储配置，k8s 本身不支持 nfs 做 storagecla
 
 
 >Reference:
->1. [Repository](https://kafka.apache.org/documentation/)
+>1. [Official Website](https://kafka.apache.org/documentation/)
 >2. [Repository](https://github.com/apache/kafka)
 >3. [storageclass 存储类官方说明](https://kubernetes.io/zh-cn/docs/concepts/storage/storage-classes/)
 >4. [nfs-server 驱动部署方式](https://blog.51cto.com/smbands/4903841)

@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: Etcd
+---
+
+## Introduction
 ...
 
 
-#### Deployment
-##### Run On Binaries
+## Deploy By Binaries
+### Quick Start
 ```bash
 # built from source
 git clone -b v3.5.0 https://github.com/etcd-io/etcd.git
@@ -24,7 +28,11 @@ install -m 0755 etcdctl /usr/local/bin
 # create data and config dir
 mkdir -p /opt/etcd/data
 mkdir -p /opt/etcd/config
+```
 
+### Config and Boot
+#### Config
+```bash
 cat > /opt/etcd/config/etcd.conf << "EOF"
 ETCD_NAME="etcd01"
 ETCD_DATA_DIR="/opt/etcd/data/default.etcd/"
@@ -36,9 +44,10 @@ ETCD_INITIAL_CLUSTER="etcd01=http://172.22.3.29:2380"
 ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 ETCD_INITIAL_CLUSTER_STATE="new"
 EOF
+```
 
-# systemd start 
-# /usr/local/bin/etcd ....
+#### Boot(systemd)
+```bash
 cat > /etc/systemd/system/etcd.service << "EOF"
 [Unit]
 Description=Etcd Server
@@ -64,7 +73,22 @@ systemctl start etcd.service
 systemctl enable etcd.service
 ```
 
-##### Run in Docker
+### cli command
+```bash
+export ETCDCTL_API=3
+
+#status
+etcdctl endpoint status --cluster -w table
+etcdctl --endpoints http://x.x.x.x:2379 endpoint status --cluster -w table
+etcdctl --endpoints http://x.x.x.x:2379 member list
+
+# operate values
+etcdctl  --endpoints http://x.x.x.x:2379 --user=root --password=9A4mEZmkjU put yakir-key yakir-value
+etcdctl get yakir-key
+```
+
+## Deploy By Container
+### Run in Docker
 [[cc-docker|Docker常用命令]]
 ```bash
 rm -rf /tmp/etcd-data.tmp && mkdir -p /tmp/etcd-data.tmp && \
@@ -97,7 +121,7 @@ docker exec etcd-gcr-v3.4.26 /usr/local/bin/etcdctl put foo bar
 docker exec etcd-gcr-v3.4.26 /usr/local/bin/etcdctl get foo
 ```
 
-##### Run On Kubernetes
+### Run in Kubernetes
 [[cc-k8s|deploy by kubernetes manifest]]
 ```bash
 # static pod 
@@ -129,21 +153,6 @@ root
 OUE0bUVabWtqVQ==
 ```
 
-
-#### common command
-```bash
-export ETCDCTL_API=3
-
-#status
-etcdctl endpoint status --cluster -w table
-etcdctl --endpoints http://x.x.x.x:2379 endpoint status --cluster -w table
-etcdctl --endpoints http://x.x.x.x:2379 member list
-
-# operate values
-etcdctl  --endpoints http://x.x.x.x:2379 --user=root --password=9A4mEZmkjU put yakir-key yakir-value    
-etcdctl get yakir-key
-
-```
 
 
 > Reference:

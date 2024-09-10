@@ -1,4 +1,8 @@
-##### how to add a storage disk
+---
+description: Google Computer Engine
+---
+
+## how to add a storage disk
 ```bash
 # 1. add new disk to VM instances
 #operate in console
@@ -18,7 +22,7 @@ echo "UUID=$uuid /mnt/dir ext4 defaults 0 0" >> /etc/fstab
 mount -a
 ```
 
-##### expand disk capacity
+## expand disk capacity
 ```bash
 # option1: expand the original disk
 # get original disk name and pvresize

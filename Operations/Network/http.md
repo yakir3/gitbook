@@ -1,8 +1,12 @@
-#### HTTP 请求过程
+---
+description: HTTP
+---
+
+## HTTP 请求过程
 每次http请求经过这些过程： 客户端发起请求-->DNS解析-->TCP连接-->SSL等协议握手-->服务器处理-->内容传输-->完成
 
 
-#### curl 命令手册
+## curl 命令手册
 查看curl 命令的手册，curl命令支持以下阶段的时间统计：
 - time_namelookup : 从请求开始到DNS解析完成的耗时
 - time_connect : 从请求开始到TCP三次握手完成耗时
@@ -13,7 +17,7 @@
 - time_total : 从请求开始到完成的总耗时
 
 
-#### 主要的 HTTP 性能指标
+## 主要的 HTTP 性能指标
 - DNS请求耗时 ： 域名的NS及本地使用DNS的解析速度
 - TCP建立耗时 ： 服务器网络层面的速度
 - SSL握手耗时 ： 服务器处理HTTPS等协议的速度

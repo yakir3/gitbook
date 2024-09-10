@@ -1,7 +1,11 @@
-#### Introduction
+---
+description: Istio
+---
+
+## Introduction
 ...
 
-#### Deploy By Binaries
+## Deploy By Binaries
 ```bash
 # 1.download and decompression
 https://www.elastic.co/downloads/logstash
@@ -16,8 +20,8 @@ bin/logstash -f logstash.conf
 
 [[sc-logstash|Logstash Config]]
 
-#### Deploy By Container
-##### Run in Kubernetes
+## Deploy By Container
+### Run in Kubernetes
 ```bash
 # add and update repo
 helm repo add elastic https://helm.elastic.co
@@ -40,11 +44,10 @@ logstashPipeline:
     output { stdout { } }
 
 helm -n logging install logstash .
-
 ```
 
 
 
->Reference:
->1. [Repository](https://istio.io/)
->2. [Repository](https://github.com/istio/istio)
+> Reference:
+> 1. [Official Website](https://istio.io/)
+> 2. [Repository](https://github.com/istio/istio)

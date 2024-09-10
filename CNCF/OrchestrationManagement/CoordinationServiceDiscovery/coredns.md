@@ -1,9 +1,13 @@
-#### Introduction
+---
+description: CoreDNS
+---
+
+## Introduction
 ...
 
 
-#### Deployment
-##### Run On Binaries
+## Deploy By Binaries
+### Quick Start
 ```bash
 # get and run from source
 wget https://github.com/coredns/coredns/releases/download/v1.10.1/coredns_1.10.1_linux_amd64.tgz
@@ -15,7 +19,11 @@ git clone https://github.com/coredns/coredns
 cd coredns && make
 install -m 0755 coredns /usr/local/bin
 coredns -conf /opt/coredns/coredns.conf -dns.port=1053
+```
 
+### Config and Boot
+#### Config
+```bash
 # create config
 cat > /opt/coredns/coredns.conf << "EOF"
 example.org:1053 {
@@ -34,23 +42,27 @@ example.org:1053 {
     log
 }
 EOF
+```
 
-# systemd start 
+#### Boot(systemd)
+```bash
 cat > /etc/systemd/system/coredns.service << "EOF"
 ...
 EOF
+
 systemctl daemon-reload
 systemctl start coredns.service
 systemctl enable coredns.service
 ```
 
-##### Run in Docker
+## Deploy By Container
+### Run in Docker
 [[cc-docker|Docker常用命令]]
 ```bash
 # https://hub.docker.com/r/coredns/coredns/tags
 ```
 
-##### Run On Kubernetes
+### Run in Kubernetes
 [[cc-k8s|deploy by kubernetes manifest]]
 ```bash
 #
@@ -77,4 +89,3 @@ helm -n kube-system install coredns .
 > Reference:
 > 1. [Official Website](https://coredns.io/)
 > 2. [Repository](https://github.com/coredns/coredns)
-

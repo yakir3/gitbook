@@ -1,4 +1,4 @@
-#### elasticsearch
+## elasticsearch
 ```bash
 # 查看所有 restful api
 curl http://es_server:9200/_cat -u "elastic:es123"
@@ -127,7 +127,7 @@ time curl -X POST "http://es-server:9200/index/_search" -d '{"version":true,"siz
 curl -X POST 127.0.0.1:9200/_license/start_basic?acknowledge=true
 ```
 
-#### mysql
+## mysql
 ```bash
 # init reset password
 mysql -u root -p
@@ -147,7 +147,7 @@ FLUSH PRIVILEGES;
 
 ```
 
-#### postgres
+## postgres
 ```bash
 # login
 psql -U user [-d database]
@@ -176,7 +176,7 @@ select * from pg_tables;
 
 ```
 
-#### redis
+## redis
 ```bash
 # common
 # redis-cli [-h host] [-p port] [-a password] [-c]
