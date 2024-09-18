@@ -179,6 +179,9 @@ set -o nounset
 # display parameters after executing command
 set -x
 set -o xtrace
+
+# To prevent accidental overwriting of files
+set -o noclobber
 ```
 
 ## printf
@@ -206,6 +209,7 @@ result="${variable%%/*}"   # longest match from end, get: path
 
 
 
->Reference:
+> Reference:
 > 1. [Shell command official manual](https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html)
 > 2. [关于 Bash 的 10 个常见误解](https://xie.infoq.cn/article/247481c8dc6dc4607c1d7515e)
+> 3. [Advanced Shell Scripting Techniques](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)

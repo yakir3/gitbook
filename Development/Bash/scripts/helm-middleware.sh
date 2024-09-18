@@ -37,6 +37,7 @@ set -o pipefail
 ###   ./helm-middleware.sh -n uat2 uninstall rocketmq
 ###
 function show_help() {
+  perl -ne 'print if s/^### ?//' "$0" || \
   sed -rn 's/^### ?//;T;p;' "$0"
   exit 0
 }
@@ -89,7 +90,7 @@ function pre_check() {
     done
 
     # check -n flag and namespace exist in the namespaces
-    if [ -n "$namespace" ]; then
+    if [[ -n "$namespace" ]]; then
         grep -qw $namespace <<< "${namespaces[@]}" || die_exit "Kubernetes namespace must be in (${namespaces[@]})"
     else
         show_help
