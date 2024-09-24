@@ -142,7 +142,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-  - host: es.yakir.com
+  - host: es.yakir.top
     http:
       paths:
       - path: /

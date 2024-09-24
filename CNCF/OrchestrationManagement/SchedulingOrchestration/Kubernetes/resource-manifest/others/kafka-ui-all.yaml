@@ -56,7 +56,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: kafka-ui.opsre.net
+  - host: kafka-ui.yakir.top
     http:
       paths:
       - backend:

@@ -121,7 +121,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: cerebro.opsre.net
+  - host: cerebro.yakir.top
     http:
       paths:
       - backend:
