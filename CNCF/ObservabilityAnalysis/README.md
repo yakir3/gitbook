@@ -1,4 +1,7 @@
 ---
+icon: chart-network
 description: ObservabilityAnalysis
-icon: display
 ---
+
+# ObservabilityAnalysis
+

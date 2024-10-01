@@ -1,4 +1,7 @@
 ---
+icon: instalod
 description: DistributionInstaller
-icon: globe
 ---
+
+# DistributionInstaller
+

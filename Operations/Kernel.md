@@ -1,14 +1,14 @@
 ---
+icon: wrench
 description: Kernel record
-icon: puzzle-piece
 ---
 
 # Kernel
 
 ## sysctl
-/etc/sysctl.conf
-/etc/sysctl.d/\*.conf
-/proc/sys/...
+
+/etc/sysctl.conf /etc/sysctl.d/\*.conf /proc/sys/...
+
 ```bash
 # Controls the System Request debugging functionality of the kernel
 kernel.sysrq = 0
@@ -94,9 +94,10 @@ vm.swappiness = 10   # default 60, 0 is donot swap memory
 sysctl -p /etc/sysctl.d/xxx.conf
 ```
 
-
 ## Others
+
 ### ulimit：fd dont enough
+
 ```bash
 # user used fd
 lsof -u $(whoami) | wc -l
@@ -117,8 +118,8 @@ fs.file-max = 65535000
 
 ```
 
+### TIME\_WAIT: too mush connection state
 
-### TIME_WAIT: too mush connection state
 ```bash
 # client 
 # HTTP Headers，connection set to keep-alive，http/1.1 default os keep-alive
@@ -133,8 +134,8 @@ net.ipv4.tcp_tw_reuse = 1
 
 ```
 
+### nf\_conntrack: table full, dropping packet
 
-### nf_conntrack: table full, dropping packet
 ```bash
 # conntrack bucket number and used memory
 CONNTRACK_MAX = RAMSIZE (in bytes) / 16384 / (ARCH / 32)
@@ -198,11 +199,12 @@ iptables -t raw -A OUTPUT -p tcp -m multiport --sports 80,443 -j NOTRACK
 
 
 ```
+
 > https://testerhome.com/topics/15824
 
-
 ### ARP table
-```bash 
+
+```bash
 # arp table cache full
 # kernel error message = arp_cache: neighbor table overflow!
 net.ipv4.neigh.default.gc_thresh1 = 128    # 超过此阈值时按 gc_interval 定期启动回收

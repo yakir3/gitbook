@@ -1,4 +1,7 @@
 ---
+icon: google
 description: GoogleCloud Platform
-icon: globe
 ---
+
+# GoogleCloud
+

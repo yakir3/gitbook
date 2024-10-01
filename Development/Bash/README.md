@@ -1,11 +1,12 @@
 ---
+icon: code
 description: Bash record
-icon: square-code
 ---
 
 # Bash
 
 ## env
+
 ```bash
 # add share lib search
 # option1 for tmp 
@@ -37,6 +38,7 @@ echo $APP_NAME
 ```
 
 ## exec
+
 ```bash
 # executed command and exit current shell(process replacement)
 echo $$
@@ -116,7 +118,8 @@ exec -c printenv
 find /tmp/ -name "test.log" -exec chmod +x '{}' \;
 ```
 
-## function 
+## function
+
 ```bash
 # script position 
 tee > test.sh << "EOF"
@@ -144,7 +147,8 @@ function test() (
 )
 ```
 
-## set 
+## set
+
 ```bash
 # set to environment variable
 set -a testk
@@ -185,6 +189,7 @@ set -o noclobber
 ```
 
 ## printf
+
 ```bash
 # format 
 df -h |column -t
@@ -193,6 +198,7 @@ df -h | awk '{printf "%-20s %-10s %-10s %-10s %-10s %-10s\n", $1, $2, $3, $4, $5
 ```
 
 ## truncate string
+
 ```bash
 # truncate string
 variable="Hello World"
@@ -207,9 +213,8 @@ variable="path/to/some/file.txt"
 result="${variable%%/*}"   # longest match from end, get: path
 ```
 
-
-
 > Reference:
-> 1. [Shell command official manual](https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html)
+>
+> 1. [Shell command official manual](https://www.gnu.org/software/bash/manual/html\_node/The-Set-Builtin.html)
 > 2. [关于 Bash 的 10 个常见误解](https://xie.infoq.cn/article/247481c8dc6dc4607c1d7515e)
 > 3. [Advanced Shell Scripting Techniques](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)

@@ -1,4 +1,7 @@
 ---
+icon: globe
 description: Network doc
-icon: scissors
 ---
+
+# Network
+

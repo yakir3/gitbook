@@ -1,6 +1,7 @@
 ---
+icon: code
 description: Node record
-icon: square-code
 ---
 
 # Node
+

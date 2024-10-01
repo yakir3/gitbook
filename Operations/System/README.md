@@ -1,4 +1,7 @@
 ---
+icon: puzzle-piece
 description: System doc
-icon: scissors
 ---
+
+# System
+

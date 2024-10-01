@@ -1,4 +1,7 @@
 ---
+icon: hand-fingers-crossed
 description: Provisioning
-icon: display
 ---
+
+# Provisioning
+

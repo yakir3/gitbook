@@ -1,6 +1,6 @@
 ---
+icon: scissors
 description: Others record
-icon: gear
 ---
 
 # Others

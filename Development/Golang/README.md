@@ -1,11 +1,12 @@
 ---
+icon: code
 description: Golang record
-icon: square-code
 ---
 
 # Golang
 
 ## Install
+
 ```bash
 # Download and Install
 # https://go.dev/doc/install
@@ -17,8 +18,8 @@ icon: square-code
 # https://go.dev/doc/install/source
 ```
 
-
 ## Goland
+
 ```bash
 # active code
 ideaActive
@@ -32,9 +33,10 @@ rainbow brackets
 
 ```
 
-
 ## Learning
+
 ### Formatting
+
 ```go
 fmt.Print()
 fmt.Println()
@@ -43,6 +45,7 @@ fmt.Printf()
 ```
 
 ### Commentary
+
 ```go
 package main
 import "fmt"
@@ -57,38 +60,41 @@ func main() {
 ```
 
 ### Names
-#### Package names
-```go
 
+#### Package names
+
+```go
 ```
 
 #### Getters
-```go
 
+```go
 ```
 
 #### Interface names
-```go
 
+```go
 ```
 
 #### MixedCaps
-```go
 
+```go
 ```
 
 ### Control structures
-#### If
-```go
 
+#### If
+
+```go
 ```
 
 #### Redeclaration and reassignment
-```go
 
+```go
 ```
 
 #### For
+
 ```go
 var names [3]int = [3]int{1,2,3}
 var names = [...]string{"a","b","c"}
@@ -98,22 +104,27 @@ for k,v := range names {
 ```
 
 #### Switch
-```go
 
+```go
 ```
 
 #### Type switch
-```go
 
+```go
 ```
 
 ### Functions
+
 #### Multiple return values
+
 #### Named result parameters
+
 #### Defer
 
 ### Data
+
 #### Allocation with new
+
 ```go
 var p *int = new(int)
 fmt.Println(*p)
@@ -122,14 +133,15 @@ fmt.Println(*p)
 #### Constructors and composite literals
 
 #### Allocation with make
+
 ```go
 var s []int = make([]int, 3, 5)
 //var s []string = make([]string, 3, 5)
 fmt.Println(s)
 ```
 
-
 #### Arrays
+
 ```go
 var arr [3]int8 = [3]int8{1,2,3}
 //var arr [3]int = [3]int{1,2,3}
@@ -140,6 +152,7 @@ fmt.Println(&arr[2])
 ```
 
 #### Slices
+
 #### Two-dimensional slices
 
 #### Maps
@@ -147,17 +160,22 @@ fmt.Println(&arr[2])
 #### Printing
 
 #### Append
-```go
 
+```go
 ```
 
 ### Initialization
+
 #### Constants
+
 #### Variables
+
 #### The init function
 
 ### Methods
+
 #### Pointers vs. Values
+
 ```go
 var x int = 10
 fmt.Printf("%p\n", &x)
@@ -168,14 +186,19 @@ fmt.Println(*p)
 ```
 
 ### Interfaces and other types
+
 #### Interfaces
+
 #### Conversions
+
 #### Interface conversions and type assertions
+
 #### Generality
+
 #### Interfaces and methods
 
-
->Reference:
->1. [Official Document](https://go.dev)
->2. [Golang Github](https://github.com/golang/go)
->3. [Go语言中文网](https://studygolang.com/dl)
+> Reference:
+>
+> 1. [Official Document](https://go.dev)
+> 2. [Golang Github](https://github.com/golang/go)
+> 3. [Go语言中文网](https://studygolang.com/dl)

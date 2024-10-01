@@ -1,11 +1,12 @@
 ---
+icon: code
 description: Python record
-icon: square-code
 ---
 
 # Python
 
 ## Install
+
 ```bash
 # centos
 yum install -y make gcc zlib-devel bzip2-devel openssl-devel ncurses-devel libffi-devel
@@ -32,12 +33,15 @@ make && make install
 ```
 
 ## Pycharm
+
 ### active
+
 ```bash
 cat ideaActive/ja-netfilter-all/ja-netfilter/readme.txt
 ```
 
 ### config
+
 ```bash
 # Editor
 Font
@@ -61,7 +65,9 @@ Python Intergrated Tools -> Docstring format: Google
 ```
 
 ## ProjectManage
+
 ### pip
+
 ```bash
 # Install
 ...
@@ -80,6 +86,7 @@ pip install -r requirements.txt
 ### poetry
 
 #### Install
+
 ```bash
 # Option 1(recommend)
 curl -sSL https://install.python-poetry.org | python -
@@ -96,6 +103,7 @@ pipx upgrade poetry
 ```
 
 #### How to use
+
 ```bash
 # New project
 poetry new poetry-project
@@ -146,9 +154,8 @@ poetry config --list
 poetry config virtualenvs.create true <--local>
 ```
 
-
-
 > Reference:
+>
 > 1. [Writing your pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
 > 2. [Poetry Official Docs](https://python-poetry.org/docs/)
 > 3. [toml.io](https://toml.io/cn/)

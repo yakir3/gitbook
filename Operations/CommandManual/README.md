@@ -1,4 +1,7 @@
 ---
+icon: rectangle-terminal
 description: Common command snippets
-icon: scissors
 ---
+
+# CommandManual
+
