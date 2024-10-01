@@ -1,6 +1,8 @@
 ---
-description: argo proj
+description: argo project
 ---
+
+# Argo Project
 
 ## Argo Workflows
 ### Introduction
