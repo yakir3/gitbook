@@ -1,3 +1,5 @@
+# Nix
+
 ## Install
 
 ### Nix package manager

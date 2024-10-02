@@ -1,7 +1,7 @@
 ---
 description: >-
-  APP-META data by Docker,GitHub,GitLab and so on. 
-  For continuous integration to artifact repo like Harbor, ACR, TCR, GCR and so on.
+  APP-META data by Docker,GitHub,GitLab etc. 
+  For continuous integration to artifact repo like Harbor, ACR, TCR, GCR etc.
 icon: bullseye-arrow
 ---
 

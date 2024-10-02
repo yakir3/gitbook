@@ -2,6 +2,8 @@
 description: Apache Kafka
 ---
 
+# Kafka
+
 ## Introduction
 ...
 

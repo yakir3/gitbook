@@ -214,7 +214,8 @@ result="${variable%%/*}"   # longest match from end, get: path
 ```
 
 > Reference:
->
-> 1. [Shell command official manual](https://www.gnu.org/software/bash/manual/html\_node/The-Set-Builtin.html)
-> 2. [关于 Bash 的 10 个常见误解](https://xie.infoq.cn/article/247481c8dc6dc4607c1d7515e)
-> 3. [Advanced Shell Scripting Techniques](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)
+> 1. [Official Website](https://www.gnu.org/software/bash/)
+> 2. [Repository](https://git.savannah.gnu.org/cgit/bash.git)
+> 3. [Shell command official manual](https://www.gnu.org/software/bash/manual/html\_node/The-Set-Builtin.html)
+> 4. [关于 Bash 的 10 个常见误解](https://xie.infoq.cn/article/247481c8dc6dc4607c1d7515e)
+> 5. [Advanced Shell Scripting Techniques](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)

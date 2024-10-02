@@ -2,6 +2,8 @@
 description: Jaeger
 ---
 
+# Jaeger
+
 ## Introduction
 ### 架构图
 ![[Pasted image 20230526143340.png]]

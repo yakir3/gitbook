@@ -1,6 +1,8 @@
 ---
-description: computer network
+description: Computer Network
 ---
+
+# Computer Network
 
 ## 一、计算机网络概述
 ### 分类

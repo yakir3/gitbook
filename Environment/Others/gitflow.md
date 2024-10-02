@@ -2,6 +2,8 @@
 description: gitflow
 ---
 
+# Git Flow
+
 ## Introduction
 
 ### 1. GitFlow描述
@@ -88,3 +90,8 @@ gitflow：版本分支管理策略（相当于对git的包装）
 ![image](https://github.com/yakir3/knowledge/assets/30774576/243b61f3-4e4a-4907-9e24-e4247aafcad1)
 
 finish提交后即将新功能合并到develop分支，完成新功能开发。后续即执行release发布操作，步骤类似
+
+
+
+> Reference:
+> 1. [Learn Website](https://www.gitkraken.com/learn/git/git-flow)

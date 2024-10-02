@@ -2,6 +2,8 @@
 description: Minio
 ---
 
+# Minio
+
 ## Introduction
 ...
 

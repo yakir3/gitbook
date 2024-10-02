@@ -1,6 +1,8 @@
 ---
-description: HTTP
+description: HTTP protocol
 ---
+
+# HTTP
 
 ## HTTP 请求过程
 每次http请求经过这些过程： 客户端发起请求-->DNS解析-->TCP连接-->SSL等协议握手-->服务器处理-->内容传输-->完成

@@ -1,8 +1,10 @@
 ---
-description: Fluent
+description: Fluentd and Fluent Bit
 ---
 
-## fluentd
+# Fluentd & Fluent Bit
+
+## Fluentd
 ### Introduction
 ...
 
@@ -69,7 +71,7 @@ helm -n logging install fluentd .
 ```
 
 
-## fluent-bit
+## Fluent Bit
 
 ### Introduction
 **Fluent Bit** 是一个开源的多平台日志处理器工具，它旨在成为用于日志处理和分发的通用利器。
@@ -115,7 +117,7 @@ systemctl enable td-agent-bit.service
 
 ```
 
-### Deploy by Container
+### Deploy With Container
 #### 相关概念
 Kubernetes 管理 nodes 集群，因此我们的日志代理工具需要在每个节点上运行以从每个 POD 收集日志，因此Fluent Bit 被部署为 DaemonSet(在集群的每个 node 上运行的 POD)。
 当 Fluent Bit 运行时，它将读取，解析和过滤每个 POD 的日志，并将使用以下信息(元数据)丰富每条数据:
@@ -600,7 +602,7 @@ output {
 ```bash
 # 1、创建存储桶：xxx_logs_store
 # 2、创建存储桶日志目录（非必需）：backup_logs
-# 3、将 logstash 备份日志目录使用 gsutil 工具定时任务上传谷歌云存储桶服务
+# 3、将 logstash 备份日志目录使用 gcloud 工具定时任务上传谷歌云存储桶服务
 ```
 
 

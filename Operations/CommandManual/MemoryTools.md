@@ -1,3 +1,5 @@
+# Memory Tools
+
 ## free vm memory
 ```bash
 # 0：do not release (default)
@@ -6,5 +8,4 @@
 # 3：release all cache
 echo int > /proc/sys/vm/drop_caches
 echo 0 > /proc/sys/vm/drop_caches
-
 ```

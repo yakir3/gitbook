@@ -2,6 +2,8 @@
 description: tunnel proxy
 ---
 
+# Tunnel Proxy
+
 ## Forward Proxy
 ### Proxychains
 ```bash

@@ -47,6 +47,11 @@ Appfiles/SecureCRT.xml
 Appfiles/Preferences.sublime-settings
 ```
 
+#### Visual Studio Code
+```console
+Appfiles/vscode.code-profile
+```
+
 #### Raycast
 ```console
 # Import config

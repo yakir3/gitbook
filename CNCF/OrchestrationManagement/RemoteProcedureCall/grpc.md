@@ -1,6 +1,8 @@
 ---
-description: gRPC
+description: gRPC protocol
 ---
+
+# gRPC
 
 ## Introduction
 

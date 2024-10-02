@@ -1,7 +1,7 @@
 ---
 icon: rectangle-terminal
-description: Common command snippets
+description: Common Command Manual snippets
 ---
 
-# CommandManual
+# Command Manual
 

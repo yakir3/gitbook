@@ -112,7 +112,9 @@ $JAVA_ARGS
 
 > \[!NOTE] 内存规格参数说明 在JDK 11及之后的版本中，日志相关的参数-XX:+PrintGCDetails、-XX:+PrintGCDateStamps、-Xloggc:$LOG\_PATH/gc.log已被废弃，请使用参数-Xlog:gc:$LOG\_PATH/gc.log代替。 Dragonwell 11不支持${POD\_IP}变量。 如果您没有将/home/admin/nas容器路径挂载到NAS目录，则必须保证该目录在应用启动前已存在，否则将不会产生日志文件。
 
+
+
 > Reference:
->
-> 1. Java Official Docs
-> 2. [AliCloud Serverless](https://help.aliyun.com/zh/sae/use-cases/best-practices-for-jvm-heap-size-configuration)
+> 1. [Official Website](https://openjdk.org/projects/jdk/)
+> 2. [Repository](https://github.com/openjdk/jdk)
+> 3. [AliCloud Serverless](https://help.aliyun.com/zh/sae/use-cases/best-practices-for-jvm-heap-size-configuration)

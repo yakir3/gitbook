@@ -2,9 +2,11 @@
 description: kube-eventer
 ---
 
+# kube-eventer
+
 ## kube-eventer 获取 K8S 集群事件
 
-### 一、背景
+### 1. 背景
 
 #### 概述
 
@@ -23,13 +25,13 @@ description: kube-eventer
 | Kafka / Elasticsearch / influxDB | 中间件：存储事件消息                 | 存储组件（选型 Kafka）   |
 | kube-eventer-py                  | 从队列获取事件消息发送至 telegram 告警群组 | 事件消费者            |
 
-### 二、安装部署步骤
+### 2. 安装部署步骤
 
-#### 1）minikube 集群部署
+#### a）minikube 集群部署
 
 参考：https://minikube.sigs.k8s.io/docs/start/
 
-#### 2）存储中间件部署
+#### b）存储中间件部署
 ##### Kafka
 使用 helm 部署 Kafka
 ```bash
@@ -118,7 +120,7 @@ yakir-kafka-zookeeper-0               1/1     Running   6 (168m ago)   10d
 ##### elasticsearch
 [[elasticsearch#Run by Helm|helm 部署]]
 
-#### 3）kube-eventer 部署
+#### c）kube-eventer 部署
 
 + 获取官方 YAML 资源文件进行部署
 
@@ -225,7 +227,7 @@ NAME                               READY   STATUS    RESTARTS        AGE
 kube-eventer-69455778cd-cvr9w      1/1     Running   0               8d
 ```
 
-#### 4）从消息队列获取事件，发送至 telegram
+#### d）从消息队列获取事件，发送至 telegram
 
 + telegram 机器人以及告警群组创建
 
@@ -440,12 +442,9 @@ yakir-kube-eventer-589bf867bc-tgs5l   1/1     Running   0               27
 
 + 事件消息接收验证
 
-![](C:\Users\Yakir\AppData\Roaming\marktext\images\2022-09-06-17-04-08-image.png)
 
 ### 三、后续
 
-1、UAT 环境集群是否必要性探讨。（获取 Pod Warning 级别事件，分析 Pod 重启 / 宕机 原因）
-
-2、Kafka 中间件自定义持久化存储？
-
-3、下一步：结合 NPD 获取节点事件？
+1. UAT 环境集群是否必要性探讨。（获取 Pod Warning 级别事件，分析 Pod 重启 / 宕机 原因）
+2. Kafka 中间件自定义持久化存储？
+3. 下一步：结合 NPD 获取节点事件？

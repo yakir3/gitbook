@@ -1,3 +1,5 @@
+# Container Runtime
+
 ## docker & podman
 ### busybox chroot
 ```bash
@@ -76,6 +78,13 @@ docker run --name mrdoc \
   -p 10086:10086 \
   -v /opt/MrDoc:/app/MrDoc \
   -d zmister/mrdoc:v4
+```
+
+### docker compose plugin
+```bash
+docker compose up -d
+docker compose down
+docker compose restart
 ```
 
 

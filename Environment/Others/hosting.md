@@ -2,6 +2,8 @@
 description: hosting
 ---
 
+# Hosting
+
 ## Bandwagong Host
 [Official](https://bwh88.net/index.php)
 
@@ -11,5 +13,3 @@ Promo
 
 ## Name.com
 whois privacy = PRIVACYPLEASE
-
-

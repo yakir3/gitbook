@@ -154,8 +154,11 @@ poetry config --list
 poetry config virtualenvs.create true <--local>
 ```
 
+
+
 > Reference:
->
-> 1. [Writing your pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
-> 2. [Poetry Official Docs](https://python-poetry.org/docs/)
-> 3. [toml.io](https://toml.io/cn/)
+> 1. [Official Website](https://www.python.org/)
+> 2. [Repository](https://github.com/python/cpython)
+> 3. [PyPI](https://pypi.org/)
+> 4. [Poetry](https://python-poetry.org/)
+> 5. [toml.io](https://toml.io/cn/)

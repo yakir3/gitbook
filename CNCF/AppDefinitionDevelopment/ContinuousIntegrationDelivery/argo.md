@@ -1,5 +1,5 @@
 ---
-description: argo project
+description: Argo Project
 ---
 
 # Argo Project
