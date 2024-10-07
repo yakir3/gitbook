@@ -1,5 +1,5 @@
 ---
-icon: hand-fingers-crossed
+icon: puzzle-piece
 description: Provisioning
 ---
 

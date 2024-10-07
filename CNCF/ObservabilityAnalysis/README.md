@@ -1,7 +1,7 @@
 ---
-icon: chart-network
+icon: magnifying-glass-chart
 description: ObservabilityAnalysis
 ---
 
-# ObservabilityAnalysis
+# Observability and Analysis
 

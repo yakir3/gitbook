@@ -1,4 +1,7 @@
 ---
+icon: folder-gear
 description: Service config template
-icon: gear
 ---
+
+# Service Conf
+

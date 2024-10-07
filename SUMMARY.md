@@ -2,97 +2,94 @@
 
 * [Introduction](README.md)
 
-
 ## APP-META
 
 * [Overview](APP-META/README.md)
-
 
 ## CNCF
 
 * [Overview](CNCF/README.md)
 * [CNAI](CNCF/CNAI/README.md)
-  * [DataArchitecture](CNCF/CNAI/DataArchitecture/README.md)
+  * [DataArchitecture](cncf/cnai/dataarchitecture/README.md)
     * [ClickHouse](CNCF/CNAI/DataArchitecture/clickhouse.md)
-  * [DataScience](CNCF/CNAI/DataScience/README.md)
+  * [DataScience](cncf/cnai/datascience/README.md)
     * [PyTorch](CNCF/CNAI/DataScience/pytorch.md)
     * [TensorFlow](CNCF/CNAI/DataScience/tensorflow.md)
 * [AppDefinition and Development](CNCF/AppDefinitionDevelopment/README.md)
-  * [Application & DefinitionImageBuild](CNCF/AppDefinitionDevelopment/ApplicationDefinitionImageBuild/README.md)
+  * [Application & DefinitionImageBuild](cncf/appdefinitiondevelopment/application-and-definitionimagebuild/README.md)
     * [Helm](CNCF/AppDefinitionDevelopment/ApplicationDefinitionImageBuild/helm.md)
-  * [Continuous Integration & Delivery](CNCF/AppDefinitionDevelopment/ContinuousIntegrationDelivery/README.md)
+  * [Continuous Integration & Delivery](cncf/appdefinitiondevelopment/continuous-integration-and-delivery/README.md)
     * [Argo](CNCF/AppDefinitionDevelopment/ContinuousIntegrationDelivery/argo.md)
     * [GitLab](CNCF/AppDefinitionDevelopment/ContinuousIntegrationDelivery/gitlab.md)
     * [Jenkins](CNCF/AppDefinitionDevelopment/ContinuousIntegrationDelivery/jenkins.md)
     * [Tekton](CNCF/AppDefinitionDevelopment/ContinuousIntegrationDelivery/tekton.md)
-  * [Database](CNCF/AppDefinitionDevelopment/Database/README.md)
+  * [Database](cncf/appdefinitiondevelopment/database/README.md)
     * [MongoDB](CNCF/AppDefinitionDevelopment/Database/mongodb.md)
     * [MySQL](CNCF/AppDefinitionDevelopment/Database/mysql.md)
     * [PostgreSQL](CNCF/AppDefinitionDevelopment/Database/postgresql.md)
     * [Redis](CNCF/AppDefinitionDevelopment/Database/redis.md)
     * [TiKV](CNCF/AppDefinitionDevelopment/Database/tikv.md)
-  * [Streaming & Messaging](CNCF/AppDefinitionDevelopment/StreamingMessaging/README.md)
+  * [Streaming & Messaging](cncf/appdefinitiondevelopment/streaming-and-messaging/README.md)
     * [EMQ](CNCF/AppDefinitionDevelopment/StreamingMessaging/emqx.md)
     * [Kafka](CNCF/AppDefinitionDevelopment/StreamingMessaging/kafka.md)
     * [RabbitMQ](CNCF/AppDefinitionDevelopment/StreamingMessaging/rabbitmq.md)
     * [RocketMQ](CNCF/AppDefinitionDevelopment/StreamingMessaging/rocketmq.md)
 * [Observability and Analysis](CNCF/ObservabilityAnalysis/README.md)
-  * [ChaosEngineering](CNCF/ObservabilityAnalysis/ChaosEngineering/README.md)
+  * [ChaosEngineering](cncf/observabilityanalysis/chaosengineering/README.md)
     * [ChaosMesh](CNCF/ObservabilityAnalysis/ChaosEngineering/chaosmesh.md)
-  * [Logging](CNCF/ObservabilityAnalysis/Logging/README.md)
+  * [Logging](cncf/observabilityanalysis/logging/README.md)
     * [Elastic](CNCF/ObservabilityAnalysis/Logging/elastic.md)
     * [Fluentd](CNCF/ObservabilityAnalysis/Logging/fluentd.md)
     * [Logstash](CNCF/ObservabilityAnalysis/Logging/logstash.md)
-  * [Monitoring](CNCF/ObservabilityAnalysis/Monitoring/README.md)
+  * [Monitoring](cncf/observabilityanalysis/monitoring/README.md)
     * [Grafana](CNCF/ObservabilityAnalysis/Monitoring/grafana.md)
     * [Loki](CNCF/ObservabilityAnalysis/Monitoring/loki.md)
-    * [Prometheus](CNCF/ObservabilityAnalysis/Monitoring//prometheus.md)
-  * [Tracing](CNCF/ObservabilityAnalysis/Tracing/README.md)
+    * [Prometheus](CNCF/ObservabilityAnalysis/Monitoring/prometheus.md)
+  * [Tracing](cncf/observabilityanalysis/tracing/README.md)
     * [Jaeger](CNCF/ObservabilityAnalysis/Tracing/jaeger.md)
 * [Orchestration and Management](CNCF/OrchestrationManagement/README.md)
-  * [API Gateway](CNCF/OrchestrationManagement/APIGateway/README.md)
+  * [API Gateway](cncf/orchestrationmanagement/api-gateway/README.md)
     * [Higress](CNCF/OrchestrationManagement/APIGateway/higress.md)
-  * [Coordination & Service Discovery](CNCF/OrchestrationManagement/CoordinationServiceDiscovery/README.md)
+  * [Coordination & Service Discovery](cncf/orchestrationmanagement/coordination-and-service-discovery/README.md)
     * [CoreDNS](CNCF/OrchestrationManagement/CoordinationServiceDiscovery/coredns.md)
     * [etcd](CNCF/OrchestrationManagement/CoordinationServiceDiscovery/etcd.md)
-    * [Nacos](CNCF/OrchestrationManagement/CoordinationServiceDiscovery//nacos.md)
+    * [Nacos](CNCF/OrchestrationManagement/CoordinationServiceDiscovery/nacos.md)
     * [Zookeeper](CNCF/OrchestrationManagement/CoordinationServiceDiscovery/zookeeper.md)
-  * [Remote Procedure Call](CNCF/OrchestrationManagement/RemoteProcedureCall/README.md)
+  * [Remote Procedure Call](cncf/orchestrationmanagement/remote-procedure-call/README.md)
     * [gRPC](CNCF/OrchestrationManagement/RemoteProcedureCall/grpc.md)
-  * [Scheduling & Orchestration](CNCF/OrchestrationManagement/SchedulingOrchestration/README.md)
+  * [Scheduling & Orchestration](cncf/orchestrationmanagement/scheduling-and-orchestration/README.md)
     * [Kubernetes](CNCF/OrchestrationManagement/SchedulingOrchestration/Kubernetes/README.md)
-  * [Service Mesh](CNCF/OrchestrationManagement/ServiceMesh/README.md)
+  * [Service Mesh](cncf/orchestrationmanagement/service-mesh/README.md)
     * [Istio](CNCF/OrchestrationManagement/ServiceMesh/istio.md)
-  * [Service Proxy](CNCF/OrchestrationManagement/ServiceProxy/README.md)
+  * [Service Proxy](cncf/orchestrationmanagement/service-proxy/README.md)
     * [Envoy](CNCF/OrchestrationManagement/ServiceProxy/envoy.md)
     * [Nginx](CNCF/OrchestrationManagement/ServiceProxy/nginx.md)
 * [Provisioning](CNCF/Provisioning/README.md)
-  * [Automation & Configuration](CNCF/Provisioning/AutomationConfiguration/README.md)
+  * [Automation & Configuration](cncf/provisioning/automation-and-configuration/README.md)
     * [Ansible](CNCF/Provisioning/AutomationConfiguration/ansible/README.md)
     * [Apollo](CNCF/Provisioning/AutomationConfiguration/apollo.md)
     * [OpenStack](CNCF/Provisioning/AutomationConfiguration/openstack.md)
     * [Salt Project](CNCF/Provisioning/AutomationConfiguration/saltproject/README.md)
     * [Terraform](CNCF/Provisioning/AutomationConfiguration/terraform.md)
-  * [Container Registry](CNCF/Provisioning/ContainerRegistry/README.md)
+  * [Container Registry](cncf/provisioning/container-registry/README.md)
     * [Harbor](CNCF/Provisioning/ContainerRegistry/harbor.md)
-  * [Key Management](CNCF/Provisioning/KeyManagement/README.md)
+  * [Key Management](cncf/provisioning/key-management/README.md)
     * [Vault](CNCF/Provisioning/KeyManagement/vault.md)
-  * [Security & Compliance](CNCF/Provisioning/SecurityCompliance/README.md)
+  * [Security & Compliance](cncf/provisioning/security-and-compliance/README.md)
     * [cert-manager](CNCF/Provisioning/SecurityCompliance/cert-manager.md)
 * [Runtime](CNCF/Runtime/README.md)
-  * [Cloud Native Network](CNCF/Runtime/CloudNativeNetwork/README.md)
+  * [Cloud Native Network](cncf/runtime/cloud-native-network/README.md)
     * [Cilium](CNCF/Runtime/CloudNativeNetwork/cilium.md)
     * [CNI](CNCF/Runtime/CloudNativeNetwork/cni.md)
-  * [Cloud Native Storage](CNCF/Runtime/CloudNativeStorage/README.md)
+  * [Cloud Native Storage](cncf/runtime/cloud-native-storage/README.md)
     * [CSI](CNCF/Runtime/CloudNativeStorage/csi.md)
     * [Minio](CNCF/Runtime/CloudNativeStorage/minio.md)
     * [Rook](CNCF/Runtime/CloudNativeStorage/rook.md)
-  * [Container Runtime](CNCF/Runtime/ContainerRuntime/README.md)
+  * [Container Runtime](cncf/runtime/container-runtime/README.md)
     * [Docker](CNCF/Runtime/ContainerRuntime/Docker/README.md)
     * [containerd](CNCF/Runtime/ContainerRuntime/containerd.md)
     * [CRI-O](CNCF/Runtime/ContainerRuntime/cri-o.md)
 * [Serverless](CNCF/Serverless/README.md)
-
 
 ## Development
 
@@ -103,7 +100,6 @@
 * [Node.js](Development/Node.js/README.md)
 * [Python](Development/Python/README.md)
 
-
 ## Environment
 
 * [Overview](Environment/README.md)
@@ -111,11 +107,9 @@
   * [jiracdflow](Environment/Others/jiracdflow/README.md)
   * [Git Flow](Environment/Others/gitflow.md)
   * [Hosting](Environment/Others/hosting.md)
-  <!-- * [interview](Environment/Others/interview.md) -->
   * [kube-eventer](Environment/Others/kube-eventer.md)
   * [Openssl](Environment/Others/openssl.md)
   * [Tunnel Proxy](Environment/Others/tunnel-proxy.md)
-
 
 ## Operations
 
@@ -158,7 +152,6 @@
   * [Linux From Scratch](Operations/System/lfs.md)
   * [Nix](Operations/System/nix.md)
 * [Kernel](Operations/Kernel.md)
-
 
 ## Platform
 

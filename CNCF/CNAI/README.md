@@ -1,5 +1,5 @@
 ---
-icon: webhook
+icon: head-side-gear
 description: CNAI
 ---
 
