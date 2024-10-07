@@ -5,8 +5,9 @@ description: Python record
 
 # Python
 
-## Install
+## 1. Development Environment
 
+### Install
 ```bash
 # centos
 yum install -y make gcc zlib-devel bzip2-devel openssl-devel ncurses-devel libffi-devel
@@ -32,39 +33,20 @@ apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev l
 make && make install
 ```
 
-## Pycharm
-
-### active
-
+### Pycharm
 ```bash
-cat ideaActive/ja-netfilter-all/ja-netfilter/readme.txt
-```
+# active
+cat ./ideaActive/ja-netfilter-all/ja-netfilter/readme.txt
 
-### config
-
-```bash
-# Editor
-Font
-Color Scheme
+# settings
+# 1. Python Intergrated Tools -> Docstring format: Google
 
 # Plugins
-# themes
-gradianto
-# json show
-rainbow brackets
-
-# Project
-Python Interpreter
-
-# Build,Execution,Deployment
-Deployment
-
-# Tools
-Python Intergrated Tools -> Docstring format: Google
-
+gradianto # themes
+rainbow brackets # json
 ```
 
-## ProjectManage
+## 2. ProjectManage
 
 ### pip
 
@@ -83,7 +65,7 @@ pip install Django==4.1.3
 pip install -r requirements.txt
 ```
 
-### poetry
+### Poetry
 
 #### Install
 

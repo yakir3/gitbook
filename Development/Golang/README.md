@@ -1,26 +1,13 @@
 ---
 icon: code
-description: Golang record
+description: Golang training
 ---
 
 # Golang
 
-## Goland
+## 1. Development Environment
 
-```bash
-# active code
-ideaActive
-
-
-# plugins
-# themes
-gradianto
-# json show
-rainbow brackets
-```
-
-## Install
-
+### Install
 ```bash
 # Download and Install
 # https://go.dev/doc/install
@@ -32,7 +19,28 @@ rainbow brackets
 # https://go.dev/doc/install/source
 ```
 
-## Basic grammar
+### Goland
+```bash
+# active
+cat ./ideaActive/ja-netfilter-all/ja-netfilter/readme.txt
+
+# plugins
+gradianto # themes
+rainbow brackets # json
+```
+
+## 2. ProjectManage
+
+```bash
+go mod init go-example
+
+go mod tidy
+
+go mod vendor
+```
+
+
+## 3. Basic grammar
 
 ### Commentary
 

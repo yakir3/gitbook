@@ -5,7 +5,9 @@ description: Java record
 
 # Java
 
-## Install
+## 1. Development Environment
+
+### Install
 
 ```bash
 # centos
@@ -18,38 +20,30 @@ apt install default-jdk
 
 ```
 
-## IDEA
-
-### active
+### IntelliJ IDEA
 
 ```bash
+# active
 cat ideaActive/ja-netfilter-all/ja-netfilter/readme.txt
-```
 
-### config
-
-```bash
-# Editor
-Font
-Color Scheme
+# settings
+# 1. Python Intergrated Tools -> Docstring format: Google
 
 # Plugins
-# themes
-gradianto
-# json show
-rainbow brackets
+gradianto # themes
+rainbow brackets # json
 ```
 
-## ProjectManage
+## 2. ProjectManage
 
-### \[\[BuildTools#maven|maven]]
+### [maven](/Operations/CommandManual/BuildTools.md#maven)
 
 ### gradle
 
 ```bash
 ```
 
-## JVM Settings
+## 3. JVM Settings
 
 ### common
 
