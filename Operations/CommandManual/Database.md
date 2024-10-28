@@ -1,5 +1,18 @@
 # Database
 
+## clickhouse
+```bash
+# client
+clickhouse-client -h clickhouse --port 9000 -m -u root --password pwd123
+clickhouse-client -h clickhouse --port 9000 -m -u root --password pwd123 -q "select * from default.tablex_all"
+
+
+# http api
+curl -u "user:pwd123" "http://http://clickhouse.com:8123" --data-binary "select * from default.tablex_all" -i
+
+curl -X POST -u "user:pwd123" "http://clickhouse.com:8123" --data-binary "insert into default.tablex_all (key1,key2) values ('xxx',111) " -i
+```
+
 ## elasticsearch
 ```bash
 # 查看所有 restful api

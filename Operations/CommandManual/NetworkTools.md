@@ -42,34 +42,87 @@ tcpdump -ttttnvvvS -i ens160 arp
 
 ## curl
 ```bash
-# customer header
--H
-# use cookie
--b 
-# verbose info
--v
-# proxy
--x [protocol://]host[:port]
+# UserAgent
+curl -A 'chrome' https://example.com
+
+# Cookie
+curl -b 'foo=bar' https://example.com
+curl -c cookie.txt https://example.com
+
+# HTTP GET/POST data
+curl -d 'username=abc' -X POST https://example.com/login
+curl -d '@data.txt' -X POST https://example.com/login
+curl -d '{"username":"abc"}' -H 'Content-Type: application/json' -X POST https://example.com/login
+curl --data-binary 'msg=hello wordld' https://example.com/login      # transfer binary data
+curl --data-raw 'msg=hello wordld' https://example.com/login         # transfer original data
+curl --data-urlencode 'msg=hello wordld' https://example.com/login   # URL Encode data
+
+# HTTP Referer
+curl -e 'https://google.com?q=example' https://example.com
+curl -H'Referer: https://google.com?q=example' https://example.com
 
 
+# HTTP GET data
+curl -G -d 'q=query' -d 'count-10' https://example.com/search
+
+# HTTP Header
+curl -H'Accept-Language: en-US' -H 'Content-Type: application/json' https://example.com
+
+# HTTP HEAD request
+curl -I https://example.com
+
+# Skip SSL check
+curl -k https://example.com
+
+# Follow request
+curl -L https://example.com
+
+# Limit rate request
+curl --limit-rate 200k https://example.com
+
+# Save to file
+curl -o example.html https://example.com
+curl -O https://example.com/foo/bar.html
+
+# Silence
+curl -s https://example.com
+curl -S https://example.com    # only error msg
+
+# Server user and password
+curl -u 'user:pwd' https://example.com/login
+curl -H'Authorization: Basic cHdkCg==' https://example.com/login
+curl https://user:pwd@example.com/login
+
+# Verbose info
+curl -v https://example.com
+curl --trace https://example.com
+
+# HTTP request proxy
+curl -x [protocol://]host[:port] https://example.com
+curl -x socks5://user:pwd@myproxy.com:8080 https://example.com
+
+# HTTP method
+curl -X [GET|POST|PUT|DELETE|OPTIONS] https://example.com
+
+#######
+# Example
+#######
 # 304 response
 curl https://cdn.example.com/ -H'if-modified-since: Mon, 1 Jan 2024 00:00:00 GMT' -i
 curl https://cdn.example.com/ -H'if-none-match: "xxx123-xxx456"' -i 
 
-
-# 测试服务端支持的 TLS 版本
+# check tls max version
 curl https://google.com -kv --tlsv1 --tls-max 1.0
 curl https://google.com -kv --tlsv1.3 --tls-max 1.3
 
-# 指定 DNS 解析 IP 请求
+# special resolve IP before local DNS resolve
 curl https://google.com --resolve google.com:443:1.1.1.1 -v
 
-# 验证 ssl 证书
+# tls certificate
 openssl s_client -servername your.domain.com -connect 127.0.0.1:443
 
-
-# 模拟 websocket 请求
-curl http://127.0.0.1:9999 -H 'Upgrade: websocket' -H 'Connection: Upgrade' -H'Sec-WebSocket-Key: eeZn6lg/rOu8QbKwltqHDA==' -H'Sec-WebSocket-Version: 13'
+# mock websocket request
+curl http://127.0.0.1:9999 -H'Upgrade: websocket' -H'Connection: Upgrade' -H'Sec-WebSocket-Key: eeZn6lg/rOu8QbKwltqHDA==' -H'Sec-WebSocket-Version: 13'
 
 # timing
 curl -L -w "time_namelookup: %{time_namelookup}\ntime_connect: %{time_connect}\ntime_appconnect: %{time_appconnect}\ntime_pretransfer: %{time_pretransfer}\ntime_redirect: %{time_redirect}\ntime_starttransfer: %{time_starttransfer}\ntime_total: %{time_total}\n" https://example.com/
