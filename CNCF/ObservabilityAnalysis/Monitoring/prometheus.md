@@ -320,3 +320,4 @@ metadata:
 > 6. [redis-exporter](https://github.com/oliver006/redis_exporter)
 > 7. [kafka-exporter](https://github.com/danielqsj/kafka_exporter)
 > 8. [rocketmq-exporter](https://github.com/apache/rocketmq-exporter)
+> 9. [awesome-prometheus-alerts](https://github.com/samber/awesome-prometheus-alerts)
